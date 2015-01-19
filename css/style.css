@@ -1,0 +1,103 @@
+#clickhere:hover {
+    text-decoration:underline;
+	cursor:pointer;
+	color: #FF0000;
+}
+#clickhere{
+    text-decoration:underline;
+	color: #0000FF;
+}
+.lne {
+
+    height: 10px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0,0,0,0.5);
+}
+.text-right{
+	padding-top:30px;
+}
+.bg{
+	background-color:#9FF;
+	padding:5px;
+}
+.bold{
+	font-weight:bold;
+}
+.pads{
+	padding-right:20px;
+	padding-left:20px;
+}
+.pads2{
+	padding:20px;
+}
+.pad2{margin-left:50px;}
+.navbar-inverse {
+	background-color: #3F3999;
+	border-color: #133783;
+}
+.navbar-inverse .navbar-brand {
+color:#FFF;
+}
+.foot{color:#1B4EB8}
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+	background-color: #1B4EB8;
+}
+.error{
+	color:#F00;
+	font-size:14px;
+}
+.noborder{
+	
+    border: 0;
+}
+.invi{display:none;}
+.jumbotron p {
+font-size: 14px;
+font-weight:bold;
+}
+.reg_form{
+	width:83%;
+	padding:10px;
+	padding-top:20px;
+	padding-bottom:30px;
+	border:3px solid #DFDFDF;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#cbd4e5));
+	background: -moz-linear-gradient(top,  #fff,  #cbd4e5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#cbd4e5');
+}
+.mt {padding-left:0px; padding-right:2px; width:23.75%; float:left}
+.mt2 {padding-left:0px; padding-right:2px; width:5%; float:left; text-align:center}
+.form_title{
+	font-size:20px;
+	font-weight:bold;
+}
+.form_sub_title{
+	font-size:20px;
+	font-weight:bold;
+	padding-bottom:10px;
+}
+.pad{padding-left:0px;padding-right:0px; text-align:center}
+
+.greenButton{
+	width:auto;
+	margin:10px 0 0 2px;
+	padding:3px 4px 3px 4px;
+	color:white;
+	background-color:#589d39;
+	outline:none;
+	border:1px solid #006600;
+	font-weight:bold;
+}
+.greenButton:active{
+	background-color:#006600;
+	padding:4px 3px 2px 5px;
+}
+
+	img#uploadPreview{
+		border: 0;
+		border-radius: 3px;
+		-webkit-box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+		box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+		margin-bottom: 30px;
+		overflow: hidden;
+	}
