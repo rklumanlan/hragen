@@ -188,7 +188,11 @@ class User extends CI_Controller{
 				$data['os']=$this->user_model->pop_os();
 				$data['fwork']=$this->user_model->pop_fwork();
 				
-				//$data['sel_lang']=$this->user_model->pop_lang_sel();
+				//$data['numrows']=$this->user_model->numrows();
+				
+				$data['educ']=$this->user_model->pop_educ();
+				
+				
 				
 				$data['title']= 'Welcome';
 				
@@ -218,15 +222,13 @@ class User extends CI_Controller{
 	{	
 		
 	
-	
+		
 		$data['language']=$this->user_model->pop_lang();
 		$data['os']=$this->user_model->pop_os();
 		$data['fwork']=$this->user_model->pop_fwork();
 
 		
-		$this->load->view('header_view');
-		$this->load->view('preview_view.php',$data);
-		$this->load->view('footer_view');
+		
 		
 		if ($this->input->post('UpdatetpinfoCTR') == "Updatepinfo")
 		{
@@ -242,6 +244,15 @@ class User extends CI_Controller{
 			case "Updatepref":
 				$this->user_model->update_pref();
 				break;
+				
+			case "inserteduc":
+				$this->user_model->insert_educ();
+				$data['educ']=$this->user_model->pop_educ();
+				break;
+		}
+		if ($this->input->post('UpdatetpinfoCTR') == "Updatepinfo")
+		{
+			$this->user_model->update_pinfo();
 		}
 		
 			
@@ -254,7 +265,9 @@ class User extends CI_Controller{
 		
 		
 		
-		
+		$this->load->view('header_view');
+		$this->load->view('preview_view.php',$data);
+		$this->load->view('footer_view');
 
 		
 	}

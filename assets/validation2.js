@@ -62,7 +62,7 @@ function cancel(value,val2){
 
 
 $(document).ready(function(){
-	
+	$("#educ").css('display','none');
 	
 	
 	var comp2;
@@ -118,8 +118,9 @@ $(document).ready(function(){
 		});*/
 	}
 	$("#addeduc").click(function(){
-		$('#edteduc').css('display','none');
-		$('#saveeduc').removeClass('invi');
+		$('#inserteduc').removeClass('invi');
+		/*$('#edteduc').css('display','none');
+		
 		educ2 = $(".educ:visible").length;
 		while(educ2<=4){
 			educ2++;
@@ -137,8 +138,8 @@ $(document).ready(function(){
 			$("#educ"+educ2).slideDown();
 			
 			break;
-		  }
-			
+		  }*/
+		$("#educ").slideDown();
             
 	});
 		
@@ -198,6 +199,11 @@ $(document).ready(function(){
             
 		});
 	
+	$("#inserteduc").click(function(){
+			$('#case_update').val('inserteduc');
+		})
+		
+		
 	$("#Updateeduc").click(function(){
 			$('#case_update').val('Updateeduc');
 		});

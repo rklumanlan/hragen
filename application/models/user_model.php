@@ -456,6 +456,25 @@ class User_model extends CI_Model {
 
 	}
 	
+	function insert_educ()
+    {	
+			
+			
+			$data2 = array( 
+				'uid'=>$this->session->userdata('user_id'),
+				'school'=>$this->input->post('school'),
+				'yearFrom'=>$this->input->post('DAtty1'),
+				'yearTo'=>$this->input->post('DAtty2'),
+				'fstudy'=>$this->input->post('mjr'),
+				'degree'=>$this->input->post('degree'),
+				'educCTR'=>$this->input->post('addeducCtr'),
+				'desc'=>$this->input->post('EAdes')
+				);
+				
+			$this->db->insert('educ', $data2); 
+			
+	
+	}
 		
 	function update_educ()
     {	

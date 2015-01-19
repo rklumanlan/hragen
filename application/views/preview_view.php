@@ -170,47 +170,57 @@
             </div>
             <div class="form_title">Education and Awards</div>
             <?php
-			for($count=1;$count<=4;$count++)
+			$num=1;
+			foreach($educ->result() as $educ)
 			{	
 				
 				echo"
-				<div id='educ".$count."' class='educ '>
-					<div class='form-group sch".$count."' > 
+				
+				<div id='educ".$num."' class='educ '>
+					<div class='form-group sch".$num."' > 
 						<label for='fname' class='control-label col-sm-3'>School:</label>
 						<div class='col-sm-9 '>
-							<input type='hidden' id='educidCtr".$count."' name='educidCtr".$count."' value='".$count."'>
-							<input type='text' id='school".$count."' name='school".$count."' class='form-control school edteduc'
-							readOnly='true' value='".set_value('school'.$count)."' />
+							<input type='hidden' id='educidCtr".$num."' name='educidCtr".$num."' value='".$num."'>
+							<input type='text' id='school".$num."' name='school".$num."' class='form-control school edteduc'
+							readOnly='true' value='".$educ->school."' />
 						</div>
 					</div>
-					<div class='form-group date".$count."'> 
+					<div class='form-group date".$num."'> 
 						<label for='fname'  class='control-label col-sm-3'>Dates Attended:</label>
 						<div class='col-sm-9'>
 							<div class='col-sm-5 pad'>
-								<input type='hidden' name='DAtty1".$count."' id='DAtty1".$count."' 
-								value='".set_value('DAtty1'.$count)."'/>
-								<select name='DAtty1".$count."' id='DAtty1".$count."' class='form-control dateFrom edteduc' 
+								<input type='hidden' name='DAtty1".$num."' id='DAtty1".$num."' 
+								value='".$educ->yearFrom."'/>
+								<select name='DAtty1".$num."' id='DAtty1".$num."' class='form-control dateFrom edteduc' 
 								disabled>
 									<option value='-'>-</option>";
-									$yeard1 = date('Y')+1; 
+									$yeard1 = date('Y')+1;
+								
 									for ($i = 0; $i <= 100; $i++) {
 										$yeard1--; 
-										echo "<option value='".$yeard1."' ' ".set_select('DAtty1'.$count, $yeard1, TRUE).">".$yeard1."</option>";
+										if($yeard1 == $educ->yearFrom ){
+											echo '<option value="'.$yeard1.'" selected="selected">'.$yeard1.'</option>';
+										}
 									}
-							echo "</select>
+							
+							echo "</select> 
 							
 							</div>
 							<div class='col-sm-2 pad'>-</div>
 							<div class='col-sm-5 pad' >
-									<input type='hidden' name='DAtty2".$count."' id='DAtty2".$count."' 
-									value='".set_value('DAtty2'.$count)."'/>
-									<select name='DAtty2".$count."' id='DAtty2".$count."' class='form-control dateTo edteduc' 
+									<input type='hidden' name='DAtty2".$num."' id='DAtty2".$num."' 
+									value='".$educ->yearTo."'/>
+									<select name='DAtty2".$num."' id='DAtty2".$num."' class='form-control dateTo edteduc' 
 									disabled>
 									<option value='-'>-</option>";
 									$yeard2 = date('Y')+1; 
+									if($educ->yearTo == $yeard2){ $sel2 = 'selected="selected"';}
 									for ($j = 0; $j <= 100; $j++) {
-										$yeard2--; echo '<option value="'.$yeard2.'"   
-										'.set_select("DAtty2".$count, $yeard2, TRUE).'">'.$yeard2.'</option>';
+										$yeard2--; 
+										
+										if($yeard2 == $educ->yearTo){
+											echo '<option value="'.$yeard2.'" selected="selected">'.$yeard2.'</option>';
+										}
 									}
 						
 							echo "</select>
@@ -219,25 +229,31 @@
 						</div>
 						
 					</div>
-					<div class='form-group major".$count."'>
+					<div class='form-group major".$num."'>
 						<label for='fname' class='control-label col-sm-3'>Feild of Study:</label>
 						<div class='col-sm-9'>
-							<input type='text' id='mjr".$count."' name='mjr".$count."' class='form-control mjr edteduc' 
-							readOnly='true' value='".set_value('mjr'.$count)."' />
+							<input type='text' id='mjr".$num."' name='mjr".$num."' class='form-control mjr edteduc' 
+							readOnly='true' value='".$educ->fstudy."' />
 						</div>
 					</div>
-					<div class='form-group dgree".$count."'>
+					<div class='form-group dgree".$num."'>
 						<label for='degree' class='control-label col-sm-3'>Degree:</label>
 						<div class='col-sm-9'>";
 						
 					$degree = array("-"=>"-","High School"=>"High School","Associate's Degree"=> "Associate's Degree", "Bachelor's Degree"=>"Bachelor's Degree", "Master's Degree"=>"Master's Degree");
         
-                    echo'<input type="hidden" name="degree'.$count.'" id="degree'.$count.'" 
-					value="'.set_value("degree".$count).'"/>';		
-					echo "<select name='degree".$count."' id='degree".$count."' class='form-control edteduc' disabled>";
+                    echo'<input type="hidden" name="degree'.$num.'" id="degree'.$num.'" 
+					value="'.$educ->degree.'"/>';		
+					echo "<select name='degree".$num."' id='degree".$num."' class='form-control edteduc' disabled>";
+					
 					foreach($degree as $key => $value) {
-						echo'<option  value="'.$value.'" '.set_select("degree".$count, $value, TRUE).'>'.$value.'</option> ';
+						if($value == $educ->degree){
+							echo'<option  value="'.$value.'" selected="selected">'.$value.'</option> ';
+						}
+						
+						
 					}
+					
 					echo"<select>"	;
 					
 					echo "</div>
@@ -245,32 +261,126 @@
 					<div class='form-group'>
 						<label for='desc' class='control-label col-sm-3'>Description:</label>
 						<div class='col-sm-9'>";
-						$desc = Array ('id' => 'EAdes'.$count.'','name' => 'EAdes'.$count.'', 'cols' => '24','rows' => '5','class'=>'form-control edteduc',
+						$desc = Array ('id' => 'EAdes'.$num.'','name' => 'EAdes'.$num.'', 'cols' => '24','rows' => '5','class'=>'form-control edteduc',
 						'readOnly'=>'true');
-								echo Form_textarea($desc,set_value($desc['name']));
+								echo Form_textarea($desc,$educ->desc);
 						echo "	
+						
 						</div>
 					</div>
 									
 					
-				</div>
-									
-									
-									
-									
-						";
+				</div>";
+				$num++;
 			}
+			
+			echo "<input type='hidden' id='addeducCtr' name='addeducCtr' value='".$num."'>";
+			
+			
+			
+			
 			?>
-            
+            <div id='educ' class='educ'>
+                <div class='form-group sch' > 
+                    <label for='fname' class='control-label col-sm-3'>School:</label>
+                    <div class='col-sm-9 '>
+                        <input type='text' id='school' name='school' class='form-control school edteduc'
+                          />
+                    </div>
+                </div>
+                <div class='form-group date'> 
+                    <label for='fname'  class='control-label col-sm-3'>Dates Attended:</label>
+                    <div class='col-sm-9'>
+                        <div class='col-sm-5 pad'>
+                            <input type='hidden' name='DAtty1' id='DAtty1' 
+                            value='".$educ->yearFrom."'/>
+                            <select name='DAtty1' id='DAtty1' class='form-control dateFrom edteduc' 
+                           >
+                                <option value='-'>-</option>
+                                <?php
+                                $yeard1 = date('Y')+1;
+                            
+                                for ($i = 0; $i <= 100; $i++) {
+                                    $yeard1--; 
+                                    echo '<option value="'.$yeard1.'" >'.$yeard1.'</option>';
+                                }
+                        		?>
+                        </select> 
+                        
+                        </div>
+                        <div class='col-sm-2 pad'>-</div>
+                        <div class='col-sm-5 pad' >
+                                <input type='hidden' name='DAtty2' id='DAtty2' 
+                                value='".$educ->yearTo."'/>
+                                <select name='DAtty2' id='DAtty2' class='form-control dateTo edteduc' 
+                                >
+                                <option value='-'>-</option>
+                                <?php
+                                $yeard2 = date('Y')+1; 
+                               
+                                for ($j = 0; $j <= 100; $j++) {
+                                    $yeard2--; 
+                                    echo '<option value="'.$yeard2.'" >'.$yeard2.'</option>';
+                                }
+                    			?>
+                        </select>
+                        
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class='form-group major'>
+                    <label for='fname' class='control-label col-sm-3'>Feild of Study:</label>
+                    <div class='col-sm-9'>
+                        <input type='text' id='mjr' name='mjr' class='form-control mjr edteduc' />
+                    </div>
+                </div>
+                <div class='form-group dgree'>
+                    <label for='degree' class='control-label col-sm-3'>Degree:</label>
+                    <div class='col-sm-9'>
+                 <?php   
+                $degree = array("-"=>"-","High School"=>"High School","Associate's Degree"=> "Associate's Degree", "Bachelor's Degree"=>"Bachelor's Degree", "Master's Degree"=>"Master's Degree");
+    			?>
+                <select name='degree' id='degree' class='form-control edteduc' >
+                <?php
+                foreach($degree as $key => $value) {
+                        echo'<option  value="'.$value.'" >'.$value.'</option> ';
+                    
+                    
+                }
+                ?>
+                <select>
+                
+                	</div>
+                </div>
+                <div class='form-group'>
+                    <label for='desc' class='control-label col-sm-3'>Description:</label>
+                    <div class='col-sm-9'>
+                    <?php
+                    $desc = Array ('id' => 'EAdes'.$num.'','name' => 'EAdes', 'cols' => '24','rows' => '5','class'=>'form-control edteduc');
+                            echo Form_textarea($desc);
+                    ?>
+                    
+                    </div>
+                </div>
+                                
+                
+            </div>
             <div class="form-group" >
             	<div class="pull-right pads edteduc ">
+                	
                 	<input type="hidden" name= "educCTR" id= "educCTR" value="" />
                     <input type="button" id="addeduc" class="greenButton edteducbtn" value="Add Position" />
-                    <input type="button" id="saveeduc" class="greenButton edteducbtn invi" value="Save Position" />
+                    <input type="hidden" value="inserteduc" name="inserteduc"/>
+                    <?php echo form_submit('inserteduc','Save Position', 'id="inserteduc" 
+					class="greenButton edteducbtn invi" ');?> 
+                    
+                    
+                    
                 	<input type="button" id="edteduc"  class="greenButton edteducbtn " onclick="edt(this.id)" 
                     value="Edit Position" />
-                	<?php echo form_submit('Updateeduc','Update', 'id="Updateeduc" 
-					class="greenButton edteducbtn invi" ');?> 
+                	<?php //echo form_submit('Updateeduc','Update', 'id="Updateeduc" 
+					//class="greenButton edteducbtn invi" ');?> 
                     
                 	<input type="button" id="canceleduc" name="edteduc" class="greenButton edteducbtn invi" 
                     onclick="cancel(this.id,this.name)" value="Cancel" />
