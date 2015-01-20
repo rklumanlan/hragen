@@ -246,7 +246,6 @@
     </header>
 </div>
 
-
 <script type="text/javascript" src="<?php echo base_url();?>assets/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/validation2.js"></script>
         

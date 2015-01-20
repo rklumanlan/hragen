@@ -372,9 +372,10 @@ class User_model extends CI_Model {
 		else{
 			$fworkval="";
 		}
-		$data = array('lang_code'=>$langval,'fwork_code'=>$fworkval,'os_code'=>$osval,'uid'=>$pid);
-		$this->db->insert('tskills', $data); 
-				
+		if($fwork!=NULL && $os!=NULL && $lang!=NULL){
+			$data = array('lang_code'=>$langval,'fwork_code'=>$fworkval,'os_code'=>$osval,'uid'=>$pid);
+			$this->db->insert('tskills', $data); 
+		}
 		
 		
 		
@@ -415,8 +416,10 @@ class User_model extends CI_Model {
 					'loc'=>$this->input->post('loc'.$b),
 					'month1'=>$this->input->post('mon1'.$b),
 					'month2'=>$this->input->post('mon1'.$b),
+					'compCTR'=>$b,
 					'year1'=>$this->input->post('TPy1'.$b),
-					'year2'=>$this->input->post('TPy2'.$b)
+					'year2'=>$this->input->post('TPy2'.$b),
+					
 					);
 				$this->db->insert('comp',$data4);
 			}
@@ -460,19 +463,39 @@ class User_model extends CI_Model {
     {	
 			
 			
-			$data2 = array( 
-				'uid'=>$this->session->userdata('user_id'),
-				'school'=>$this->input->post('school'),
-				'yearFrom'=>$this->input->post('DAtty1'),
-				'yearTo'=>$this->input->post('DAtty2'),
-				'fstudy'=>$this->input->post('mjr'),
-				'degree'=>$this->input->post('degree'),
-				'educCTR'=>$this->input->post('addeducCtr'),
-				'desc'=>$this->input->post('EAdes')
-				);
-				
-			$this->db->insert('educ', $data2); 
+		$data2 = array( 
+			'uid'=>$this->session->userdata('user_id'),
+			'school'=>$this->input->post('school'),
+			'yearFrom'=>$this->input->post('DAtty1'),
+			'yearTo'=>$this->input->post('DAtty2'),
+			'fstudy'=>$this->input->post('mjr'),
+			'degree'=>$this->input->post('degree'),
+			'educCTR'=>$this->input->post('addeducCtr'),
+			'desc'=>$this->input->post('EAdes')
+			);
 			
+		$this->db->insert('educ', $data2); 
+			
+	
+	}
+	
+	function insert_comp()
+    {	
+		$data4=array(
+				'uid'=>$this->session->userdata('user_id'),
+				'compname'=>$this->input->post('compname'),
+				'title'=>$this->input->post('title'),
+				'prdesc'=>$this->input->post('PEdes'),
+				'loc'=>$this->input->post('loc'),
+				'month1'=>$this->input->post('mon1'),
+				'month2'=>$this->input->post('mon1'),
+				'year1'=>$this->input->post('TPy1'),
+				'year2'=>$this->input->post('TPy2'),
+				'compCTR'=>$this->input->post('addcompCtr')
+			);
+		
+		$this->db->insert('comp', $data4); 	
+		
 	
 	}
 		

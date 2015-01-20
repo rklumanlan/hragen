@@ -63,105 +63,51 @@ function cancel(value,val2){
 
 $(document).ready(function(){
 	$("#educ").css('display','none');
+	$("#comp").css('display','none');
 	
 	
-	var comp2;
-	for(var comp=1;comp<=$(".pexp").length;comp++)
-	{
-		if ($("#compname"+comp).val()==""){
-			
-			$("#pexp"+comp).addClass('invi');
-			
-		}
-	}
+	//inserting position
 	$("#addcomp").click(function(){
+		$('#insertcomp').removeClass('invi');
+		$('#addcomp').css('display','none');
+		$('#cancelcomp').removeClass('invi');
+		$("#comp").slideDown();
 		
-		comp2 = $(".pexp:visible").length;
-        	while(comp2<=4){
-            	comp2++;
-				$('#compCTR').val(comp2);
-				$("#pexp"+comp2).slideDown();
-                break;
-              }
-			
-            
-		});
-	$("#remcomp").click(function(){
-		var comp3=comp2-1;
-        	while(comp2>=2){
-            	
-            	$('#compCTR').val(comp3);
-				$("#pexp"+comp2).slideUp();
-				comp2--;
-                break;
-              }
-			
-            
-		});
 		
-	var educ2;
-	for(var educ=1;educ<=$(".educ").length;educ++)
-	{
-		if ($("#school"+educ).val()==""){
-			
-			$("#educ"+educ).addClass('invi');
-			
-		}
-		/*$("#DAtty1"+educ).change(function(){ 
-		  $("#DAtty1"+educ).val($("#DAtty1"+educ));
-		});
-		$("#DAtty2"+educ).change(function(){ 
-		  $("#DAtty2"+educ).val($("#DAtty2"+educ));
-		});
-		$("#degree"+educ).change(function(){
-		  $("#degree"+educ).val($("#degree"+educ));
-		});*/
-	}
-	$("#addeduc").click(function(){
-		$('#inserteduc').removeClass('invi');
-		/*$('#edteduc').css('display','none');
-		
-		educ2 = $(".educ:visible").length;
-		while(educ2<=4){
-			educ2++;
-			
-			
-			$('#educ'+educ2+' input[type="text"] ').removeAttr("readonly");
-			$('select[id=DAtty1'+educ2+']').removeAttr("disabled");
-			$('select[id=DAtty2'+educ2+']').removeAttr("disabled");
-			$('select[id=degree'+educ2+']').removeAttr("disabled");
-			$('#EAdes'+educ2+'').prop('readonly',false);
-			
-			
-			$('#educCTR').val(educ2);
-			
-			$("#educ"+educ2).slideDown();
-			
-			break;
-		  }*/
-		$("#educ").slideDown();
             
 	});
-		
-		
-		
-	$("#remeduc").click(function(){
-		
-				
-			var educ3= educ2-1;
-        	while(educ2>=2){
-            	$('#educ'+educ2+' input[type="text"]').val('');
-            	$('#DAtty1'+educ2).val('-');
-            	$('#DAtty2'+educ2).val('-');
-            	$('#degree'+educ2).val('-');
-            	$('#educCTR').val(educ3);
-				$("#educ"+educ2).slideUp();
-				educ2--;
-                break;
-              }
+	
+	$("#insertcomp").click(function(){
+			$('#case_update').val($("#insertcomp").attr('id'));
 			
-            
 		});
+		
+	$("#cancelcomp").click(function(){
+			$("#prevform")[0].reset();
+			$("#comp").slideUp();
+		});
+		
+	
+	//inserting education
+	$("#addeduc").click(function(){
+		$('#inserteduc').removeClass('invi');
+		$('#addeduc').css('display','none');
+		$('#canceleduc').removeClass('invi');
+		$("#educ").slideDown();
+		
+            
+	});
+	
+	$("#inserteduc").click(function(){
+			$('#case_update').val($("#inserteduc").attr('id'));
+			
+		});
+		
+	$("#canceleduc").click(function(){
+			$("#prevform")[0].reset();
+			$("#educ").slideUp();
+		});
+		
 		
 		
 		
@@ -199,9 +145,16 @@ $(document).ready(function(){
             
 		});
 	
-	$("#inserteduc").click(function(){
-			$('#case_update').val('inserteduc');
-		})
+	
+	
+	
+	
+	
+	
+		
+		
+		
+		
 		
 		
 	$("#Updateeduc").click(function(){
@@ -214,15 +167,14 @@ $(document).ready(function(){
 			$('#case_update').val('Updatepref');
 		});
 	
-	$('#compCTR').val($(".pexp:visible").length);
-	$('#prefCTR').val($(".pexp:visible").length);
-	$('#educCTR').val($(".educ:visible" ).length);
-	
+
+	//admin view
 	if ($("#results").is(':visible')){
 	   $("#criteria").css('display','none');
 	}
 	if ($("#criteria").is(':visible')){
 	   $("#refineRes").css('display','none');
+	   $("#search")[0].reset();
 	}
 	
 });

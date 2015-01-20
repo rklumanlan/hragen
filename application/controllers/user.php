@@ -188,9 +188,11 @@ class User extends CI_Controller{
 				$data['os']=$this->user_model->pop_os();
 				$data['fwork']=$this->user_model->pop_fwork();
 				
-				//$data['numrows']=$this->user_model->numrows();
 				
 				$data['educ']=$this->user_model->pop_educ();
+				$data['tskills']=$this->user_model->pop_tskills();
+				$data['comp']=$this->user_model->pop_comp();
+				$data['pref']=$this->user_model->pop_pref();
 				
 				
 				
@@ -230,6 +232,7 @@ class User extends CI_Controller{
 		
 		
 		
+		
 		if ($this->input->post('UpdatetpinfoCTR') == "Updatepinfo")
 		{
 			$this->user_model->update_pinfo();
@@ -248,6 +251,13 @@ class User extends CI_Controller{
 			case "inserteduc":
 				$this->user_model->insert_educ();
 				$data['educ']=$this->user_model->pop_educ();
+				$data['comp']=$this->user_model->pop_comp();
+				break;
+			
+			case "insertcomp":
+				$this->user_model->insert_comp();
+				$data['educ']=$this->user_model->pop_educ();
+				$data['comp']=$this->user_model->pop_comp();
 				break;
 		}
 		if ($this->input->post('UpdatetpinfoCTR') == "Updatepinfo")

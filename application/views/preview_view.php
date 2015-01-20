@@ -14,7 +14,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     			<ul class="nav navbar-nav navbar-right">
                     <li>
-                        <?php echo $this->session->userdata('user_id'); echo anchor('user/logout', 'Logout'); ?>
+                        <?php echo anchor('user/logout', 'Logout'); ?>
                     </li>
                     
                 </ul>
@@ -32,7 +32,7 @@
         <header class="jumbotron hero-spacer col-xs-12 col-sm-12 col-md-12 col-lg-12  ">
         <div class="reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1  ">
         <div class="form_title">Personal Information</div>
-        <?php echo form_open('user/update_info'); ?>
+        <?php echo form_open('user/update_info','id = "prevform"'); ?>
         <input type="hidden" id="case_update" name="case_update" value=''/>
 		<div class="form-horizontal">    
         	
@@ -244,7 +244,7 @@
         
                     echo'<input type="hidden" name="degree'.$num.'" id="degree'.$num.'" 
 					value="'.$educ->degree.'"/>';		
-					echo "<select name='degree".$num."' id='degree".$num."' class='form-control edteduc' disabled>";
+					echo "<select name='degree".$num."' id='degree".$num."' class='form-control deg edteduc' disabled>";
 					
 					foreach($degree as $key => $value) {
 						if($value == $educ->degree){
@@ -263,7 +263,7 @@
 						<div class='col-sm-9'>";
 						$desc = Array ('id' => 'EAdes'.$num.'','name' => 'EAdes'.$num.'', 'cols' => '24','rows' => '5','class'=>'form-control edteduc',
 						'readOnly'=>'true');
-								echo Form_textarea($desc,$educ->desc);
+								echo Form_textarea($desc);
 						echo "	
 						
 						</div>
@@ -369,33 +369,17 @@
             <div class="form-group" >
             	<div class="pull-right pads edteduc ">
                 	
-                	<input type="hidden" name= "educCTR" id= "educCTR" value="" />
-                    <input type="button" id="addeduc" class="greenButton edteducbtn" value="Add Position" />
-                    <input type="hidden" value="inserteduc" name="inserteduc"/>
-                    <?php echo form_submit('inserteduc','Save Position', 'id="inserteduc" 
+                    <input type="button" id="addeduc" class="greenButton edteducbtn" value="Add Education" />
+                    <?php echo form_submit('inserteduc','Save Education', 'id="inserteduc" 
 					class="greenButton edteducbtn invi" ');?> 
-                    
-                    
-                    
-                	<input type="button" id="edteduc"  class="greenButton edteducbtn " onclick="edt(this.id)" 
-                    value="Edit Position" />
-                	<?php //echo form_submit('Updateeduc','Update', 'id="Updateeduc" 
-					//class="greenButton edteducbtn invi" ');?> 
-                    
-                	<input type="button" id="canceleduc" name="edteduc" class="greenButton edteducbtn invi" 
-                    onclick="cancel(this.id,this.name)" value="Cancel" />
-                    <input type="hidden" value="Updateeduc" name="UpdateeducCTR"/>
-                    
-                    
-                	
-                   	<input type="button" id="remeduc" class="greenButton edteducbtn invi" value="Remove" />
-                    
+                    <input type="button" id="canceleduc" class="greenButton edteducbtn invi" value="Cancel" />
                 </div>
                 
             </div>
             <div class="form_title">Professional Experience</div>
              <?php $class="";
-			for($ctr=1;$ctr<=4;$ctr++)
+			$ctr=1;
+			foreach($comp->result() as $comp)
 			{	
 				
 				echo"
@@ -406,77 +390,84 @@
 							<input type='hidden' id='compidCtr".$ctr."' name='compidCtr".$ctr."'  value='".$ctr."'>
 							<input type='text' id='compname".$ctr."' name='compname".$ctr."' 
 							class='form-control compname edtcomp '
-							readOnly='true' value='".set_value('compname'.$ctr)."' />
+							readOnly='true' value='".$comp->compname."' />
 						</div>
 					</div>
 					<div class='form-group tit".$ctr."'>
 						<label for='fname' class='control-label col-sm-3'>Title:</label>
 						<div class='col-sm-9'>
 							<input type='text' id='title".$ctr."' name='title".$ctr."' class='form-control title edtcomp'
-							readOnly='true' value='".set_value('title'.$ctr)."' />
+							readOnly='true' value='".$comp->title."' />
 						</div>
 					</div>
 					<div class='form-group location".$ctr."'>
 						<label for='fname' class='control-label col-sm-3'>Location:</label>
 						<div class='col-sm-9'>
 							<input type='text' id='loc".$ctr."' name='loc".$ctr."' class='form-control loca edtcomp' 
-							readOnly='true' value='".set_value('loc'.$ctr)."' />
+							readOnly='true' value='".$comp->loc."' />
 						</div>
 					</div>
 					<div class='form-group comTP".$ctr."'>
 						<label for='fname' class='control-label col-sm-3'>Time Period:</label>
 						<div class='col-sm-9 '>
-							<div class='col-sm-3 pad'>";
-							$month1 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
+							<div class='col-sm-3 pad'>
+								<input type='hidden' name='mon1".$ctr."' id='mon1".$ctr."' 
+								value='".$comp->month1."'/>";
+								$month1 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
 								'3'=> 'March', '4'=>'May', '5'=>'May', '6'=> 'June', '7'=>'July', 
 								'8'=> 'August', '9'=>'September', '10'=>'October', 
 								'11'=>'November', '12'=>'December');
 					
-								echo form_dropdown('mon1'.$ctr.'', $month1,set_value('mon1'.$ctr.''), 
+								echo form_dropdown('mon1'.$ctr.'', $month1,$comp->month1, 
 								"disabled class='form-control monFrom edtcomp' id='mon1".$ctr."'");
-							echo "
-							<input type='hidden' name='mon1".$ctr."' id='mon1".$ctr."' 
-							value='".set_value('mon1'.$ctr)."'/>
-							</div>
+							echo "</div>
 							<div class='col-sm-2 pad'>
+								<input type='hidden' name='TPy1".$ctr."' id='TPy1".$ctr."' 
+								value='".$comp->year1."'/>
 								<select name='TPy1".$ctr."' id='year1".$ctr."' class='form-control yearFrom edtcomp' 
 								disabled >
 								<option>-</option>";
 								$year = date('Y')+1; 
 								for ($y1 = 0; $y1 <= 100; $y1++) {
-									$year--; echo '<option value="'.$year.'" '.set_select('TPy1'.$ctr, $year, TRUE).'>'.$year.'</option>';
+									
+									$year--; 
+									if($yeard2 == $comp->year1){
+										echo '<option value="'.$year.'" selected="selected">'.$year.'</option>';
+									}
 								}
 								echo"
 								</select>
-								<input type='hidden' name='TPy1".$ctr."' id='TPy1".$ctr."' 
-							value='".set_value('TPy1'.$ctr)."'/>
+								
 							</div>
 							<div class='col-sm-2 pad'> - </div>
-							<div class='col-sm-3 pad'>";
+							<div class='col-sm-3 pad'>
+								<input type='hidden' name='mon2".$ctr."' id='mon2".$ctr."' 
+								value='".$comp->month2."'/>";
 								$month2 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
 								'3'=> 'March', '4'=>'May', '5'=>'May', '6'=> 'June', '7'=>'July', 
 								'8'=> 'August', '9'=>'September', '10'=>'October', 
 								'11'=>'November', '12'=>'December');
 					
-								echo form_dropdown('mon2'.$ctr.'', $month2,set_value('mon2'.$ctr.''), 
+								echo form_dropdown('mon2'.$ctr.'', $month2,$comp->month2, 
 								"disabled class='form-control monTo edtcomp' id='mon2".$ctr."'");
-								echo"<input type='hidden' name='mon2".$ctr."' id='mon2".$ctr."' 
-							value='".set_value('mon2'.$ctr)."'/>
-							</div>
+							echo"</div>
 							<div class='col-sm-2 pad'>
+								<input type='hidden' name='TPy2".$ctr."' id='TPy2".$ctr."' 
+								value='".$comp->year2."'/>
 								<select name='TPy2".$ctr."' id='year2".$ctr."'  class='form-control yearTo edtcomp' 
 								disabled >
 								<option>-</option>";
 								$year = date('Y')+1; 
 								for ($y1 = 0; $y1 <= 100; $y1++) {
-									$year--; echo '<option value="'.$year.'" '.set_select('TPy2'.$ctr, $year, TRUE).'>'
-									.$year.'</option>';
+									$year--; 
+									if($year == $comp->year2){
+										echo '<option value="'.$year.'" selected="selected">'.$year.'</option>';
+									}
 								}
 							echo"
 								</select>
 								
-								<input type='hidden' name='TPy2".$ctr."' id='TPy2".$ctr."' 
-							value='".set_value('TPy2'.$ctr)."'/>
+								
 							</div>
 						</div>
 						
@@ -484,10 +475,9 @@
 					<div class='form-group'>
 						<label for='desc' class='control-label col-sm-3'>Description:</label>
 						<div class='col-sm-9'>";
-								$PEdes=set_value('PEdes'.$ctr.'');
-								$desc = Array ('name' => 'PEdes'.$ctr.'', 'id'=>'PEdes'.$ctr.'', 'cols' => '24','rows' => '5','value'=>$PEdes);
+								$desc = Array ('name' => 'PEdes', 'id'=>'PEdes', 'cols' => '24','rows' => '5');
 								
-								echo Form_textarea($desc,set_value($desc['name'])," readOnly='true'
+								echo Form_textarea($desc,""," readOnly='true'
 								 class='form-control edtcomp'");
 						echo"
 						</div>
@@ -496,29 +486,121 @@
 				</div>
 				
 				";
+				$ctr++;
+				
 			}
+			echo "<input type='hidden' id='addcompCtr' name='addcompCtr' value='".$ctr."'>";
 			?>
+            
+            
+            <div id='comp' class='pexp'>
+                <div class='form-group comp'>
+                    <label for='fname' class='control-label col-sm-3'>Company Name:</label>
+                    <div class='col-sm-9'>
+                        <input type='text' id='compname' name='compname' 
+                        class='form-control compname edtcomp '  />
+                    </div>
+                </div>
+                <div class='form-group tit'>
+                    <label for='fname' class='control-label col-sm-3'>Title:</label>
+                    <div class='col-sm-9'>
+                        <input type='text' id='title' name='title' class='form-control title edtcomp'/>
+                    </div>
+                </div>
+                <div class='form-group location'>
+                    <label for='fname' class='control-label col-sm-3'>Location:</label>
+                    <div class='col-sm-9'>
+                        <input type='text' id='loc' name='loc' class='form-control loca edtcomp'  />
+                    </div>
+                </div>
+                <div class='form-group comTP'>
+                    <label for='fname' class='control-label col-sm-3'>Time Period:</label>
+                    <div class='col-sm-9 '>
+                        <div class='col-sm-3 pad'>
+                            <?php
+                            $month1 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
+                            '3'=> 'March', '4'=>'May', '5'=>'May', '6'=> 'June', '7'=>'July', 
+                            '8'=> 'August', '9'=>'September', '10'=>'October', 
+                            '11'=>'November', '12'=>'December');
+                
+                            echo form_dropdown('mon1', $month1,'', 
+                            "class='form-control monFrom edtcomp' id='mon1'");
+                            ?>
+                        	</div>
+                        <div class='col-sm-2 pad'>
+                            <select name='TPy1' id='year1' class='form-control yearFrom edtcomp'>
+                            <option>-</option>
+                            <?php
+                            $year = date('Y')+1; 
+                            for ($y1 = 0; $y1 <= 100; $y1++) {
+                                
+                                $year--; 
+                                echo '<option value="'.$year.'" >'.$year.'</option>';
+                            }
+                           ?>
+                            </select>
+                            
+                        </div>
+                        <div class='col-sm-2 pad'> - </div>
+                        <div class='col-sm-3 pad'>
+                            <?php
+                            $month2 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
+                            '3'=> 'March', '4'=>'May', '5'=>'May', '6'=> 'June', '7'=>'July', 
+                            '8'=> 'August', '9'=>'September', '10'=>'October', 
+                            '11'=>'November', '12'=>'December');
+                
+                            echo form_dropdown('mon2', $month2,'', 
+                            "class='form-control monTo edtcomp' id='mon2'");
+                            ?>
+                        	</div>
+                        <div class='col-sm-2 pad'>
+                            <select name='TPy2' id='year2'  class='form-control yearTo edtcomp'>
+                            <option>-</option>
+                            <?php
+                            $year = date('Y')+1; 
+                            for ($y1 = 0; $y1 <= 100; $y1++) {
+                                $year--; 
+                                echo '<option value="'.$year.'">'.$year.'</option>';
+                            }
+							?>
+                            </select>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class='form-group'>
+                    <label for='desc' class='control-label col-sm-3'>Description:</label>
+                    <div class='col-sm-9'>
+                    <?php
+						$desc = Array ('name' => 'PEdes'.$ctr.'', 'id'=>'PEdes'.$ctr.'', 'cols' => '24','rows' => '5',
+						'class'=>'form-control edtcomp');
+						
+						echo Form_textarea($desc);
+					?>
+                    </div>
+                </div>
+                            
+            </div>
+            
+            
             
            
            	
             <div class="form-group" >
             	<div class="pull-right pads edtcomp ">
-                	<input type="hidden" name= "compCTR" id= "compCTR" value="" />
-                	<input type="button" id="edtcomp"  class="greenButton edtcompbtn " onclick="edt(this.id)" value="Edit" />
-                	<?php echo form_submit('Updatecomp','Update', 'id="Updatecomp" class="greenButton edtcompbtn invi" ');?> 
-                	<input type="button" id="cancelcomp" name="edtcomp" class="greenButton edtcompbtn invi" 
-                    onclick="cancel(this.id,this.name)" value="Cancel" />
-                    <input type="hidden" value="Updatecomp" name="UpdatecompCTR"/>
-                    
-                	<input type="button" id="addcomp" class="greenButton edtcompbtn invi" value="Add Another" />
-                   	<input type="button" id="remcomp" class="greenButton edtcompbtn invi" value="Remove" />
+                	<input type="button" id="addcomp" class="greenButton edtcompbtn" value="Add Position" />
+                    <?php echo form_submit('insertcomp','Save Position', 'id="insertcomp" 
+					class="greenButton edtcompbtn invi" ');?> 
+                    <input type="button" id="cancelcomp" class="greenButton edtcompbtn invi" value="Cancel" />
                     
                 </div>
                 
             </div>
             <div class="form_title">Professional Reference</div>
             <?php 
-			for($ctr=1;$ctr<=3;$ctr++)
+			foreach($pref->result() as $pref)
 			{	
 				
 				echo"
@@ -553,15 +635,11 @@
             ?>
             <div class="form-group" >
             	<div class="pull-right pads edtpref ">
-                	<input type="hidden" name= "prefCTR" id= "prefCTR" value="" />
-                	<input type="button" id="edtpref"  class="greenButton edtprefbtn " onclick="edt(this.id)" value="Edit" />
-                	<?php echo form_submit('Updatepref','Update', 'id="Updatepref" class="greenButton edtprefbtn invi" ');?> 
-                	<input type="button" id="cancelpref" name="edtpref" class="greenButton edtprefbtn invi" 
-                    onclick="cancel(this.id,this.name)" value="Cancel" />
-                    <input type="hidden" value="Updatepref" name="UpdateprefCTR"/>
+                	<input type="button" id="addpref" class="greenButton edtprefbtn" value="Add Position" />
+                    <?php echo form_submit('insertpref','Save Reference', 'id="insertpref" 
+					class="greenButton edtprefbtn invi" ');?> 
+                    <input type="button" id="cancelpref" class="greenButton edtprefbtn invi" value="Cancel" />
                     
-                	<input type="button" id="addpref" class="greenButton edtprefbtn invi" value="Add Another" />
-                   	<input type="button" id="rempref" class="greenButton edtprefbtn invi" value="Remove" />
                     
                     
                 </div>

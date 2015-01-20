@@ -34,7 +34,7 @@
         <h2>Welcome Back, <?php echo $this->session->userdata('name'); ?>!</h2>
         
         <div id="criteria"  class="  reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1  ">
-        <?php echo form_open("user/search");  ?>
+        <?php echo form_open("user/search","id = 'search'");  ?>
         	<div class="form-group pads2">
                     <label for="name" class="control-label col-sm-1 ">Name:</label>
                     <div class="col-sm-3">
