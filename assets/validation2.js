@@ -62,19 +62,25 @@ function cancel(value,val2){
 
 
 $(document).ready(function(){
-	$("#educ").css('display','none');
-	$("#comp").css('display','none');
 	
+	//update values
+	$("#Updatepinfo").click(function(){
+		$('#case_update').val($("#Updatepinfo").attr('id'));
+		
+	});
+	$("#Updatetskills").click(function(){
+		$('#case_update').val($("#Updatetskills").attr('id'));
+		
+	});
+		
 	
 	//inserting position
 	$("#addcomp").click(function(){
 		$('#insertcomp').removeClass('invi');
-		$('#addcomp').css('display','none');
+		$('#addcomp').addClass('invi');
 		$('#cancelcomp').removeClass('invi');
 		$("#comp").slideDown();
 		
-		
-            
 	});
 	
 	$("#insertcomp").click(function(){
@@ -83,15 +89,18 @@ $(document).ready(function(){
 		});
 		
 	$("#cancelcomp").click(function(){
-			$("#prevform")[0].reset();
+			$("#infos")[0].reset();
 			$("#comp").slideUp();
+			$("#cancelcomp").addClass('invi');
+			$("#insertcomp").addClass('invi');
+			$("#addcomp").removeClass('invi');
 		});
 		
 	
 	//inserting education
 	$("#addeduc").click(function(){
 		$('#inserteduc').removeClass('invi');
-		$('#addeduc').css('display','none');
+		$('#addeduc').addClass('invi');
 		$('#canceleduc').removeClass('invi');
 		$("#educ").slideDown();
 		
@@ -104,69 +113,138 @@ $(document).ready(function(){
 		});
 		
 	$("#canceleduc").click(function(){
-			$("#prevform")[0].reset();
+			$("#infos")[0].reset();
 			$("#educ").slideUp();
+			$("#canceleduc").addClass('invi');
+			$("#inserteduc").addClass('invi');
+			$("#addeduc").removeClass('invi');
 		});
 		
 		
-		
-		
-	var pref2;
-	for(var pref=1;pref<=$(".pref").length;pref++)
-	{
-		if ($("#prname"+pref).val()==""){
-			
-			$("#pr"+pref).addClass('invi');
-			
-		}
-	}
+	//inserting reference
 	$("#addpref").click(function(){
+		$('#insertpref').removeClass('invi');
+		$('#addpref').addClass('invi');
+		$('#cancelpref').removeClass('invi');
+		$("#pref").slideDown();
 		
-		pref2 = $(".pref:visible").length;
-        	while(pref2<=3){
-            	pref2++;
-				$('#prefCTR').val(pref2);
-				$("#pr"+pref2).slideDown();
-                break;
-              }
-			
             
-		});
-	$("#rempref").click(function(){
-		var pref3=pref2-1;
-        	while(pref2>=2){
-            	
-            	$('#educCTR').val(pref3);
-				$("#pr"+pref2).slideUp();
-				pref2--;
-                break;
-              }
+	});
+	
+	$("#insertpref").click(function(){
+			$('#case_update').val($("#insertpref").attr('id'));
 			
-            
+		});
+		
+	$("#cancelpref").click(function(){
+			$("#infos")[0].reset();
+			$("#pref").slideUp();
+			$("#cancelpref").addClass('invi');
+			$("#insertpref").addClass('invi');
+			$("#addpref").removeClass('invi');
+		});
+		
+		
+	
+	//update education
+		
+	$(".editeduc").click(function(educ){
+		educ.preventDefault();
+		var educid = this.id;
+		$('#'+educid).find('*').removeAttr('disabled');
+		$('#'+educid).find('*').attr('readonly',false);
+		$('#'+educid).find('*').removeClass('invi');
+		$('#case_update').val($("#Updateeduc").attr('id'));
+		$('#ctr_update').val(educid.match(/\d+$/));	
+	});
+	$(".cancelupdateeduc").click(function(educ){
+			educ.preventDefault();
+			var updeducid = this.id;
+			$('#'+updeducid).find('*').attr('disabled','disabled');
+			$('#'+updeducid).find('*').prop('readonly', true);
+			$('.updbuttons').addClass('invi');
+			
 		});
 	
 	
-	
-	
-	
-	
-	
 		
 		
-		
-		
-		
-		
-	$("#Updateeduc").click(function(){
-			$('#case_update').val('Updateeduc');
+	//update company
+	$(".editcomp").click(function(comp){
+		comp.preventDefault();
+		var compid = this.id;
+		$('#'+compid).find('*').removeAttr('disabled');
+		$('#'+compid).find('*').attr('readonly',false);
+		$('#'+compid).find('*').removeClass('invi');
+		$('#case_update').val($("#Updatecomp").attr('id'));
+		$('#ctr_update').val(compid.match(/\d+$/));		
+        
+	});
+	$(".cancelupdatecomp").click(function(comp){
+			comp.preventDefault();
+			var updcompid = this.id;
+			$('#'+updcompid).find('*').attr('disabled','disabled');
+			$('#'+updcompid).find('*').prop('readonly', true);
+			$('.updbuttons').addClass('invi');
+			
+			
 		});
-	$("#Updatecomp").click(function(){
-			$('#case_update').val('Updatecomp');
-		});
-	$("#Updatepref").click(function(){
-			$('#case_update').val('Updatepref');
-		});
+		
+	//update reference
+	$(".editpref").click(function(pref){
+		pref.preventDefault();
+		var prefid = this.id;
+		$('#'+prefid).find('*').removeAttr('disabled');
+		$('#'+prefid).find('*').attr('readonly',false);
+		$('#'+prefid).find('*').removeClass('invi');
+		$('#case_update').val($("#Updatepref").attr('id'));
+		$('#ctr_update').val(prefid.match(/\d+$/));	
+	});
 	
+	$(".cancelupdatepref").click(function(pref){
+			pref.preventDefault();
+			var updprefid = this.id;
+			$('#'+updprefid).find('*').attr('disabled','disabled');
+			$('#'+updprefid).find('*').prop('readonly', true);
+			$('.updbuttons').addClass('invi');
+			
+			
+		});
+		
+	//remove reference
+	
+	$(".rempref").click(function(pref){
+			var remprefid = this.id;
+			$('#ctr_update').val(remprefid.match(/\d+$/));
+			$('#case_update').val("Rempref");
+		});		
+	//remove comp
+	
+	$(".remcomp").click(function(pref){
+			var remcompid = this.id;
+			$('#ctr_update').val(remcompid.match(/\d+$/));
+			$('#case_update').val("Remcomp");
+		});
+			
+	//remove edeuc
+	
+	$(".remeduc").click(function(pref){
+			var remeducid = this.id;
+			$('#ctr_update').val(remeducid.match(/\d+$/));
+			$('#case_update').val("Remeduc");
+		});
+		
+		
+		
+		
+
+		
+		
+	
+	
+	
+
+
 
 	//admin view
 	if ($("#results").is(':visible')){

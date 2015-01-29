@@ -39,15 +39,12 @@
         	
         	<div class="form-group fname">
    
-        		<?php  
-				echo form_open_multipart("user/preview",'id = "info"'); ?>
-                
-				
+        		<?php  echo form_open_multipart("user/preview",'id = "infos"'); ?>
                 <label for="fname" class="control-label col-sm-3  ">First Name:</label>
                 <div class="col-sm-9">  
-            		<input type="text" id="fname"  class="form-control" name="fname" value="<?php echo set_value('fname'); ?>" />		
-                    
+            		<input type="text" id="fname"  class="form-control" name="fname" value="<?php echo set_value('fname'); ?>" />
                 </div>
+                <div name='fname_err' id='fname_err' class='col-sm-12 invi error text-center'></div>
             </div>
 			<div class="form-group">
         		<label for="mname" class="control-label col-sm-3 ">Middle Name:</label>
@@ -62,6 +59,7 @@
                 	<input type="text" id="lname" name="lname" class="form-control" 
                     value="<?php echo set_value('lname'); ?>" />
                 </div>
+                <div name='lname_err' id='lname_err' class='col-sm-12 invi error text-center'></div>
             </div>
             <div class="form-group add">
 				<label for="add" class="control-label col-sm-3">Address:</label>
@@ -69,6 +67,7 @@
 					<input type="text" id="add" name="add"  class="form-control" value="<?php echo set_value('add'); ?>" />
                     <br/>
                 </div>
+                <div name='add_err' id='add_err' class='col-sm-12 invi error text-center'></div>
             </div>
             <div class="form-group prov_mun">
 				<label for="prov_mun" class="control-label col-sm-3">Province/Muncipality:</label>
@@ -76,6 +75,7 @@
 					<input type="text" id="prov_mun" name="prov_mun"  class="form-control" value="<?php echo 
 					set_value('prov_mun'); ?>" />
                 </div>
+                <div name='prov_mun_err' id='prov_mun_err' class='col-sm-12 invi error text-center'></div>
             </div>
             <div class="form-group sex">
 				<label for="sex" class="control-label col-sm-3">Sex:</label>
@@ -86,6 +86,7 @@
                    echo form_dropdown('sex', $gender,set_value('sex'), 'id="sex" class="form-control"');
                     ?>
                 </div>
+                <div name='sex_err' id='sex_err' class='col-sm-12 invi error text-center'></div>
             </div>
             <div class="form-group age">
                 <label for="age" class="control-label col-sm-3">Age:</label>
@@ -95,6 +96,7 @@
                     echo form_dropdown('age', $ageb,'', 'id="age" class="form-control"');
                     ?>
                 </div>
+                <div name='age_err' id='age_err' class='col-sm-12 invi error text-center'></div>
             </div>
             <div class="form-group pic">
 				<label for="add" class="control-label col-sm-3">Image:</label>
@@ -110,7 +112,7 @@
             
                 <label for="fname" class="control-label col-sm-3">Languages:</label>
                 <div class="col-sm-9 "> 
-                <?php foreach($lang->result() as $lang)
+                <?php foreach($lang as $lang)
                     { 
 						echo "<div class='col-sm-3 '>
 								<label class='checkbox-inline '><input type='checkbox' name='lang[]' 
@@ -126,7 +128,7 @@
             <div class="form-group">           
                 <label for="fname" class="control-label col-sm-3">Operating System:</label>
                 <div class="col-sm-9 "> 
-                <?php foreach($os->result() as $os)
+                <?php foreach($os as $os)
                     { 
 						echo "<div class='col-sm-3 '>
 								<label class='checkbox-inline '><input type='checkbox' name='os[]' 
@@ -143,7 +145,7 @@
             <div class="form-group"> 
                 <label for="fname" class="control-label col-sm-3">Framework:</label>
                 <div class="col-sm-9 ">
-                <?php foreach($fwork->result() as $fwork)
+                <?php foreach($fwork as $fwork)
                     { 
 						echo "<div class='col-sm-3 '>
 								<label class='checkbox-inline '><input type='checkbox' name='fwork[]' 
@@ -170,8 +172,9 @@
 							<input type='text' id='school".$count."' name='school".$count."' class='form-control school' 
 							value='".set_value('school'.$count)."' />
 						</div>
+						<div name='sch_err".$count."' id='sch_err".$count."' class='col-sm-12 invi error text-center'></div>
 					</div>
-					<div class='form-group date".$count."'> 
+					<div class='form-group date".$count."' id='date".$count."'> 
 						<label for='fname'  class='control-label col-sm-3'>Dates Attended:<br/>
 						
 						
@@ -199,7 +202,7 @@
 							echo "</select>
 							</div>
 						</div>
-						
+						<div name='date_err".$count."' id='date_err".$count."' class='col-sm-12 invi error text-center'></div>
 					</div>
 					<div class='form-group major".$count."'>
 						<label for='fname' class='control-label col-sm-3'>Feild of Study:</label>
@@ -207,6 +210,7 @@
 							<input type='text' id='mjr".$count."' name='mjr".$count."' class='form-control mjr' 
 							value='".set_value('mjr'.$count)."' />
 						</div>
+						<div name='major_err".$count."' id='major_err".$count."' class='col-sm-12 invi error text-center'></div>
 					</div>
 					<div class='form-group dgree".$count."'>
 						<label for='degree' class='control-label col-sm-3'>Degree:</label>
@@ -214,12 +218,13 @@
 						
 					$degree2 = array('-'=>'-','High School'=>'High School', 'Associate\'s Degree'=>'Associate\'s Degree', 
 					'Bachelor\'s Degree'=>'Bachelor\'s Degree', 'Master\'s Degree'=>'Masters\'s Degree');
-        			echo "<select name='degree".$count."' id='degree".$count."' class='form-control edteduc'>";
+        			echo "<select name='degree".$count."' id='degree".$count."' class='deg form-control edteduc'>";
 					foreach($degree2 as $key => $value) {
 						echo "<option>".$value." </option> ";
 					}
 					echo"<select>"	;
 					echo "</div>
+						<div name='dgree_err".$count."' id='dgree_err".$count."' class='col-sm-12 invi error text-center'></div>
 					</div>
 					<div class='form-group'>
 						<label for='desc' class='control-label col-sm-3'>Description:</label>
@@ -241,8 +246,8 @@
 			?>
             <div class="form-group" >
             	<div class="col-xs-offset-6 col-sm-offset-8 col-md-offset-8 col-lg-offset-9 ">
-                	<input type="button" id="addeduc" class="greenButton" value="Add Another" />
-                   	<input type="button" id="remeduc" class="greenButton" value="Remove" />
+                	<input type="button" id="addedu" class="greenButton" value="Add Another" />
+                   	<input type="button" id="remedu" class="greenButton" value="Remove" />
                     
                 </div>
             </div>
@@ -251,17 +256,18 @@
 			for($ctr=1;$ctr<=4;$ctr++)
 			{	
 				
-				if($ctr>1)
-				{$class = "class='invi'";}
+				if($ctr>1){$class = "invi";}
+				else{$class = "";}
 					
 				echo"
-				<div ".$class." id='pexp".$ctr."'>
+				<div class='com ".$class."' id='com".$ctr."'>
 					<div class='form-group comp".$ctr."'>
 						<label for='fname' class='control-label col-sm-3'>Company Name:</label>
 						<div class='col-sm-9'>
-							<input type='text' id='compname".$ctr."' name='compname".$ctr."' class='form-control comp'
-							value='".set_value('compname'.$ctr)."' />
+							<input type='text' id='compname".$ctr."' name='compname".$ctr."' 
+							class='form-control compname' value='".set_value('compname'.$ctr)."' />
 						</div>
+						<div name='compname_err".$ctr."' id='compname_err".$ctr."' class='col-sm-12 invi error text-center'></div>
 					</div>
 					<div class='form-group tit".$ctr."'>
 						<label for='fname' class='control-label col-sm-3'>Title:</label>
@@ -269,6 +275,7 @@
 							<input type='text' id='title".$ctr."' name='title".$ctr."' class='form-control title'
 							value='".set_value('title'.$ctr)."' />
 						</div>
+						<div name='title_err".$ctr."' id='title_err".$ctr."' class='col-sm-12 invi error text-center'></div>
 					</div>
 					<div class='form-group location".$ctr."'>
 						<label for='fname' class='control-label col-sm-3'>Location:</label>
@@ -276,6 +283,7 @@
 							<input type='text' id='loc".$ctr."' name='loc".$ctr."' class='form-control loca' 
 							value='".set_value('loc'.$ctr)."' />
 						</div>
+						<div name='loc_err".$ctr."' id='loc_err".$ctr."' class='col-sm-12 invi error text-center'></div>
 					</div>
 					<div class='form-group comTP".$ctr."'>
 						<label for='fname' class='control-label col-sm-3'>Time Period:</label>
@@ -320,6 +328,7 @@
 								</select>
 							</div>
 						</div>
+						<div name='comTP_err".$ctr."' id='comTP_err".$ctr."' class='col-sm-12 invi error text-center'></div>
 						
 					</div>
 					<div class='form-group'>
@@ -356,26 +365,31 @@
 					
 				echo"
 				<div ".$class." id='pr".$ctr."'>
-					<div class='form-group'>
+					<div class='form-group prnamedv".$ctr."'>
 						<label for='fname' class='control-label col-sm-3'>Name:</label>
 						<div class='col-sm-9'>
-							<input type='text' id='prname".$ctr."' name='prname".$ctr."' class='form-control' 
+							<input type='text' id='prname".$ctr."' name='prname".$ctr."' class='prname form-control' 
 							value='".set_value('prname'.$ctr)."' />
 						</div>
+						<div name='prname_err".$ctr."' id='prname_err".$ctr."' class='col-sm-12 invi error text-center'></div>
 					</div>
-					<div class='form-group'>
+					
+					<div class='form-group cnumdv".$ctr."'>
 						<label for='cnum' class='control-label col-sm-3  '>Contact Number:</label>
 						<div class='col-sm-9'>  
-							<input type='text' id='cnum".$ctr."'  class='form-control' name='cnum".$ctr."'
-							 value='".set_value('cnum'.$ctr)."' />
+							<input type='text' id='cnum".$ctr."'  class='cnum form-control' name='cnum".$ctr."'
+							 value='".set_value('cnum'.$ctr)."' size='11' />
 						</div>
+						<div name='cnum_err".$ctr."' id='cnum_err".$ctr."' class='col-sm-12 invi error text-center'></div>
 					</div>
-					<div class='form-group'>
-						<label for='cemail' class='control-label col-sm-3  '>Email Anddress:</label>
+					
+					<div class='form-group cemaildv".$ctr."'>
+						<label for='cemail' class='control-label col-sm-3  '>Email Address:</label>
 						<div class='col-sm-9'>  
-							<input type='text' id='cemail".$ctr."'  class='form-control' name='cemail".$ctr."' 
+							<input type='text' id='cemail".$ctr."'  class='cemail form-control' name='cemail".$ctr."' 
 							value='".set_value('cemail'.$ctr)."' />
 						</div>
+						<div name='cemail_err".$ctr."' id='cemail_err".$ctr."' class='col-sm-12 invi error text-center'></div>
 					
 					</div>
 					
@@ -392,7 +406,7 @@
             <div class="form-group" >
             	
             	<div class="col-xs-offset-6 col-sm-offset-8 col-md-offset-8 col-lg-offset-9 ">
-                	<input type="submit" class="greenButton" value="Submit" />
+                	<input type="submit" class="greenButton" value="Submit" id="submit" />
                 </div>
             </div>
       </div><!-- end -->
@@ -406,7 +420,6 @@
         </header>
 <script type="text/javascript" src="<?php echo base_url();?>assets/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/validation.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/jquery.Jcrop.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/script.js"></script>  
+<script type="text/javascript" src="<?php echo base_url();?>assets/validation3.js"></script>
 
 	

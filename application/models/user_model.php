@@ -74,7 +74,11 @@ class User_model extends CI_Model {
 	
 		if ($query->num_rows() > 0)
 		{
-			return $query; // just return $query
+			return $query->result(); // just return $query
+		}
+		else
+		{
+			return array();
 		}
 	
 
@@ -87,7 +91,11 @@ class User_model extends CI_Model {
 	
 		if ($query->num_rows() > 0)
 		{
-			return $query; // just return $query
+			return $query->result(); // just return $query
+		}
+		else
+		{
+			return array();
 		}
 	
 
@@ -100,7 +108,11 @@ class User_model extends CI_Model {
 	
 		if ($query->num_rows() > 0)
 		{
-			return $query; // just return $query
+			return $query->result(); // just return $query
+		}
+		else
+		{
+			return array();
 		}
 	
 
@@ -147,7 +159,11 @@ class User_model extends CI_Model {
 	
 		if ($query->num_rows() > 0)
 		{
-			return $query; // just return $query
+			return $query->result(); // just return $query
+		}
+		else
+		{
+			return array();
 		}
 	
 
@@ -171,7 +187,11 @@ class User_model extends CI_Model {
 	
 		if ($query->num_rows() > 0)
 		{
-			return $query; // just return $query
+			return $query->result(); // just return $query
+		}
+		else
+		{
+			return array();
 		}
 	
 
@@ -195,7 +215,11 @@ class User_model extends CI_Model {
 	
 		if ($query->num_rows() > 0)
 		{
-			return $query; // just return $query
+			return $query->result(); // just return $query
+		}
+		else
+		{
+			return array();
 		}
 	
 
@@ -219,7 +243,11 @@ class User_model extends CI_Model {
 	
 		if ($query->num_rows() > 0)
 		{
-			return $query; // just return $query
+			return $query->result(); // just return $query
+		}
+		else
+		{
+			return array();
 		}
 	
 
@@ -243,8 +271,13 @@ class User_model extends CI_Model {
 	
 		if ($query->num_rows() > 0)
 		{
-			return $query; // just return $query
+			return $query->result(); // just return $query
 		}
+		else
+		{
+			return array();
+		}
+		
 	
 
     }
@@ -372,10 +405,9 @@ class User_model extends CI_Model {
 		else{
 			$fworkval="";
 		}
-		if($fwork!=NULL && $os!=NULL && $lang!=NULL){
-			$data = array('lang_code'=>$langval,'fwork_code'=>$fworkval,'os_code'=>$osval,'uid'=>$pid);
-			$this->db->insert('tskills', $data); 
-		}
+		$data = array('lang_code'=>$langval,'fwork_code'=>$fworkval,'os_code'=>$osval,'uid'=>$pid);
+		$this->db->insert('tskills', $data); 
+		
 		
 		
 		
@@ -396,7 +428,6 @@ class User_model extends CI_Model {
 				'yearTo'=>$this->input->post('DAtty2'.$a),
 				'fstudy'=>$this->input->post('mjr'.$a),
 				'degree'=>$this->input->post('degree'.$a),
-				'educCTR'=>$a,
 				'desc'=>$this->input->post('EAdes'.$a)
 				);
 				$this->db->insert('educ',$data3);
@@ -416,7 +447,6 @@ class User_model extends CI_Model {
 					'loc'=>$this->input->post('loc'.$b),
 					'month1'=>$this->input->post('mon1'.$b),
 					'month2'=>$this->input->post('mon1'.$b),
-					'compCTR'=>$b,
 					'year1'=>$this->input->post('TPy1'.$b),
 					'year2'=>$this->input->post('TPy2'.$b),
 					
@@ -433,12 +463,64 @@ class User_model extends CI_Model {
 					'uid'=>$this->session->userdata('user_id'),
 					'pname'=>$this->input->post('prname'.$c),
 					'cnum'=>$this->input->post('cnum'.$c),
-					'prefCTR'=>$c,
 					'cemail'=>$this->input->post('cemail'.$c)
 					);
 				$this->db->insert('pref',$data5);
 			}
 		}
+	}
+	
+	
+	
+	function insert_educ()
+    {	
+			
+			
+		$data2 = array( 
+			'uid'=>$this->session->userdata('user_id'),
+			'school'=>$this->input->post('school'),
+			'yearFrom'=>$this->input->post('DAtty1'),
+			'yearTo'=>$this->input->post('DAtty2'),
+			'fstudy'=>$this->input->post('mjr'),
+			'degree'=>$this->input->post('degree'),
+			'desc'=>$this->input->post('EAdes')
+			);
+			
+		$this->db->insert('educ', $data2); 
+			
+	
+	}
+	
+	function insert_pref()
+    {	
+		$prefdata=array(
+			'pname'=>$this->input->post('prname'),
+			'cnum'=>$this->input->post('cnum'),
+			'cemail'=>$this->input->post('cemail'),
+			'uid'=>$this->session->userdata('user_id')
+			);
+		$this->db->insert('pref',$prefdata); 	
+
+
+	}
+	
+	function insert_comp()
+    {	
+		$data4=array(
+				'uid'=>$this->session->userdata('user_id'),
+				'compname'=>$this->input->post('compname'),
+				'title'=>$this->input->post('title'),
+				'prdesc'=>$this->input->post('PEdes'),
+				'loc'=>$this->input->post('loc'),
+				'month1'=>$this->input->post('mon1'),
+				'month2'=>$this->input->post('mon1'),
+				'year1'=>$this->input->post('TPy1'),
+				'year2'=>$this->input->post('TPy2')
+			);
+		
+		$this->db->insert('comp', $data4); 	
+		
+	
 	}
 	
 	function update_pinfo()
@@ -458,121 +540,60 @@ class User_model extends CI_Model {
 		$this->db->update('pinfo', $data); 
 
 	}
-	
-	function insert_educ()
-    {	
-			
-			
-		$data2 = array( 
-			'uid'=>$this->session->userdata('user_id'),
-			'school'=>$this->input->post('school'),
-			'yearFrom'=>$this->input->post('DAtty1'),
-			'yearTo'=>$this->input->post('DAtty2'),
-			'fstudy'=>$this->input->post('mjr'),
-			'degree'=>$this->input->post('degree'),
-			'educCTR'=>$this->input->post('addeducCtr'),
-			'desc'=>$this->input->post('EAdes')
-			);
-			
-		$this->db->insert('educ', $data2); 
-			
-	
-	}
-	
-	function insert_comp()
-    {	
-		$data4=array(
-				'uid'=>$this->session->userdata('user_id'),
-				'compname'=>$this->input->post('compname'),
-				'title'=>$this->input->post('title'),
-				'prdesc'=>$this->input->post('PEdes'),
-				'loc'=>$this->input->post('loc'),
-				'month1'=>$this->input->post('mon1'),
-				'month2'=>$this->input->post('mon1'),
-				'year1'=>$this->input->post('TPy1'),
-				'year2'=>$this->input->post('TPy2'),
-				'compCTR'=>$this->input->post('addcompCtr')
-			);
-		
-		$this->db->insert('comp', $data4); 	
-		
-	
-	}
 		
 	function update_educ()
     {	
-		for ($a=1;$a<=$this->input->post('educCTR');$a++)
-		{
+		$educCTR=$this->input->post('ctr_update');
+		$data2 = array( 
+			'school'=>$this->input->post('school'.$educCTR),
+			'yearFrom'=>$this->input->post('DAtty1'.$educCTR),
+			'yearTo'=>$this->input->post('DAtty2'.$educCTR),
+			'fstudy'=>$this->input->post('mjr'.$educCTR),
+			'degree'=>$this->input->post('degree'.$educCTR),
+			'desc'=>$this->input->post('EAdes'.$educCTR)
+			);
+		$this->db->where('uid',$this->session->userdata('user_id'));	
+		$this->db->where('educ_id',$educCTR);
+		$this->db->update('educ', $data2); 	
+		
 			
-			
-			
-			$data2 = array( 
-				'school'=>$this->input->post('school'.$a),
-				'yearFrom'=>$this->input->post('DAtty1'.$a),
-				'yearTo'=>$this->input->post('DAtty2'.$a),
-				'fstudy'=>$this->input->post('mjr'.$a),
-				'degree'=>$this->input->post('degree'.$a),
-				'desc'=>$this->input->post('EAdes'.$a)
-				);
-				
-			$this->db->update('educ', $data2); 	
-			$this->db->where('educCTR',$a);
-			$this->db->where('uid',$this->session->userdata('user_id'));
-			
-			
-
-		}
-	
 	}
 	function update_comp()
     {	
-		for ($b=1;$b<=$this->input->post('compCTR');$b++)
-		{
-			
-			
-			$data4=array(
-					'uid'=>$this->session->userdata('user_id'),
-					'compname'=>$this->input->post('compname'.$b),
-					'title'=>$this->input->post('title'.$b),
-					'prdesc'=>$this->input->post('PEdes'.$b),
-					'loc'=>$this->input->post('loc'.$b),
-					'month1'=>$this->input->post('mon1'.$b),
-					'month2'=>$this->input->post('mon1'.$b),
-					'year1'=>$this->input->post('TPy1'.$b),
-					'year2'=>$this->input->post('TPy2'.$b)
-				);
-			
-			$this->db->update('comp', $data4); 	
-			$this->db->where('compCTR',$b);
-			$this->db->where('uid',$this->session->userdata('user_id'));
-			
-			
-			
-			
-		}
+		$compCTR=$this->input->post('ctr_update');
+		$data3 = array( 
+				'compname'=>$this->input->post('compname'.$compCTR),
+				'title'=>$this->input->post('title'.$compCTR),
+				'prdesc'=>$this->input->post('PEdes'.$compCTR),
+				'loc'=>$this->input->post('loc'.$compCTR),
+				'month1'=>$this->input->post('mon1'.$compCTR),
+				'month2'=>$this->input->post('mon1'.$compCTR),
+				'year1'=>$this->input->post('TPy1'.$compCTR),
+				'year2'=>$this->input->post('TPy2'.$compCTR),
+			);
+		$this->db->where('comp_id',$compCTR);
+		$this->db->where('uid',$this->session->userdata('user_id'));
+		$this->db->update('comp', $data3); 	
 		
 	
 	}
+	
 	function update_pref()
     {	
-		for ($c=1;$c<=$this->input->post('prefCTR');$c++)
-		{
-			if($this->input->post('prname'.$c)!="" || $this->input->post('cnum'.$c)!="" ||
-			$this->input->post('cemail'.$c)!="")
-				{
-					$prefdata=array(
-						'pname'=>$this->input->post('prname'.$c),
-						'cnum'=>$this->input->post('cnum'.$c),
-						'cemail'=>$this->input->post('cemail'.$c)
-						);
-					$this->db->update('pref',$prefdata); 	
-					$this->db->where('prefCTR',$c);
-					$this->db->where('uid',$this->session->userdata('user_id'));
-			
-				}
-		}
+		$prefCTR=$this->input->post('ctr_update');
+		$data4 = array( 
+			'pname'=>$this->input->post('prname'.$prefCTR),
+			'cnum'=>$this->input->post('cnum'.$prefCTR),
+			'cemail'=>$this->input->post('cemail'.$prefCTR),
+			);
+		$this->db->where('prefid',$prefCTR);
+		$this->db->where('uid',$this->session->userdata('user_id'));	
+		$this->db->update('pref', $data4); 	
+				
+		
 	
 	}
+	
 	function update_tskills()
     {	
 		$lang=$this->input->post('lang');
@@ -596,17 +617,50 @@ class User_model extends CI_Model {
 		else{
 			$fworkval="";
 		}
-		$data = array('lang_code'=>$langval,'fwork_code'=>$fworkval,'os_code'=>$osval);
-		$this->db->insert('tskills', $data); 
+		
+		$this->db->select('*');
+		$this->db->from('tskills'); 
+		$query = $this->db->get(); 
+	
+		if ($query->num_rows() > 0)
+		{
+			$data = array('lang_code'=>$langval,'fwork_code'=>$fworkval,'os_code'=>$osval);
+			$this->db->update('tskills', $data); 
+			$this->db->where('uid', $this->session->userdata('user_id'));
+		}
+		else
+		{
+			$data = array('lang_code'=>$langval,'fwork_code'=>$fworkval,'os_code'=>$osval,
+				'uid'=>$this->session->userdata('user_id'));
+			$this->db->insert('tskills', $data); 
+		}
+	
+	}
+	
+	function remove_pref()
+    {	
+		$prefCTR=$this->input->post('ctr_update');
+		$this->db->where('prefid',$prefCTR);
 		$this->db->where('uid', $this->session->userdata('user_id'));
-				
+		$this->db->delete('pref'); 
 		
+	
+	}
+	function remove_comp()
+    {	
+		$prefCTR=$this->input->post('ctr_update');
+		$this->db->where('comp_id',$prefCTR);
+		$this->db->where('uid', $this->session->userdata('user_id'));
+		$this->db->delete('comp'); 
 		
-		
-		
-		
-		
-		
+	
+	}
+	function remove_educ()
+    {	
+		$prefCTR=$this->input->post('ctr_update');
+		$this->db->where('educ_id',$prefCTR);
+		$this->db->where('uid', $this->session->userdata('user_id'));
+		$this->db->delete('educ'); 
 		
 	
 	}

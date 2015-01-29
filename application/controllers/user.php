@@ -145,7 +145,6 @@ class User extends CI_Controller{
 		);
 		$this->session->unset_userdata($newdata );
 		$this->session->sess_destroy();
-		$this->index();
 		
 		$newdata = array(
 		'uname'   =>'',
@@ -189,10 +188,11 @@ class User extends CI_Controller{
 				$data['fwork']=$this->user_model->pop_fwork();
 				
 				
+				$data['educ']=$this->user_model->pop_pinfo();
 				$data['educ']=$this->user_model->pop_educ();
-				$data['tskills']=$this->user_model->pop_tskills();
 				$data['comp']=$this->user_model->pop_comp();
 				$data['pref']=$this->user_model->pop_pref();
+				$data['tskills']=$this->user_model->pop_tskills();
 				
 				
 				
@@ -222,58 +222,67 @@ class User extends CI_Controller{
 	}
 	public function update_info()
 	{	
-		
-	
-		
 		$data['language']=$this->user_model->pop_lang();
 		$data['os']=$this->user_model->pop_os();
 		$data['fwork']=$this->user_model->pop_fwork();
-
+	
 		
-		
-		
-		
-		if ($this->input->post('UpdatetpinfoCTR') == "Updatepinfo")
-		{
-			$this->user_model->update_pinfo();
-		}
 		switch ($this->input->post('case_update')) {
+			//update only
+			
+			case "Updatepinfo":
+				$this->user_model->update_pinfo();
+				break;
+			case "Updatetskills":
+				$this->user_model->update_tskills();
+				break;
+			case "Updateeduc":	
+				$this->user_model->update_educ();
+				break;
 			case "Updatecomp":
 				$this->user_model->update_comp();
 				break;
-			case "Updateeduc":
-				$this->user_model->update_educ();
-				break;
+			
 			case "Updatepref":
 				$this->user_model->update_pref();
 				break;
-				
+			
+			
+			//add additional	
 			case "inserteduc":
 				$this->user_model->insert_educ();
-				$data['educ']=$this->user_model->pop_educ();
-				$data['comp']=$this->user_model->pop_comp();
 				break;
 			
 			case "insertcomp":
 				$this->user_model->insert_comp();
-				$data['educ']=$this->user_model->pop_educ();
-				$data['comp']=$this->user_model->pop_comp();
 				break;
-		}
-		if ($this->input->post('UpdatetpinfoCTR') == "Updatepinfo")
-		{
-			$this->user_model->update_pinfo();
+				
+			case "insertpref":
+				$this->user_model->insert_pref();
+				break;
+				
+			//remove
+			case "Rempref":
+				$this->user_model->remove_pref();
+				break;
+			case "Remcomp":
+				$this->user_model->remove_comp();
+				break;
+			case "Remeduc":
+				$this->user_model->remove_educ();
+				break;
+
 		}
 		
 			
 	
-			
-		if ($this->input->post('UpdatetskillsCTR') == "Updatetskills")
-		{
-			$this->user_model->update_tskills();
-		}
 		
 		
+		
+		$data['educ']=$this->user_model->pop_educ();
+		$data['comp']=$this->user_model->pop_comp();
+		$data['pref']=$this->user_model->pop_pref();
+		$data['tskills']=$this->user_model->pop_tskills();
 		
 		$this->load->view('header_view');
 		$this->load->view('preview_view.php',$data);
