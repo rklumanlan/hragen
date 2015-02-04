@@ -17,11 +17,6 @@
 
     <!-- Custom CSS -->
     <link href="<?php echo base_url();?>css/bootstrap/css/heroic-features.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>css/imgareaselect-animated.css" rel="stylesheet">
-    
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url();?>assets/jquery.Jcrop.css"></script>
-	<script type="text/javascript" src="<?php echo base_url();?>assets/jquery.Jcrop.min.css"></script>
     
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

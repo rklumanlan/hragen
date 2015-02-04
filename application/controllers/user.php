@@ -21,7 +21,7 @@ class User extends CI_Controller{
 	}
 	public function welcome()
 	{
-		$data['lang']=$this->user_model->pop_lang();
+		$data['language']=$this->user_model->pop_lang();
 		$data['os']=$this->user_model->pop_os();
 		$data['fwork']=$this->user_model->pop_fwork();
 		$data['title']= 'Welcome';
@@ -40,6 +40,9 @@ class User extends CI_Controller{
 			$result2=$this->user_model->check_data();
 				if($result2)
 				{
+					$data['language']=$this->user_model->pop_lang();
+					$data['os']=$this->user_model->pop_os();
+					$data['fwork']=$this->user_model->pop_fwork();
 					
 					$data['pinfo']=$this->user_model->pop_pinfo();
 					$data['tskills']=$this->user_model->pop_tskills();
@@ -70,6 +73,22 @@ class User extends CI_Controller{
 				}
 		}
 		else        {$this->index(); }
+	}
+	public function welcomenew()
+	{
+		$data['language']=$this->user_model->pop_lang();
+		$data['os']=$this->user_model->pop_os();
+		$data['fwork']=$this->user_model->pop_fwork();
+		
+		$data['pinfo']=$this->user_model->pop_pinfo();
+		$data['tskills']=$this->user_model->pop_tskills();
+		$data['educ']=$this->user_model->pop_educ();
+		$data['comp']=$this->user_model->pop_comp();
+		$data['pref']=$this->user_model->pop_pref();
+		
+		$this->load->view('header_view');
+		$this->load->view('welcomenew_view',  $data);
+		$this->load->view('footer_view');
 	}
 	public function thank()
 	{
@@ -167,11 +186,9 @@ class User extends CI_Controller{
 	
 			$config = array(
 			'upload_path' => "./uploads/",
-			'allowed_types' => "gif|jpg|png|jpeg|pdf",
+			'allowed_types' => "gif|jpg|png|jpeg",
 			'overwrite' => TRUE,
 			'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-			'max_height' => "192",
-			'max_width' => "192"
 			);
 			$this->load->library('upload', $config);
 			if($this->upload->do_upload())
@@ -187,14 +204,11 @@ class User extends CI_Controller{
 				$data['os']=$this->user_model->pop_os();
 				$data['fwork']=$this->user_model->pop_fwork();
 				
-				
-				$data['educ']=$this->user_model->pop_pinfo();
+				$data['pinfo']=$this->user_model->pop_pinfo();
 				$data['educ']=$this->user_model->pop_educ();
 				$data['comp']=$this->user_model->pop_comp();
 				$data['pref']=$this->user_model->pop_pref();
 				$data['tskills']=$this->user_model->pop_tskills();
-				
-				
 				
 				$data['title']= 'Welcome';
 				
@@ -205,9 +219,13 @@ class User extends CI_Controller{
 			}
 			else
 			{
+				$data['language']=$this->user_model->pop_lang();
+				$data['os']=$this->user_model->pop_os();
+				$data['fwork']=$this->user_model->pop_fwork();
+				
 				
 				$this->load->view('header_view');
-				$this->load->view('welcome_view.php');
+				$this->load->view('welcome_view.php', $data);
 				$this->load->view('footer_view');
 			}
 		}
@@ -277,32 +295,51 @@ class User extends CI_Controller{
 			
 	
 		
+		if($this->input->post('page_update')=='main_page'){
 		
-		
-		$data['educ']=$this->user_model->pop_educ();
-		$data['comp']=$this->user_model->pop_comp();
-		$data['pref']=$this->user_model->pop_pref();
-		$data['tskills']=$this->user_model->pop_tskills();
-		
-		$this->load->view('header_view');
-		$this->load->view('preview_view.php',$data);
-		$this->load->view('footer_view');
+			$data['pinfo']=$this->user_model->pop_pinfo();
+			$data['educ']=$this->user_model->pop_educ();
+			$data['comp']=$this->user_model->pop_comp();
+			$data['pref']=$this->user_model->pop_pref();
+			$data['tskills']=$this->user_model->pop_tskills();
+			
+			$this->load->view('header_view');
+			$this->load->view('welcomenew_view.php',$data);
+			$this->load->view('footer_view');
+		}
+		else{
+			$data['pinfo']=$this->user_model->pop_pinfo();
+			$data['educ']=$this->user_model->pop_educ();
+			$data['comp']=$this->user_model->pop_comp();
+			$data['pref']=$this->user_model->pop_pref();
+			$data['tskills']=$this->user_model->pop_tskills();
+			
+			$this->load->view('header_view');
+			$this->load->view('preview_view.php',$data);
+			$this->load->view('footer_view');
+			
+			
+		}
 
 		
 	}
-	public function edt()
-	{	
+	public function edit_mpage()
+	{
+		$data['language']=$this->user_model->pop_lang();
+		$data['os']=$this->user_model->pop_os();
+		$data['fwork']=$this->user_model->pop_fwork();
+		
 		$data['pinfo']=$this->user_model->pop_pinfo();
-		$data['tskills']=$this->user_model->pop_tskills();
 		$data['educ']=$this->user_model->pop_educ();
 		$data['comp']=$this->user_model->pop_comp();
 		$data['pref']=$this->user_model->pop_pref();
-	
-		$this->load->view('header_view');
-		$this->load->view('edit_view.php',$data);
-		$this->load->view('footer_view');	
+		$data['tskills']=$this->user_model->pop_tskills();
 		
-
+		$data['title']= 'Edit';
+		
+		$this->load->view('header_view') ;
+		$this->load->view('preview_view', $data);
+		$this->load->view('footer_view');
 		
 	}
 	

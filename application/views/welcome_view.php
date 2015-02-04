@@ -103,7 +103,7 @@
 				<div class="col-sm-9"> 
                     
                     <input type="file" id="userfile" name="userfile" size="20" required="required" />
-					<div name="err" class="col-sm-12 error text-center"></div>
+					<div name='img_err' id='img_err' class='col-sm-12 invi error text-center'></div>
                 </div>
             </div>
             
@@ -112,13 +112,17 @@
             
                 <label for="fname" class="control-label col-sm-3">Languages:</label>
                 <div class="col-sm-9 "> 
-                <?php foreach($lang as $lang)
-                    { 
-						echo "<div class='col-sm-3 '>
-								<label class='checkbox-inline '><input type='checkbox' name='lang[]' 
-								value='".$lang->lang_desc."'>".$lang->lang_desc."</label>
-							</div>";
-					}
+                <?php 
+				if(count($language)>0){
+                        foreach($language as $language){ 
+                                echo "<div class='col-sm-3 '>
+                                    <label class='checkbox-inline '><input type='checkbox' name='lang[]'
+									class='edttskills' value='".$language->lang_desc."'>".$language->lang_desc."</label>
+                                </div>";
+                        }
+                        
+                        
+                    }
 				?>
                 
                 
@@ -128,7 +132,8 @@
             <div class="form-group">           
                 <label for="fname" class="control-label col-sm-3">Operating System:</label>
                 <div class="col-sm-9 "> 
-                <?php foreach($os as $os)
+                <?php 
+					foreach($os as $os)
                     { 
 						echo "<div class='col-sm-3 '>
 								<label class='checkbox-inline '><input type='checkbox' name='os[]' 
@@ -145,13 +150,16 @@
             <div class="form-group"> 
                 <label for="fname" class="control-label col-sm-3">Framework:</label>
                 <div class="col-sm-9 ">
-                <?php foreach($fwork as $fwork)
+                <?php
+				if(count($fwork)>0){
+					 foreach($fwork as $fwork)
                     { 
 						echo "<div class='col-sm-3 '>
 								<label class='checkbox-inline '><input type='checkbox' name='fwork[]' 
 								value='".$fwork->fwork_desc."'>".$fwork->fwork_desc."</label>
 							</div>";
 					}
+				}
 				?>
                 </div>
             </div>
@@ -298,7 +306,7 @@
 							echo "
 							</div>
 							<div class='col-sm-2 pad'>
-								<select name='TPy1".$ctr."' id='year".$ctr."' class='form-control yearFrom' >
+								<select name='TPy1".$ctr."' id='year1".$ctr."' class='form-control yearFrom' >
 								<option>-</option>";
 								$year = date('Y')+1; 
 								for ($y1 = 0; $y1 <= 100; $y1++) {
@@ -318,7 +326,7 @@
 								echo"
 							</div>
 							<div class='col-sm-2 pad'>
-								<select name='TPy2".$ctr."' id='year".$ctr."' class='form-control yearTo' >
+								<select name='TPy2".$ctr."' id='year2".$ctr."' class='form-control yearTo' >
 								<option>-</option>";
 								$year = date('Y')+1; 
 								for ($y1 = 0; $y1 <= 100; $y1++) {
@@ -420,6 +428,5 @@
         </header>
 <script type="text/javascript" src="<?php echo base_url();?>assets/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/validation.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/validation3.js"></script>
 
 	

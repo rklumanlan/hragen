@@ -152,9 +152,10 @@ class User_model extends CI_Model {
 			$pid=$this->session->userdata('user_id');
 		}
 		
+		
 		$this->db->select('*');
-		$this->db->from('pinfo');
 		$this->db->where('uid', $pid);
+		$this->db->from('pinfo');
 		$query = $this->db->get(); 
 	
 		if ($query->num_rows() > 0)
@@ -181,8 +182,8 @@ class User_model extends CI_Model {
 		
 		
 		$this->db->select('*');
-		$this->db->from('tskills');
 		$this->db->where('uid', $pid);
+		$this->db->from('tskills');
 		$query = $this->db->get(); 
 	
 		if ($query->num_rows() > 0)
@@ -209,8 +210,8 @@ class User_model extends CI_Model {
 		
 		
 		$this->db->select('*');
-		$this->db->from('educ');
 		$this->db->where('uid', $pid);
+		$this->db->from('educ');
 		$query = $this->db->get(); 
 	
 		if ($query->num_rows() > 0)
@@ -265,8 +266,8 @@ class User_model extends CI_Model {
 		
 		
 		$this->db->select('*');
-		$this->db->from('pref');
 		$this->db->where('uid', $pid);
+		$this->db->from('pref');
 		$query = $this->db->get(); 
 	
 		if ($query->num_rows() > 0)
@@ -546,8 +547,8 @@ class User_model extends CI_Model {
 		$educCTR=$this->input->post('ctr_update');
 		$data2 = array( 
 			'school'=>$this->input->post('school'.$educCTR),
-			'yearFrom'=>$this->input->post('DAtty1'.$educCTR),
-			'yearTo'=>$this->input->post('DAtty2'.$educCTR),
+			'yearFrom'=>$this->input->post('1DAtty'.$educCTR),
+			'yearTo'=>$this->input->post('2DAtty'.$educCTR),
 			'fstudy'=>$this->input->post('mjr'.$educCTR),
 			'degree'=>$this->input->post('degree'.$educCTR),
 			'desc'=>$this->input->post('EAdes'.$educCTR)
@@ -566,10 +567,10 @@ class User_model extends CI_Model {
 				'title'=>$this->input->post('title'.$compCTR),
 				'prdesc'=>$this->input->post('PEdes'.$compCTR),
 				'loc'=>$this->input->post('loc'.$compCTR),
-				'month1'=>$this->input->post('mon1'.$compCTR),
-				'month2'=>$this->input->post('mon1'.$compCTR),
-				'year1'=>$this->input->post('TPy1'.$compCTR),
-				'year2'=>$this->input->post('TPy2'.$compCTR),
+				'month1'=>$this->input->post('1mon'.$compCTR),
+				'month2'=>$this->input->post('2mon'.$compCTR),
+				'year1'=>$this->input->post('1TPy'.$compCTR),
+				'year2'=>$this->input->post('2TPy'.$compCTR),
 			);
 		$this->db->where('comp_id',$compCTR);
 		$this->db->where('uid',$this->session->userdata('user_id'));

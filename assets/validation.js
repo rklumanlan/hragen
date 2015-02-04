@@ -1,4 +1,6 @@
 $(document).ready(function () {
+	$(".error").hide();
+	$(".error").css('margin-bottom','0px');
 	var pr=1;
 	var educ=1;
 	var comp=1;
@@ -82,6 +84,32 @@ $(document).ready(function () {
 	
 	
 });
+var imgval;
+var _URL = window.URL || window.webkitURL;
+
+$("#userfile").change(function(a) {
+    
+    var image, file;
+
+    if ((file = this.files[0])) {
+       
+        image = new Image();
+        
+        image.onload = function() {
+            if(this.width>144){
+				imgval='true';
+			}
+			else{
+				imgval='false';
+			}
+        };
+    
+        image.src = _URL.createObjectURL(file);
+
+
+    }
+
+});
 var Validator = function(form) {
     
     this.form = $(form);
@@ -99,14 +127,19 @@ var Validator = function(form) {
 		
         this.form.submit(function(e) {
 			
-			
-			
 			var fname = $("#fname").val() 
 			var lname = $("#lname").val() 
 			var add = $("#add").val() 
 			var prov_mun = $("#add").val() 
 			var sex = $("#sex").val() 
 			var age = $("#age").val() 
+			
+			if(imgval=='true'){
+				handleError("img_err",'Image size must be 1.5 inches X 1.5 inches.',"userfile");	
+				e.preventDefault();
+				
+			}
+			
 			
 			if(fname == "")
 			{
@@ -142,6 +175,114 @@ var Validator = function(form) {
 			}
 			
 			
+			
+			if($("#new_school").val() == "" && $(".educ_2").is(":visible"))
+			{
+				handleError("sch2",'School is required.',$("#new_school").attr('id'));
+				e.preventDefault();
+			}
+			if($("#new_mjr").val() == "" && $(".educ_2").is(":visible"))
+			{	
+				handleError("major2",'Field of Study is required.',$("#new_mjr").attr('id'));
+				e.preventDefault();
+			}
+			if($("#new_degree").val() == "-" && $(".educ_2").is(":visible"))
+			{
+				handleError("dgree2",'Please select valid degree.',$("#new_degree").attr('id'));
+				e.preventDefault();
+			}
+			if($("#new_DAtty1").val() > $("#new_DAtty2").val() && $(".educ_2").is(":visible"))
+			{ 
+				handleError("date2",'Please be sure the start date is not after the end date.',$("#new_DAtty2").attr('id'));
+				e.preventDefault();
+			}
+			
+			else if((($("#new_DAtty1").val() == $("#new_DAtty2").val()) || 
+			($("#new_DAtty1").val()=="-" && $("#new_DAtty2").val()=="-")) 
+			&& $(".educ_2").is(":visible"))
+			
+			
+			{ 
+				handleError("date2",'Please be select valid date.',$("#new_DAtty2").attr('id'));
+				e.preventDefault();
+			}
+			
+			
+			
+			
+			if($("#compname").val() == "" && $(".pexp").is(":visible"))
+			{
+				handleError("compname2_err",'Company Name is required.',$("#compname").attr('id'));
+				e.preventDefault();
+			}
+			if($("#title").val() == "" && $(".pexp").is(":visible"))
+			{
+				handleError("title2_err",'Title is required.',$("#title").attr('id'));
+				e.preventDefault();
+			}
+			if($("#loc").val() == "" && $(".pexp").is(":visible"))
+			{
+				handleError("loc2_err",'Location is required.',$("#loc").attr('id'));					e.			
+				preventDefault();
+			}
+			if((($("#year1").val()> $("#year2").val()) && 
+			$("#mon1").val()> $("#mon2").val()) && $(".pexp").is(":visible"))
+			{
+				handleError("comTP2_err",'Please be sure the start date is not after the end date.',$("#year2").attr('id'));
+				e.preventDefault();
+			}
+			else if((($("#year1").val() == $("#year2").val()) && $("#mon1").val() > $("#mon2").val())
+			&& $(".pexp").is(":visible"))
+			{
+				handleError("comTP2_err",'Please be sure the start date is not after the end date.',$("#mon2").attr('id'));
+				e.preventDefault();
+			}
+			
+			else if(($("#mon1").val()=="0" || $("#mon2").val()=="0" || 
+			$("#year1").val()=="-" || $("#year2").val() =="-") && $(".pexp").is(":visible") )
+			{
+				handleError("comTP2_err",'Please select a valid date.',$("#year2").attr('id'));
+				e.preventDefault();
+			}
+			
+			
+			var numbers = /^[0-9]+$/;
+			var emailVal = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			if($("#new_prname").val() == "" && $(".new_pref").is(":visible")){
+				handleError("prname2_err" ,'Name is required.',$("new_#prname").attr('id'));
+				e.preventDefault();
+			}
+			
+			if($("#new_cnum").val() == "" && $(".new_pref").is(":visible")){
+				handleError("cnum2_err" ,'Number is required.',$("#new_cnum").attr('id'));
+				e.preventDefault();
+			}
+			else if(!numbers.test($("#new_cnum").val()) && $(".pref2").is(":visible")){
+				handleError("cnum2_err",'Contact Number is invalid.',$("#new_cnum").attr('id'));
+				e.preventDefault();
+			}
+			if($("#new_cemail").val() == "" && $(".new_pref").is(":visible")){
+				handleError("cemail2_err" ,'Email address is required.',$("#new_cemail").attr('id'));
+				e.preventDefault();
+			}
+			
+			else if(!emailVal.test($("#new_cemail").val()) && $("new_pref").is(":visible")){
+				handleError("cemail2_err" ,'Email address is invalid.',$("#new_cemail").attr('id'));
+			
+				e.preventDefault();
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			var a=0;
 			while(a<=$(".school:visible").length-1){
 				
@@ -154,8 +295,7 @@ var Validator = function(form) {
 				}
 				if($(".mjr").get(a).value == "")
 				{	
-					alert("ADSFA");
-					alert("major_err"+ window["educctr" + a]);
+					
 					handleError("major_err"+ window["educctr" + a],'Field of Study is required.',$(".mjr").get(a).id);
 					e.preventDefault();
 				}
@@ -171,7 +311,7 @@ var Validator = function(form) {
 					e.preventDefault();
 				}
 				
-				if(($(".dateFrom").get(a).value == $(".dateTo").get(a).value) || 
+				else if(($(".dateFrom").get(a).value == $(".dateTo").get(a).value) || 
 				($(".dateFrom").get(a).value=="-" && $(".dateTo").get(a).value=="-"))
 				{ 
 					handleError("date_err"+ window["educctr" + a],
@@ -192,6 +332,9 @@ var Validator = function(form) {
 				
 				a=a+1;
 			}
+			
+			
+				
 			
 			var b=0;
 			
@@ -232,6 +375,14 @@ var Validator = function(form) {
 					e.preventDefault();
 				}
 				
+				else if(($(".yearFrom").get(b).value > $(".yearTo").get(b).value) && 
+				$(".monFrom").get(b).value == $(".monTo").get(b).value)
+				{
+					handleError("comTP_err"+ window["compctr" + b] ,
+					'Please be sure the start date is not after the end date.',$(".monTo").get(b).id);
+					e.preventDefault();
+				}
+				
 				else if( $(".monFrom").get(b).value=="0" || $(".monTo").get(b).value=="0" || 
 				$(".yearFrom").get(b).value=="-" || $(".yearTo").get(b).value =="-" )
 				{
@@ -247,7 +398,7 @@ var Validator = function(form) {
 			var c=0;
 			
 			while(c<=$(".prname:visible").length-1){
-				window["prefctr" + c] =$(".compname").get(c).id;
+				window["prefctr" + c] =$(".prname").get(c).id;
 				window["prefctr" + c]= window["prefctr" + c].match(/\d+$/);	
 				var numbers = /^[0-9]+$/;
 				var emailVal = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;

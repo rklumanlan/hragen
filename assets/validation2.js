@@ -94,6 +94,7 @@ $(document).ready(function(){
 			$("#cancelcomp").addClass('invi');
 			$("#insertcomp").addClass('invi');
 			$("#addcomp").removeClass('invi');
+			$('.error').text('');
 		});
 		
 	
@@ -103,6 +104,7 @@ $(document).ready(function(){
 		$('#addeduc').addClass('invi');
 		$('#canceleduc').removeClass('invi');
 		$("#educ").slideDown();
+		
 		
             
 	});
@@ -118,6 +120,7 @@ $(document).ready(function(){
 			$("#canceleduc").addClass('invi');
 			$("#inserteduc").addClass('invi');
 			$("#addeduc").removeClass('invi');
+			$('.error').text('');
 		});
 		
 		
@@ -142,6 +145,7 @@ $(document).ready(function(){
 			$("#cancelpref").addClass('invi');
 			$("#insertpref").addClass('invi');
 			$("#addpref").removeClass('invi');
+			$('.error').text('');
 		});
 		
 		
@@ -217,6 +221,7 @@ $(document).ready(function(){
 			var remprefid = this.id;
 			$('#ctr_update').val(remprefid.match(/\d+$/));
 			$('#case_update').val("Rempref");
+			
 		});		
 	//remove comp
 	
