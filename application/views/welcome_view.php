@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Human Resource Agency</a>
+                <?php echo anchor('user/profile', 'Human Resource Agency','class="navbar-brand"'); ?>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -386,7 +386,7 @@
 						<label for='cnum' class='control-label col-sm-3  '>Contact Number:</label>
 						<div class='col-sm-9'>  
 							<input type='text' id='cnum".$ctr."'  class='cnum form-control' name='cnum".$ctr."'
-							 value='".set_value('cnum'.$ctr)."' size='11' />
+							 value='".set_value('cnum'.$ctr)."' maxlength='11'/>
 						</div>
 						<div name='cnum_err".$ctr."' id='cnum_err".$ctr."' class='col-sm-12 invi error text-center'></div>
 					</div>

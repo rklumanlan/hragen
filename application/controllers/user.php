@@ -74,21 +74,32 @@ class User extends CI_Controller{
 		}
 		else        {$this->index(); }
 	}
-	public function welcomenew()
+	public function profile()
 	{
-		$data['language']=$this->user_model->pop_lang();
-		$data['os']=$this->user_model->pop_os();
-		$data['fwork']=$this->user_model->pop_fwork();
-		
-		$data['pinfo']=$this->user_model->pop_pinfo();
-		$data['tskills']=$this->user_model->pop_tskills();
-		$data['educ']=$this->user_model->pop_educ();
-		$data['comp']=$this->user_model->pop_comp();
-		$data['pref']=$this->user_model->pop_pref();
-		
-		$this->load->view('header_view');
-		$this->load->view('welcomenew_view',  $data);
-		$this->load->view('footer_view');
+		if($this->session->userdata('uname')=='admin'){
+			$data['language']=$this->user_model->pop_lang();
+			$data['os']=$this->user_model->pop_os();
+			$data['fwork']=$this->user_model->pop_fwork();
+			
+			$this->load->view('header_view');
+			$this->load->view('admin_view', $data);
+			$this->load->view('footer_view');
+		}
+		else {
+			$data['language']=$this->user_model->pop_lang();
+			$data['os']=$this->user_model->pop_os();
+			$data['fwork']=$this->user_model->pop_fwork();
+			
+			$data['pinfo']=$this->user_model->pop_pinfo();
+			$data['tskills']=$this->user_model->pop_tskills();
+			$data['educ']=$this->user_model->pop_educ();
+			$data['comp']=$this->user_model->pop_comp();
+			$data['pref']=$this->user_model->pop_pref();
+			
+			$this->load->view('header_view');
+			$this->load->view('welcomenew_view',  $data);
+			$this->load->view('footer_view');
+		}
 	}
 	public function thank()
 	{
@@ -131,7 +142,7 @@ class User extends CI_Controller{
 			$data['pref']=$this->user_model->pop_pref();
 			
 			$this->load->view('header_view');
-			$this->load->view('viewapp_view.php', $data);
+			$this->load->view('welcomenew_view.php', $data);
 			$this->load->view('footer_view');
 		}
 	}

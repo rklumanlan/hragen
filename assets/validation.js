@@ -115,7 +115,8 @@ var Validator = function(form) {
     this.form = $(form);
     var handleError = function(element,message,dp1) {
 		$('#'+element).text(message);
-		$('#'+element).fadeIn(500);
+		$('#'+element).fadeIn(500); 
+		$('#'+dp1).focus();
 		/*var error = $('<div name="err" id="err" class="col-sm-12 error text-center"></div>').text(message);
 		error.appendTo('.'+element);*/
 		$('#'+dp1).change(function() {
@@ -409,9 +410,7 @@ var Validator = function(form) {
 				}
 				
 				if($(".cnum").get(c).value == ""){
-					handleError("cnum_err"+ window["prefctr" + c] ,'Name is required.',
-					$(".cnum").get(c).id);
-					e.preventDefault();
+					return true;
 				}
 				else if(!numbers.test($(".cnum").get(c).value)){
 					handleError("cnum_err"+ window["prefctr" + c] ,'Contact Number is invalid.',
@@ -419,9 +418,7 @@ var Validator = function(form) {
 					e.preventDefault();
 				}
 				if($(".cemail").get(c).value == ""){
-					handleError("cemail_err"+ window["prefctr" + c] ,'Email address is required.',
-					$(".cemail").get(c).id);
-					e.preventDefault();
+					return true;
 				}
 				
 				

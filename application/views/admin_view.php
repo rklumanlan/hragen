@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Human Resource Agency</a>
+                <?php echo anchor('user/profile', 'Human Resource Agency','class="navbar-brand"'); ?>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -61,7 +61,7 @@
             
                 <label for="fname" class="  control-label col-sm-3">Languages:</label>
                 <div class="col-sm-9 form-group"> 
-                    <?php foreach($language->result() as $language)
+                    <?php foreach($language as $language)
                     { 
 						echo "<div class=' col-xs-12 col-sm-6 col-md-4 col-lg-3 '>
 								<label class='checkbox-inline '><input type='checkbox' name='lang[]' 
@@ -76,7 +76,7 @@
                 <label for="fname" class="control-label col-sm-3 col-md-3">Operating System:</label>
                  <div class="col-sm-9 form-group "> 
                     <?php  
-					foreach($os->result() as $os)
+					foreach($os as $os)
 					{ 
 						echo "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-3 '>
 								<label class='checkbox-inline '><input type='checkbox' name='os[]' 
@@ -93,7 +93,7 @@
                 <label for="fname" class="control-label col-sm-3">Framework:</label>
                <div class="col-sm-9 form-group "> 
                    <?php 
-				   foreach($fwork->result() as $fwork)
+				   foreach($fwork as $fwork)
                     { 
 						echo "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-3 '>
 								<label class='checkbox-inline '><input type='checkbox' name='fwork[]' 
@@ -113,8 +113,8 @@
         <?php echo form_close(); ?>
         
 	</div>
-    <div id="refineRes" class=" reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1  ">
-    To refine your search <span id="clickhere" onclick="clickhere()";>click here</span>
+    <div id="refineRes" class=" reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
+    To refine your search <span id="clickhere" >click here</span>
     </div>
 	<?php echo form_open("user/view"); 
 			
@@ -172,6 +172,14 @@
             </div>
         </div>";
         }
+		else{
+			echo '<div id="results" class=" reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 
+				col-md-offset-1  ">
+					<div class="form_title">No Match Found!</div>
+					</div>';
+			
+			
+		}
 		echo form_close();
 		?>    
         </header>

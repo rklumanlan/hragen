@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Human Resource Agency</a>
+        <?php echo anchor('user/profile', 'Human Resource Agency','class="navbar-brand"'); ?>
     </div>
     	<!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -241,4 +241,13 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/validation2.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/validation.js"></script>
+<script type='text/javascript' >
+<?php
+if($title=='View Applicant'){
+	echo "$('#editpinfo_mpage').hide();";
+}
+else echo "$('#editpinfo_mpage').show();";
+?>
+</script>
+
         

@@ -33,7 +33,7 @@
         <div class="reg_form col-xs-10 col-sm-10 col-md-10 col-lg-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-1  ">
             <div class="form-horizontal col-lg-12">  
                 <div class="text-right col-lg-9"> 
-					<?php foreach($pinfo->result() as $pinfo)
+					<?php foreach($pinfo as $pinfo)
                     { 
                     echo "<div class='form_title  '>".$pinfo->fname." ".$pinfo->mname." ".$pinfo->lname ."</div >";
 					echo "<div >".$pinfo->address." ".$pinfo->city."</div >"; 
@@ -53,7 +53,7 @@
                     <div class="col-sm-4"><p>Languages:</p></div>
                     <div class="col-sm-8"> 
                         <?php 
-                        foreach($tskills->result() as $tskills)
+                        foreach($tskills as $tskills)
                         { 
                         
                             echo $tskills->lang_code;
@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-lg-12 ">
                    <?php 
-                        foreach($educ->result() as $educ)
+                        foreach($educ as $educ)
                         { 
                         	echo "<div class='col-lg-12 '>";
                             	echo "<span class='bold'>".$educ->school."</span>";
@@ -115,7 +115,7 @@
                 </div>
                 <div class="col-lg-12 ">
                    <?php 
-                        foreach($comp->result() as $comp)
+                        foreach($comp as $comp)
                         { 
                         	echo "<div class='col-lg-12 '>";
                             	echo "<span class='bold'>".$comp->title."</span>";
@@ -223,7 +223,7 @@
                 </div>
                 <div class="col-lg-12 ">
                    <?php 
-                        foreach($pref->result() as $pref)
+                        foreach($pref as $pref)
                         { 
                         	echo "<div class='col-lg-12 '>";
                             	echo "<span class='bold'>".$pref->pname."</span>";

@@ -1,8 +1,4 @@
-function clickhere(){
-	$("#refineRes").css('display','none');
-	$("#results").css('display','none');
-	$("#criteria").css('display','block');
-}
+
 function edt(vale){
 	
 	
@@ -62,6 +58,27 @@ function cancel(value,val2){
 
 
 $(document).ready(function(){
+	//admin view
+	$("#clickhere").click(function(){
+			$('input:text').val('');
+			$('select').val('-');
+			$('input:checkbox').removeAttr('checked');
+			$("#refineRes").css('display','none');
+			$("#results").css('display','none');
+			$("#criteria").css('display','block');
+		});
+	
+	
+	
+	if ($("#results").is(':visible')){
+	   $("#criteria").css('display','none');
+	}
+	if ($("#criteria").is(':visible')){
+	   $("#refineRes").css('display','none');
+	   
+	}
+	
+	
 	
 	//update values
 	$("#Updatepinfo").click(function(){
@@ -243,21 +260,11 @@ $(document).ready(function(){
 		
 		
 
-		
-		
-	
 	
 	
 
 
 
-	//admin view
-	if ($("#results").is(':visible')){
-	   $("#criteria").css('display','none');
-	}
-	if ($("#criteria").is(':visible')){
-	   $("#refineRes").css('display','none');
-	   $("#search")[0].reset();
-	}
+	
 	
 });
