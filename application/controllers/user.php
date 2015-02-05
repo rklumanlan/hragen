@@ -304,8 +304,6 @@ class User extends CI_Controller{
 		}
 		
 			
-	
-		
 		if($this->input->post('page_update')=='main_page'){
 		
 			$data['pinfo']=$this->user_model->pop_pinfo();

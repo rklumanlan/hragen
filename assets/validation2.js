@@ -255,10 +255,13 @@ $(document).ready(function(){
 			$('#ctr_update').val(remeducid.match(/\d+$/));
 			$('#case_update').val("Remeduc");
 		});
-		
-		
-		
-		
+
+
+	$('.update_pinfo2').hide();
+	$("#editpinfo_mpage").click(function(){	
+		$('.update_pinfo2').fadeIn(500);
+		$('.update_pinfo1').hide();
+	});	
 
 	
 	

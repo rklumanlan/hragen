@@ -31,7 +31,7 @@
     <!-- Jumbotron Header -->
     <header class="jumbotron hero-spacer col-xs-12 col-sm-12 col-md-12 col-lg-12  ">
         <div class="reg_form col-xs-10 col-sm-10 col-md-10 col-lg-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-1  ">
-            <div class=" col-lg-12">  
+            <div class="update_pinfo1 col-lg-12">  
 				<?php 
 				echo form_open('user/update_info','id = "infos"');
                 foreach($pinfo as $pinfo)
@@ -44,13 +44,103 @@
 						<div >".$pinfo->address." ".$pinfo->city."</div >
 						<div >".$pinfo->sex."</div >
 						<div >";
-						
-				echo anchor("user/edit_mpage", "<input type='button' id='editpinfo_mpage' name='editpinfo_mpage' 
-						class='greenButton' value='Edit Informations' />")."</div >"; 
+				echo "<input type='button' id='editpinfo_mpage' name='editpinfo_mpage' 
+						class='greenButton' value='Edit Informations' /></div >"; 
                 echo "</div>";
                 ?> 
                  <div class="col-lg-12"><hr class="lne" /></div>
     		</div>
+            <div class="update_pinfo2 col-lg-12"> 
+           		<input type="hidden" id="case_update" name="case_update" value=''/>
+                <input type='hidden' id='ctr_update' name='ctr_update' value=''>
+                <input type='hidden' id='page_update' name='page_update' value=''>
+                <div class="form-horizontal focus" tabindex='1'>    
+                    
+                    <div class="form-group fname">
+                        <label for="fname" class="control-label col-sm-3  ">First Name:</label>
+                        <div class="col-sm-9">  
+                            <input type="text" id="fname"  class="form-control edtpinfo" name="fname" readOnly="true" 
+                            value="<?php echo $pinfo->fname; ?>" />		
+                        </div>
+                        <div name='fname_err' id='fname_err' class='col-sm-12 invi error text-center'></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mname" class="control-label col-sm-3 ">Middle Name:</label>
+                        <div class="col-sm-9"> 
+                            <input type="text" id="mname" name="mname" class="form-control edtpinfo" readOnly="true" 
+                            value="<?php echo $pinfo->mname; ?>" />
+                            
+                        </div>
+                    </div>
+                    <div class="form-group lname">
+                        <label for="lname" class="control-label col-sm-3">Last Name:</label>
+                        <div class="col-sm-9"> 
+                            <input type="text" id="lname" name="lname" class="form-control edtpinfo" readOnly="true" 
+                            value="<?php echo $pinfo->lname; ?>" />
+                        </div>
+                        <div name='lname_err' id='lname_err' class='col-sm-12 invi error text-center'></div>
+                    </div>
+                    
+                    <div class="form-group add">
+                        <label for="add" class="control-label col-sm-3">Address:</label>
+                        <div class="col-sm-9"> 
+                            <input type="text" id="add" name="add"  class="form-control edtpinfo" readOnly="true" 
+                            value="<?php echo $pinfo->address; ?>" />
+                        </div>
+                        <div name='add_err' id='add_err' class='col-sm-12 invi error text-center'></div>
+                    </div>
+                    <div class="form-group prov_mun">
+                        <label for="prov_mun" class="control-label col-sm-3">Province/Muncipality:</label>
+                        <div class="col-sm-9 "> 
+                            <input type="text" id="prov_mun" name="prov_mun"  class="form-control edtpinfo" readOnly="true" 
+                            value="<?php echo $pinfo->city; ?>" />
+                        </div>
+                        <div name='prov_mun_err' id='prov_mun_err' class='col-sm-12 invi error text-center'></div>
+                    </div>
+                    <div class="form-group sex">
+                        <label for="sex" class="control-label col-sm-3">Sex:</label>
+                        <div class="col-sm-9 "> 
+                            <?php $gender = array('-'=>'-','Male'=>'Male', 'Female'=>'Female');
+                            echo form_dropdown('sex', $gender,$pinfo->sex, 'id="sex" class="form-control 
+                            edtpinfo" disabled="disabled"');
+                            
+                            ?>
+                        </div>
+                        <div name='sex_err' id='sex_err' class='col-sm-12 invi error text-center'></div>
+                    </div>
+                    <div class="form-group age">
+                        <label for="age" class="control-label col-sm-3">Age:</label>
+                        <div class="col-sm-9 "> 
+                            <?php 
+                            $ageb = array('-'=>'-','Newly Graduate'=>'Newly Graduate','22-25'=> '22-25', '26-30'=>'26-30');
+                            echo form_dropdown('age', $ageb,$pinfo->age, 'id="age" class="form-control edtpinfo" 
+                            disabled="disabled" '.set_select('age', $ageb, TRUE, 0).'');
+                            
+                            ?>
+                        </div>
+                        <div name='age_err' id='age_err' class='col-sm-12 invi error text-center'></div>
+                    </div>
+                    <div class="form-group" >
+                        <div class="pull-right pads edtpinfo ">
+                            <input type="button" id="edtpinfo"  class="greenButton edtpinfobtn " 
+                            onclick="edt(this.id)" value="Edit" />
+                            <?php echo form_submit('Updatepinfo','Save', 'id="Updatepinfo" 
+                            class="greenButton edtpinfobtn invi"  ');?> 
+                            <input type="button" id="cancelpinfo" name="edtpinfo" class="greenButton edtpinfobtn invi" 
+                            onclick="cancel(this.id,this.name)" value="Cancel" />
+                            
+                            
+                            
+                        </div>
+                        
+                    </div>
+            	</div>
+            
+            
+            
+            
+            </div>
+            
             
             
             <?php }?>
@@ -182,6 +272,7 @@
              
 			 
              <?php
+			 echo form_close();
              function month($mon){
              switch ($mon) {
                 case "1":
