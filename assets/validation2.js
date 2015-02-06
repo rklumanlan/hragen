@@ -262,7 +262,21 @@ $(document).ready(function(){
 		$('.update_pinfo2').fadeIn(500);
 		$('.update_pinfo1').hide();
 	});	
-
+	
+	
+	$("#editpinfo_mpage").click(function(){
+		$('#page_update').val("main_page");
+	
+	
+	});
+	/*$('#page_update').val('');
+	if($("#editpinfo_mpage").click(function(){
+		})){
+			$('#page_update').val("main_page");
+			
+		}
+	else{$('#page_update').val('');}
+*/
 	
 	
 
