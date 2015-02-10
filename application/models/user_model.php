@@ -626,8 +626,9 @@ class User_model extends CI_Model {
 		if ($query->num_rows() > 0)
 		{
 			$data = array('lang_code'=>$langval,'fwork_code'=>$fworkval,'os_code'=>$osval);
-			$this->db->update('tskills', $data); 
 			$this->db->where('uid', $this->session->userdata('user_id'));
+			$this->db->update('tskills', $data); 
+			
 		}
 		else
 		{

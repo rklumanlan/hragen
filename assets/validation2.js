@@ -17,11 +17,12 @@ function edt(vale){
 	}
 	
 	
-	if(vale=="edttskills"){
+	if(vale=="edttskills"){ 
 		$("input.edttskills").prop("disabled", false);
 		$("#"+$("."+vale+"btn").get(0).id).addClass('invi');
 		$("#"+$("."+vale+"btn").get(1).id).removeClass('invi');
 		$("#"+$("."+vale+"btn").get(2).id).removeClass('invi');
+		
 	}	
 	
 	
@@ -31,27 +32,36 @@ function edt(vale){
 
 function cancel(value,val2){
 	if(value!="canceltskills"){
-	for(var y=0;y<=(($("."+val2).length)-1);y++){
-	
-		$("#"+$("."+val2).get(y).id).attr("readonly","readonly");
-		$("#"+$("."+val2).get(y).id).attr("disabled","disabled");
-	}
-	
-	$("#"+$("."+val2+"btn").get(0).id).removeClass('invi');
-	$("#"+$("."+val2+"btn").get(1).id).addClass('invi');
-	
-	$("#"+$("."+val2+"btn").get(2).id).addClass('invi');
-	
-	
-	$("#"+$("."+val2+"btn").get(3).id).addClass('invi');
-	$("#"+$("."+val2+"btn").get(4).id).addClass('invi');
+		for(var y=0;y<=(($("."+val2).length)-1);y++){
+		
+			$("#"+$("."+val2).get(y).id).attr("readonly","readonly");
+			$("#"+$("."+val2).get(y).id).attr("disabled","disabled");
+		}
+		
+		$("#"+$("."+val2+"btn").get(0).id).removeClass('invi');
+		$("#"+$("."+val2+"btn").get(1).id).addClass('invi');
+		
+		$("#"+$("."+val2+"btn").get(2).id).addClass('invi');
+		
+		
+		$("#"+$("."+val2+"btn").get(3).id).addClass('invi');
+		$("#"+$("."+val2+"btn").get(4).id).addClass('invi');
+		
+		
+		
+		
+		
 	}
 	if(value=="canceltskills"){
+		
 		$("input.edttskills").prop("disabled", true);
 		$("#"+$("."+val2+"btn").get(0).id).removeClass('invi');
 		$("#"+$("."+val2+"btn").get(1).id).addClass('invi');
 		
 		$("#"+$("."+val2+"btn").get(2).id).addClass('invi');
+		
+		
+		
 	}	
 	
 }
@@ -184,7 +194,6 @@ $(document).ready(function(){
 			$('#'+updeducid).find('*').attr('disabled','disabled');
 			$('#'+updeducid).find('*').prop('readonly', true);
 			$('.updbuttons').addClass('invi');
-			
 		});
 	
 	
@@ -256,31 +265,105 @@ $(document).ready(function(){
 			$('#case_update').val("Remeduc");
 		});
 
+		
 
-	$('.update_pinfo2').hide();
-	$("#editpinfo_mpage").click(function(){	
+
+
+	$(".editpinfo").click(function(){
 		$('.update_pinfo2').fadeIn(500);
+		$('.update_pinfo2').find('*').removeAttr('disabled');
+		$('.update_pinfo2').find('*').prop('readonly', false);
+		$('.update_pinfo2').find('*').removeClass('invi');
 		$('.update_pinfo1').hide();
-	});	
-	
-	
-	$("#editpinfo_mpage").click(function(){
 		$('#page_update').val("main_page");
+		
+	});
+	$("#cancelpinfo_mpag").click(function(){
+		$('.update_pinfo2').find('*').Attr('disabled');
+		$('.update_pinfo2').find('*').prop('readonly', true);
+		$('.update_pinfo2').find('*').addClass('invi');
+		$('.update_pinfo1').fadeIn(500);
+		$('.update_pinfo2').hide();
+		
+	});
 	
+	$(".edittskills").click(function(){
+		
+		$('.tskills1').hide();
+		$('.tskills2').fadeIn(500);
+		$('#page_update').val("main_page");
+		$('#case_update').val($("#Updatetskills").attr('id'));
+		$("#edttskills"	).hide();
+		$(".edttskillsbtn").show();
+		$("input.edttskills").prop("disabled", false);
+		
+	});
+	
+	
+	$("#canceltskills_mpage").click(function(){	
+		$("input.edttskills").prop("disabled", true)
+		$("#infos")[0].reset();
+		$('.tskills2').hide();
+		$('.tskills1').fadeIn(500);
+		$("#edttskills").show();
+		$(".edttskillsbtn").hide();
+		
 	
 	});
-	/*$('#page_update').val('');
-	if($("#editpinfo_mpage").click(function(){
-		})){
-			$('#page_update').val("main_page");
-			
-		}
-	else{$('#page_update').val('');}
+	
+	$(".editeduc_mpage").click(function(){
+		var educid = this.id;
+		$('#'+educid).hide();
+		$('#educ'+educid).fadeIn(500);
+		$('#educ'+educid).find('*').removeAttr('disabled');
+		$('#educ'+educid).find('*').attr('readonly',false);
+		$('#educ'+educid).find('*').removeClass('invi');
+		$('#case_update').val($("#Updateeduc").attr('id'));
+		$('#ctr_update').val(educid.match(/\d+$/));	
+		$('#addeduc').addClass('invi');
+		$('#page_update').val("main_page");
+	});
+	$(".cancelupdateeduc_mpage").click(function(){
+		var updeducid = this.id;
+		$('#'+updeducid).find('*').attr('disabled','disabled');
+		$('#'+updeducid).find('*').prop('readonly', true);
+		$('.updbuttons').addClass('invi');
+		$('#'+updeducid).hide();
+		$('#'+updeducid.match(/\d+$/)).fadeIn(500);
+		$('#addeduc').removeClass('invi');
+	});
+	$("#canceleduc_mpage").click(function(){
+		$("#infos")[0].reset();
+		$('.educ_2').hide();
+		$('#addeduc_mpage').fadeIn(500);
+		$('.edteducbtn2').hide();
+		$('#case_update').val("");
+		
+	});
+	$("#addeduc_mpage").click(function(){
+		$('#canceleduc_mpage').fadeIn(500);
+		$('#inserteduc').fadeIn(500);
+		$('#addeduc_mpage').hide();
+		$('.edteducbtn2').show();
+		$("#educ").slideDown();
+		$('#page_update').val("main_page");
+		$('#case_update').val("inserteduc");
+		
+            
+	});
+	/*
+	$('.educ2').hide();
+	$("#edteduc").click(function(){	
+		$('.educ1').hide();
+		$('.educ2').fadeIn(500);
+		$('#page_update').val("main_page");
+		$('#case_update').val($("#edteduc").attr('name'));
+		$("#edteduc").hide();
+		$("#canceleduc_mpage").removeClass('invi');
+	});
+	
+	
 */
-	
-	
-
-
 
 	
 	

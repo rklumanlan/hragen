@@ -51,7 +51,7 @@ class User extends CI_Controller{
 					$data['pref']=$this->user_model->pop_pref();
 					
 					$this->load->view('header_view');
-					$this->load->view('welcomenew_view',  $data);
+					$this->load->view('welcomenew2_view',  $data);
 					$this->load->view('footer_view');
 					
 					
@@ -97,7 +97,7 @@ class User extends CI_Controller{
 			$data['pref']=$this->user_model->pop_pref();
 			
 			$this->load->view('header_view');
-			$this->load->view('welcomenew_view',  $data);
+			$this->load->view('welcomenew2_view',  $data);
 			$this->load->view('footer_view');
 		}
 	}
@@ -313,7 +313,7 @@ class User extends CI_Controller{
 			$data['tskills']=$this->user_model->pop_tskills();
 			
 			$this->load->view('header_view');
-			$this->load->view('welcomenew_view.php',$data);
+			$this->load->view('welcomenew2_view.php',$data);
 			$this->load->view('footer_view');
 		}
 		else{

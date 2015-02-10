@@ -44,17 +44,20 @@
                         <img src='". base_url()."uploads/".$pinfo->imgfname."' class='img-responsive' />
                     </div >"; 
                 echo "<div class='col-centered col-lg-9'> 
-						<div class='form_title'>".$pinfo->fname." ".$pinfo->mname." ".$pinfo->lname ."</div >
-						<div >".$pinfo->address." ".$pinfo->city."</div >
-						<div >".$pinfo->sex."</div >
-						<div >";
-				echo "<input type='button' id='editpinfo_mpage' name='editpinfo_mpage' 
-						class='greenButton' value='Edit Informations' /></div >"; 
-                echo "</div>";
+						<div class='form_title'>
+						<span class='glyphicon glyphicon-edit editpinfo click' id='pinfo'></span> ".
+						$pinfo->fname." ".$pinfo->mname." ".$pinfo->lname ."</div >
+						<div ><span class='glyphicon glyphicon-edit editpinfo click' id='pinfo'></span> "
+						.$pinfo->address." ".$pinfo->city."</div >
+						<div ><span class='glyphicon glyphicon-edit editpinfo click' id='pinfo'></span> 
+						 ".$pinfo->sex."</div >
+						<div ><span class='glyphicon glyphicon-edit editpinfo click' id='pinfo'></span> ".$pinfo->age."</div >
+					</div >";
                 ?> 
-                 <div class="col-lg-12"><hr class="lne" /></div>
+                 
     		</div>
-            <div class="update_pinfo2 col-lg-12"> 
+            <div class="col-lg-12 update_pinfo1 "><hr class="lne" /></div>
+            <div class="update_pinfo2 col-lg-12 invi"> 
            		
                 <div class="form-horizontal focus" tabindex='1'>    
                     
@@ -126,25 +129,14 @@
                         <div class="pull-right pads edtpinfo ">
                             <?php echo form_submit('Updatepinfo','Save', 'id="Updatepinfo" 
                             class="greenButton edtpinfobtn invi"  ');?> 
-                            <?php echo form_submit('cancelpinfo','Cancel', 'id="cancelpinfo" 
-                            class="greenButton edtpinfobtn invi"  ');?> 
-                            
-                            
-                            
+                           <input type="button" id="cancelpinfo_mpage" name="edtpinfo" 
+                           class="greenButton edtpinfobtn invi"value="Cancel" />
                         </div>
-                        
                     </div>
-            	</div>
-            
-            
-            
-            
+            	</div>            
             </div>
             
-            
-            
             <?php }?>
-           
             <?php 
 			$sel_lang_list="";
 			$sel_os_list="";
@@ -159,15 +151,16 @@
 			?>
             <div class=" col-lg-12 form-horizontal"> 
             	<div class='col-lg-12 form_title space bg'>Technical Skills</div >
+                <div class="col-lg-12 space">
             	<div class="col-lg-12 space">
                 	<div class="col-sm-4 bold">
-                		Languages:
+                		<span class='glyphicon glyphicon-edit edittskills click' id='edittskills'></span> Languages:
                         
                     </div>
                     <div class="col-sm-8 tskills1 "> 
                     	<?php echo $tskills->lang_code; ?>
                     </div>
-                    <div class="col-sm-8 tskills2"> 
+                    <div class="col-sm-8 tskills2 invi"> 
                     <?php 
                     if(count($language)>0){
                         foreach($language as $language){ 
@@ -193,12 +186,12 @@
                 </div>
             	<div class="col-lg-12 space">
                 	<div class="col-sm-4 bold">
-                		Operating Systems:
+                		<span class='glyphicon glyphicon-edit edittskills click' id='edittskills'></span> Operating Systems:
                     </div>
                     <div class="col-sm-8 tskills1"> 
                     	<?php echo $tskills->os_code; ?>
                     </div>
-                    <div class="col-sm-8 tskills2"> 
+                    <div class="col-sm-8 tskills2 invi"> 
                     <?php 
                     if(count($os)>0){
                         foreach($os as $os){ 
@@ -221,12 +214,12 @@
                 </div>
             	<div class="col-lg-12 space">
                 	<div class="col-sm-4 bold ">
-                		Frameworks:
+                		<span class='glyphicon glyphicon-edit edittskills click' id='edittskills'></span> Frameworks:
                     </div>
                     <div class="col-sm-8 tskills1"> 
                     	<?php echo $tskills->fwork_code; ?>
                     </div>
-                    <div class="col-sm-8 tskills2"> 
+                    <div class="col-sm-8 tskills2 invi"> 
                    <?php 
                     if(count($fwork)>0){
                         foreach($fwork as $fwork){ 
@@ -250,63 +243,71 @@
                    </div>
                 </div>
                 <div class="pull-right pads edttskills space ">
-                    <input type="button" id="edttskills"  class="greenButton " onclick="edt(this.id)" 
-                    value="Edit" />
                     <?php echo form_submit('Updatetskills','Save', 'id="Updatetskills" 
                     class="greenButton edttskillsbtn invi" ');?> 
                     <input type="button" id="canceltskills_mpage" name="edttskills" class="greenButton edttskillsbtn invi"
                     value="Cancel" />
                 </div>
+                </div>
             </div>
             <?php
 			}
 			?>
-             
             <div class=" col-lg-12"> 
-                <div class='col-lg-12 form_title space bg'>Educational Attainment</div >
+                <div class='col-lg-12 form_title space bg'>Educational Attainment 
+                <span class="glyphicon glyphicon-plus-sign click" id="addeduc_mpage"></span></div >
                 <?php foreach($educ as $educ){ ?>
                 <div class="col-lg-12 educ1 space ">
-                    
+                    <div class="col-lg-12" id="<?php echo $educ->educ_id; ?>">
                         <div class="col-sm-12 form_title">
-                            <?php echo $educ->school; ?>
+                            <?php echo "<span class='glyphicon glyphicon-edit editeduc_mpage click' 
+							id='".$educ->educ_id."'></span>
+							".$educ->school; ?>
                         </div>
                         <div class="col-sm-12">
-                            <?php echo $educ->yearFrom." - ".$educ->yearTo; ?>
+                           <?php echo "<span class='glyphicon glyphicon-edit editeduc_mpage click' 
+						   id='".$educ->educ_id."'></span>
+							".$educ->yearFrom." - ".$educ->yearTo; ?>
                         </div>
                         <div class="col-sm-12">
-                            <?php echo $educ->degree.", ".$educ->fstudy; ?>
+                            <?php echo "<span class='glyphicon glyphicon-edit editeduc_mpage click' 
+							id='".$educ->educ_id."'></span>
+							".$educ->degree.", ".$educ->fstudy; ?>
                         </div>
                         <div class="col-sm-12">
-                            <?php echo $educ->desc; ?>
+                           <?php echo "<span class='glyphicon glyphicon-edit editeduc_mpage click' 
+						   id='".$educ->educ_id."'></span>
+							".$educ->desc; ?>
                         </div>
+                    </div>
                 </div>
                 <div class="col-lg-12 educ2 space form-horizontal ">
                 	<?php
 					echo"
 					
-					<div id='educ".$educ->educ_id."' class='educ focus' tabindex='3'>
+					<div id='educ".$educ->educ_id."' class='educ focus invi' tabindex='3'>
 						<div class='form-group sch".$educ->educ_id."' > 
 							
 							<label for='fname' class='control-label col-sm-3 ' >
-								<span class='glyphicon glyphicon-edit editeduc click' id='educ".$educ->educ_id."'></span> 
+								<span class='glyphicon glyphicon-edit  click' id='educ".$educ->educ_id."'></span> 
 								School:
 							</label>
 							<div class='col-sm-9 '>
 								<input type='text' id='school".$educ->educ_id."' name='school".$educ->educ_id."' 
-								class='form-control school editeduc' readOnly='true' value='".$educ->school."' />
+								class='form-control school ' readOnly='true' value='".$educ->school."' />
 							</div>
 							<div name='sch_err".$educ->educ_id."' id='sch_err".$educ->educ_id."' 
 							class='col-sm-12  error text-center'></div>
 						</div>
 						<div class='form-group date".$educ->educ_id."' id='date".$educ->educ_id."'> 
 							<label for='fname'  class='control-label col-sm-3'>
-								<span class='glyphicon glyphicon-edit editeduc click' id='educ".$educ->educ_id."'></span> 
+								<span class='glyphicon glyphicon-edit  click' id='educ".$educ->educ_id."'></span> 
 								Dates Attended:
 							</label>
 							<div class='col-sm-9'>
 								<div class='col-sm-5 pad'>
 									<select name='1DAtty".$educ->educ_id."' id='1DAtty".$educ->educ_id."' 
-									class='form-control dateFrom editeduc' 
+									class='form-control dateFrom ' 
 									disabled>
 										<option value='-'>-</option>";
 										$yeard1 = date('Y')+1;
@@ -325,7 +326,7 @@
 								</div>
 								<div class='col-sm-2 pad'>-</div>
 								<div class='col-sm-5 pad' >
-										<select name='2DAtty".$educ->educ_id."' id='2DAtty".$educ->educ_id."' class='form-control dateTo editeduc' 
+										<select name='2DAtty".$educ->educ_id."' id='2DAtty".$educ->educ_id."' class='form-control dateTo ' 
 										disabled>
 										<option value='-'>-</option>";
 										$yeard2 = date('Y')+1; 
@@ -349,19 +350,19 @@
 						</div>
 						<div class='form-group major".$educ->educ_id."'>
 							<label for='fname' class='control-label col-sm-3'>
-								<span class='glyphicon glyphicon-edit editeduc click' id='educ".$educ->educ_id."'></span> 
+								<span class='glyphicon glyphicon-edit  click' id='educ".$educ->educ_id."'></span> 
 								Feild of Study:
 							</label>
 							<div class='col-sm-9'>
 								<input type='text' id='mjr".$educ->educ_id."' name='mjr".$educ->educ_id."' 
-								class='form-control mjr editeduc' readOnly='true' value='".$educ->fstudy."' />
+								class='form-control mjr ' readOnly='true' value='".$educ->fstudy."' />
 							</div>
 							<div name='major_err".$educ->educ_id."' id='major_err".$educ->educ_id."' 
 							class='col-sm-12  error text-center'></div>
 						</div>
 						<div class='form-group dgree".$educ->educ_id."'>
 							<label for='degree' class='control-label col-sm-3'>
-								<span class='glyphicon glyphicon-edit editeduc click' id='educ".$educ->educ_id."'></span>
+								<span class='glyphicon glyphicon-edit  click' id='educ".$educ->educ_id."'></span>
 								Degree:
 							</label>
 							<div class='col-sm-9'>";
@@ -369,7 +370,7 @@
 						$degree = array("-"=>"-","High School"=>"High School","Associate's Degree"=> "Associate's Degree",
 						 "Bachelor's Degree"=>"Bachelor's Degree", "Master's Degree"=>"Master's Degree");
 						echo "<select name='degree".$educ->educ_id."' id='degree".$educ->educ_id."'
-						 class='form-control deg editeduc' disabled>";
+						 class='form-control deg ' disabled>";
 						
 						foreach($degree as $key => $value) {
 							$sel_degree="";
@@ -388,12 +389,12 @@
 						</div>
 						<div class='form-group'>
 							<label for='desc' class='control-label col-sm-3'>
-								<span class='glyphicon glyphicon-edit editeduc click' id='educ".$educ->educ_id."'></span> 
+								<span class='glyphicon glyphicon-edit  click' id='educ".$educ->educ_id."'></span> 
 								Description:
 							</label>
 							<div class='col-sm-9'>";
 							$desc = Array ('id' => 'EAdes'.$educ->educ_id.'','name' => 'EAdes'.$educ->educ_id.'', 'cols' => '24','rows' => '5',
-							'class'=>'form-control editeduc',
+							'class'=>'form-control ',
 							'readOnly'=>'true');
 									echo Form_textarea($desc,$educ->desc);
 							echo '</div>
@@ -402,7 +403,7 @@
 							<div class="pull-right pads edteduc" >';
 							echo form_submit('Updateeduc','Save', 'id="Updateeduc" 
 							class="greenButton edteducbtn " ');
-							echo'<input type="button" id="educ'.$educ->educ_id.'" class="cancelupdateeduc greenButton edteducbtn" value="Cancel" />
+							echo'<input type="button" id="educ'.$educ->educ_id.'" class="cancelupdateeduc_mpage greenButton edteducbtn" value="Cancel" />
 							</div>
 							
 						</div>
@@ -418,7 +419,7 @@
 					
 										
 						
-			echo "</div>";
+				echo "</div>";
 				
 				
 				?>
@@ -428,7 +429,6 @@
                 
                 <?php }?>
             	<div id='educ' class='col-lg-12 educ_2 invi form-horizontal'>
-                	<div class='col-sm-12'>
                     <div class='form-group sch' > 
                         <label for='fname' class='control-label col-sm-3'>School:</label>
                         <div class='col-sm-9 '>
@@ -511,19 +511,15 @@
                         </div>
                     </div>
 				</div>
-            </div>
             
             <div class=" col-lg-12" >
             	<div class="pull-right pads edteduc space">
                 	
-                    <input type="button" id="addeduc" class="greenButton edteducbtn" value="Add Education" />
-                    <?php echo form_submit('inserteduc','Save ', 'id="inserteduc" 
+                    <?php echo form_submit('inserteduc','Save ', 'id="inserteduc2" 
 					class="greenButton edteducbtn invi" ');?> 
-                    <input type="button" id="canceleduc" class="greenButton edteducbtn invi" value="Cancel" />
-                    <input type="button" id="edteduc"  class="greenButton " value="Edit" />
                     <?php echo form_submit('Updatetskills','Save', 'id="Updatetskills" 
-                    class="greenButton edteducbtn invi" ');?> 
-                    <input type="button" id="canceleduc_mpage" class="greenButton edteducbtn invi"
+                    class="greenButton edteducbtn2 invi" ');?> 
+                    <input type="button" id="canceleduc_mpage" class="greenButton edteducbtn2 invi"
                     value="Cancel" />
             	</div>
             </div>
@@ -534,64 +530,8 @@
             
             
             
-            <div class=" col-lg-12"> 
-            	<div class='col-lg-12 form_title space bg'>Professional Experience</div >
-                <div class=" col-lg-12"> 
-					<?php foreach($comp as $comp){ ?>
-                    <div class="col-lg-12 comp_old">
-                        <div class="col-sm-12 bold">
-                            <?php echo $comp->compname; ?>
-                        </div>
-                     </div>
-                    <div class="col-lg-12 comp_old">
-                        <div class="col-sm-12">
-                            <?php echo $comp->loc; ?>
-                        </div>
-                     </div>
-                    <div class="col-lg-12 comp_old">
-                        <div class="col-sm-12">
-                            <?php month($comp->month1); echo " ".$comp->year1." - "; month($comp->month2); echo " ".$comp->year2; ?>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 comp_old">
-                        <div class="col-sm-12">
-                            <?php echo $comp->title; ?>
-                        </div>
-                     </div>
-                    <div class="col-lg-12 comp_old space">
-                        <div class="col-sm-12">
-                            <?php echo $comp->prdesc; ?>
-                        </div>
-                     </div>
-                    
-                 <?php }?>
-                 </div>
-                 
-            </div>
-            
-            <div class=" col-lg-12"> 
-            	<div class='col-lg-12 form_title space bg'>Professional Reference</div >
-                <?php foreach($pref as $pref){ ?>
-            	<div class="col-lg-12 ">
-                	<div class="col-sm-12 form_title">
-                    	<?php echo $pref->pname; ?>
-                    </div>
-                </div>
-            	<div class="col-lg-12 ">
-                	<div class="col-sm-12">
-                    	<?php echo $pref->cnum; ?>
-                    </div>
-                </div>
-            	<div class="col-lg-12 space">
-                	<div class="col-sm-12">
-                    	<?php echo $pref->cemail; ?>
-                    </div>
-                </div>
-                <?php }?>
-            </div>
-             
-             
-             
+          
+           
              
              
              

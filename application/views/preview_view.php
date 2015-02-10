@@ -456,7 +456,7 @@
                     
                 }
                 ?>
-                <select>
+                </select>
                 
                 	</div>
                     <div name='dgree2' id='dgree2' class='col-sm-12  error text-center'></div>
