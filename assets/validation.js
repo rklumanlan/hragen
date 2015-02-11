@@ -258,7 +258,7 @@ var Validator = function(form) {
 				handleError("cnum2_err" ,'Number is required.',$("#new_cnum").attr('id'));
 				e.preventDefault();
 			}
-			else if(!numbers.test($("#new_cnum").val()) && $(".pref2").is(":visible")){
+			else if(!numbers.test($("#new_cnum").val()) && $(".new_pref").is(":visible")){
 				handleError("cnum2_err",'Contact Number is invalid.',$("#new_cnum").attr('id'));
 				e.preventDefault();
 			}
@@ -287,37 +287,36 @@ var Validator = function(form) {
 			var a=0;
 			while(a<=$(".school:visible").length-1){
 				
-				window["educctr" + a] =$(".school").get(a).id;
+				window["educctr" + a] =$(".school:visible").get(a).id;
 				window["educctr" + a]= window["educctr" + a].match(/\d+$/);	
-				if($(".school").get(a).value == "")
+				if($(".school:visible").get(a).value == "")
 				{
-					handleError("sch_err"+ window["educctr" + a],'School is required.',$(".school").get(a).id);
+					handleError("sch_err"+ window["educctr" + a],'School is required.',$(".school:visible").get(a).id);
 					e.preventDefault();
 				}
-				if($(".mjr").get(a).value == "")
+				if($(".mjr:visible").get(a).value == "")
 				{	
-					
-					handleError("major_err"+ window["educctr" + a],'Field of Study is required.',$(".mjr").get(a).id);
+					handleError("major_err"+ window["educctr" + a],'Field of Study is required.',$(".mjr:visible").get(a).id);
 					e.preventDefault();
 				}
-				if($(".deg").get(a).value == "-")
+				if($(".deg:visible").get(a).value == "-")
 				{
-					handleError("dgree_err"+ window["educctr" + a],'Please select valid degree.',$(".deg").get(a).id);
+					handleError("dgree_err"+ window["educctr" + a],'Please select valid degree.',$(".deg:visible").get(a).id);
 					e.preventDefault();
 				}
-				if($(".dateFrom").get(a).value > $(".dateTo").get(a).value)
+				if($(".dateFrom:visible").get(a).value > $(".dateTo:visible").get(a).value)
 				{ 
 					handleError("date_err"+ window["educctr" + a],'Please be sure the start date is not after the end date.',
-					$(".dateTo").get(a).id);
+					$(".dateTo:visible").get(a).id);
 					e.preventDefault();
 				}
 				
-				else if(($(".dateFrom").get(a).value == $(".dateTo").get(a).value) || 
-				($(".dateFrom").get(a).value=="-" && $(".dateTo").get(a).value=="-"))
+				else if(($(".dateFrom:visible").get(a).value == $(".dateTo:visible").get(a).value) || 
+				($(".dateFrom:visible").get(a).value=="-" && $(".dateTo:visible").get(a).value=="-"))
 				{ 
 					handleError("date_err"+ window["educctr" + a],
 					'Please be select valid date.',
-					$(".dateTo").get(a).id);
+					$(".dateTo:visible").get(a).id);
 					e.preventDefault();
 				}
 				
@@ -340,54 +339,55 @@ var Validator = function(form) {
 			var b=0;
 			
 			while(b<=$(".compname:visible").length-1){
-				window["compctr" + b] =$(".compname").get(b).id;
+				window["compctr" + b] =$(".compname:visible").get(b).id;
 				window["compctr" + b]= window["compctr" + b].match(/\d+$/);	
-				if($(".compname").get(b).value == "")
+				alert(window["compctr" + b]);
+				if($(".compname:visible").get(b).value == "")
 				{
-					handleError("compname_err"+ window["compctr" + b],'Company Name is required.',$(".compname").get(b).id);
+					handleError("compname_err"+ window["compctr" + b],'Company Name is required.',$(".compname:visible").get(b).id);
 					e.preventDefault();
 				}
-				if($(".title").get(b).value == "")
+				if($(".title:visible").get(b).value == "")
 				{
-					handleError("title_err"+ window["compctr" + b],'Title is required.',$(".title").get(b).id);
+					handleError("title_err"+ window["compctr" + b],'Title is required.',$(".title:visible").get(b).id);
 					e.preventDefault();
 				}
-				if($(".loca").get(b).value == "")
+				if($(".loca:visible").get(b).value == "")
 				{
-					handleError("loc_err"+ window["compctr" + b],'Location is required.',$(".loca").get(b).id);					e.			
+					handleError("loc_err"+ window["compctr" + b],'Location is required.',$(".loca:visible").get(b).id);					e.			
 					preventDefault();
 				}
 				
 				
-				if(($(".yearFrom").get(b).value > $(".yearTo").get(b).value) && 
-				$(".monFrom").get(b).value > $(".monTo").get(b).value)
+				if(($(".yearFrom:visible").get(b).value > $(".yearTo:visible").get(b).value) && 
+				$(".monFrom:visible").get(b).value > $(".monTo:visible").get(b).value)
 				{
 					handleError("comTP_err"+ window["compctr" + b] ,
 					'Please be sure the start date is not after the end date.',
-					$(".yearTo").get(b).id);
+					$(".yearTo:visible").get(b).id);
 					e.preventDefault();
 				}
 				
-				else if(($(".yearFrom").get(b).value == $(".yearTo").get(b).value) && 
-				$(".monFrom").get(b).value > $(".monTo").get(b).value)
+				else if(($(".yearFrom:visible").get(b).value == $(".yearTo:visible").get(b).value) && 
+				$(".monFrom:visible").get(b).value > $(".monTo:visible").get(b).value)
 				{
 					handleError("comTP_err"+ window["compctr" + b] ,
-					'Please be sure the start date is not after the end date.',$(".monTo").get(b).id);
+					'Please be sure the start date is not after the end date.',$(".monTo:visible").get(b).id);
 					e.preventDefault();
 				}
 				
-				else if(($(".yearFrom").get(b).value > $(".yearTo").get(b).value) && 
-				$(".monFrom").get(b).value == $(".monTo").get(b).value)
+				else if(($(".yearFrom:visible").get(b).value > $(".yearTo:visible").get(b).value) && 
+				$(".monFrom:visible").get(b).value == $(".monTo:visible").get(b).value)
 				{
 					handleError("comTP_err"+ window["compctr" + b] ,
-					'Please be sure the start date is not after the end date.',$(".monTo").get(b).id);
+					'Please be sure the start date is not after the end date.',$(".monTo:visible").get(b).id);
 					e.preventDefault();
 				}
 				
-				else if( $(".monFrom").get(b).value=="0" || $(".monTo").get(b).value=="0" || 
-				$(".yearFrom").get(b).value=="-" || $(".yearTo").get(b).value =="-" )
+				else if( $(".monFrom:visible").get(b).value=="0" || $(".monTo:visible").get(b).value=="0" || 
+				$(".yearFrom:visible").get(b).value=="-" || $(".yearTo:visible").get(b).value =="-" )
 				{
-					handleError("comTP_err"+ window["compctr" + b] ,'Please select a valid date.',$(".yearTo").get(b).id);
+					handleError("comTP_err"+ window["compctr" + b] ,'Please select a valid date.',$(".yearTo:visible").get(b).id);
 					e.preventDefault();
 				}
 				
@@ -399,33 +399,33 @@ var Validator = function(form) {
 			var c=0;
 			
 			while(c<=$(".prname:visible").length-1){
-				window["prefctr" + c] =$(".prname").get(c).id;
+				window["prefctr" + c] =$(".prname:visible").get(c).id;
 				window["prefctr" + c]= window["prefctr" + c].match(/\d+$/);	
 				var numbers = /^[0-9]+$/;
 				var emailVal = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-				if($(".prname").get(c).value == ""){
+				if($(".prname:visible").get(c).value == ""){
 					handleError("prname_err"+ window["prefctr" + c] ,'Name is required.',
-					$(".prname").get(c).id);
+					$(".prname:visible").get(c).id);
 					e.preventDefault();
 				}
-				
-				if($(".cnum").get(c).value == ""){
-					return true;
-				}
-				else if(!numbers.test($(".cnum").get(c).value)){
+				if(!numbers.test($(".cnum:visible").get(c).value)){
 					handleError("cnum_err"+ window["prefctr" + c] ,'Contact Number is invalid.',
-					$(".cnum").get(c).id);
+					$(".cnum:visible").get(c).id);
 					e.preventDefault();
 				}
-				if($(".cemail").get(c).value == ""){
-					return true;
+				else if($(".cnum:visible").get(c).value==""){
+					handleError("cnum_err"+ window["prefctr" + c] ,'Contact Number is required.',
+					$(".cnum:visible").get(c).id);
+					e.preventDefault();
 				}
-				
-				
-				else if(!emailVal.test($(".cemail").get(c).value)){
+				if(!emailVal.test($(".cemail:visible").get(c).value)){
 					handleError("cemail_err"+ window["prefctr" + c] ,'Email address is invalid.',
-					$(".cemail").get(c).id);
-				
+					$(".cemail:visible").get(c).id);
+					e.preventDefault();
+				}
+				else if($(".cemail:visible").get(c).value==""){
+					handleError("cemail_err"+ window["prefctr" + c] ,'Email Address is required.',
+					$(".cemail:visible").get(c).id);
 					e.preventDefault();
 				}
 				

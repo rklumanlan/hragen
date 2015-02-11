@@ -57,9 +57,9 @@
                  
     		</div>
             <div class="col-lg-12 update_pinfo1 "><hr class="lne" /></div>
-            <div class="update_pinfo2 col-lg-12 invi"> 
+            <div class="update_pinfo2 col-lg-12 invi" id="update_pinfo2"> 
            		
-                <div class="form-horizontal focus" tabindex='1'>    
+                <div class=" update_pinfo2 form-horizontal focus" tabindex='1'>    
                     
                     <div class="form-group fname">
                         <label for="fname" class="control-label col-sm-3  ">First Name:</label>
@@ -254,8 +254,10 @@
 			}
 			?>
             <div class=" col-lg-12"> 
-                <div class='col-lg-12 form_title space bg'>Educational Attainment 
-                <span class="glyphicon glyphicon-plus-sign click" id="addeduc_mpage"></span></div >
+                <div class='col-lg-12 form_title space bg'>
+                	<span class="glyphicon glyphicon-plus click" id="addeduc_mpage"></span> Educational Attainment 
+                
+                </div >
                 <?php foreach($educ as $educ){ ?>
                 <div class="col-lg-12 educ1 space ">
                     <div class="col-lg-12" id="<?php echo $educ->educ_id; ?>">
@@ -275,9 +277,9 @@
 							".$educ->degree.", ".$educ->fstudy; ?>
                         </div>
                         <div class="col-sm-12">
-                           <?php echo "<span class='glyphicon glyphicon-edit editeduc_mpage click' 
+                           <?php if($educ->desc!=""){echo "<span class='glyphicon glyphicon-edit editeduc_mpage click' 
 						   id='".$educ->educ_id."'></span>
-							".$educ->desc; ?>
+							".$educ->desc;} ?>
                         </div>
                     </div>
                 </div>
@@ -523,6 +525,8 @@
                     value="Cancel" />
             	</div>
             </div>
+            
+            
              
            
             
@@ -583,20 +587,435 @@
 						break;
 					 }
 			}
-			echo form_close();
+			
 			?>
+             
+    		</div>
+            <div class=" col-lg-12"> 
+                <div class='col-lg-12 form_title space bg'>
+                	<span class="glyphicon glyphicon-plus click" id="addcomp_mpage"></span>
+                	Professional Experience
+                	
+                </div >
+                <div class="col-lg-12 comp1 space ">
+                <?php foreach($comp as $comp){ ?>
+                
+                    <div class=" col-lg-12" id='<?php echo $comp->comp_id; ?>'>
+                        <div class="col-sm-12 bold">
+                            <?php echo "<span class='glyphicon glyphicon-edit editcomp_mpage click' id='".$comp->comp_id."'>
+                            </span> ".$comp->compname; ?>
+                        </div>
+                        <div class="col-sm-12">
+                            <?php echo "<span class='glyphicon glyphicon-edit editcomp_mpage click' id='".$comp->comp_id."'>
+                            </span> ".$comp->loc; ?>
+                        </div>
+                        <div class="col-sm-12">
+                            <?php echo "<span class='glyphicon glyphicon-edit editcomp_mpage click' id='".$comp->comp_id."'>
+                            </span> "; month($comp->month1); echo " ".$comp->year1." - "; month($comp->month2); echo " "
+                            .$comp->year2; ?>
+                        </div>
+                        <div class="col-lg-12 comp1">
+                            <?php echo "<span class='glyphicon glyphicon-edit editcomp_mpage click' id='".$comp->comp_id."'>
+                            </span> ".$comp->title; ?>
+                        </div>
+                        <div class="col-lg-12 comp1 space">
+                            <?php if ($comp->prdesc!="")echo "<span class='glyphicon glyphicon-edit editcomp_mpage click' id='".$comp->comp_id."'>
+                            </span> ".$comp->prdesc; ?>
+                        </div>
+                    </div> 
+                </div>
+                
+                <div class="col-lg-12 comp2 space form-horizontal ">
+                <?php echo"
+                    <div id='com".$comp->comp_id."' class='com focus invi' tabindex='4'>
+                        <div class='form-group comp".$comp->comp_id."'>
+                            <label for='fname' class='control-label col-sm-3'>
+                                <span class='glyphicon glyphicon-edit editcomp click' id='com".$comp->comp_id."'></span>
+                                Company Name: 
+                            </label>
+                            <div class='col-sm-9'>
+                                <input type='text' id='compname".$comp->comp_id."' name='compname".$comp->comp_id."' 
+                                class='form-control compname editcomp '
+                                readOnly='true' value='".$comp->compname."' />
+                            </div>
+                            <div name='compname_err".$comp->comp_id."' id='compname_err".$comp->comp_id."' 
+                            class='col-sm-12  error text-center'></div>
+                        </div>
+                        <div class='form-group tit".$comp->comp_id."'>
+                            <label for='fname' class='control-label col-sm-3'>
+                                <span class='glyphicon glyphicon-edit editcomp click' id='com".$comp->comp_id."'></span>
+                                Title:
+                            </label>
+                            <div class='col-sm-9'>
+                                <input type='text' id='title".$comp->comp_id."' name='title".$comp->comp_id."' 
+                                class='form-control title editcomp'
+                                readOnly='true' value='".$comp->title."' />
+                            </div>
+                            <div name='title_err".$comp->comp_id."' id='title_err".$comp->comp_id."'
+                            class='col-sm-12  error text-center'></div>
+                        </div>
+                        <div class='form-group location".$comp->comp_id."'>
+                            <label for='fname' class='control-label col-sm-3'>
+                                <span class='glyphicon glyphicon-edit editcomp click' id='com".$comp->comp_id."'></span>
+                                Location:
+                            </label>
+                            <div class='col-sm-9'>
+                                <input type='text' id='loc".$comp->comp_id."' name='loc".$comp->comp_id."' 
+                                class='form-control loca editcomp' readOnly='true' value='".$comp->loc."' />
+                            </div>
+                            <div name='loc_err".$comp->comp_id."' id='loc_err".$comp->comp_id."' 
+                            class='col-sm-12  error text-center'></div>
+                        </div>
+                        <div class='form-group comTP".$comp->comp_id."'>
+                            <label for='fname' class='control-label col-sm-3'>
+                                <span class='glyphicon glyphicon-edit editcomp click' id='com".$comp->comp_id."'></span>
+                                Time Period:
+                            </label>
+                            <div class='col-sm-9 '>
+                                <div class='col-sm-3 pad'>";
+                                    $month1 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
+                                    '3'=> 'March', '4'=>'May', '5'=>'May', '6'=> 'June', '7'=>'July', 
+                                    '8'=> 'August', '9'=>'September', '10'=>'October', 
+                                    '11'=>'November', '12'=>'December');
+                        
+                                    echo form_dropdown('1mon'.$comp->comp_id.'', $month1,$comp->month1, 
+                                    "disabled class='form-control monFrom editcomp' id='1mon".$comp->comp_id."'");
+                                echo "</div>
+                                <div class='col-sm-2 pad'>
+                                    <select name='1TPy".$comp->comp_id."' id='1year".$comp->comp_id."' 
+                                    class='form-control yearFrom editcomp' 
+                                    disabled >
+                                    <option>-</option>";
+                                    $year1 = date('Y')+1; 
+                                    for ($y1 = 0; $y1 <= 100; $y1++) {
+                                        
+                                        $year1--; 
+                                        $yrsel1="";
+                                        if($year1 == $comp->year1){
+                                            $yrsel1='selected="selected"';
+                                        }
+                                        echo '<option value="'.$year1.'" '.$yrsel1.'>'.$year1.'</option>';
+                                    }
+                                    echo"
+                                    </select>
+                                    
+                                </div>
+                                <div class='col-sm-2 pad'> - </div>
+                                <div class='col-sm-3 pad'>";
+                                    $month2 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
+                                    '3'=> 'March', '4'=>'May', '5'=>'May', '6'=> 'June', '7'=>'July', 
+                                    '8'=> 'August', '9'=>'September', '10'=>'October', 
+                                    '11'=>'November', '12'=>'December');
+                        
+                                    echo form_dropdown('2mon'.$comp->comp_id.'', $month2,$comp->month2, 
+                                    "disabled class='form-control monTo editcomp' id='2mon".$comp->comp_id."'");
+                                echo"</div>
+                                <div class='col-sm-2 pad'>
+                                    <select name='2TPy".$comp->comp_id."' id='2year".$comp->comp_id."'  
+                                    class='form-control yearTo editcomp' 
+                                    disabled >
+                                    <option>-</option>";
+                                    $year2 = date('Y')+1; 
+                                    for ($y1 = 0; $y1 <= 100; $y1++) {
+                                        $year2--; 
+                                        $yrsel2="";
+                                        if($year2 == $comp->year2){
+                                            $yrsel2 =  'selected="selected"';
+                                        }
+                                        echo '<option value="'.$year2.'" '.$yrsel2.'>'.$year2.'</option>';
+                                    }
+                                echo"
+                                    </select>
+                                    
+                                    
+                                </div>
+                            </div>
+                            <div name='comTP_err".$comp->comp_id."' id='comTP_err".$comp->comp_id."' 
+                            class='col-sm-12  error text-center'></div>
+                        </div>
+                        <div class='form-group'>
+                            <label for='desc' class='control-label col-sm-3'>
+                                <span class='glyphicon glyphicon-edit editcomp click' id='com".$comp->comp_id."'></span>
+                                Description:
+                            </label>
+                            <div class='col-sm-9'>";
+                                    $desc = Array ('name' => 'PEdes'.$comp->comp_id.'', 'id'=>'PEdes'.$comp->comp_id.'', 
+                                    'cols' => '24','rows' => '5');
+                                    echo Form_textarea($desc,$comp->prdesc," readOnly='true'class='form-control editcomp'");
+                            echo"
+                            </div>
+                        </div>
+                        <div class='form-group invi updbuttons'  >
+                            <div class='pull-right pads edtcomp' >";
+                            echo form_submit('Updatecomp','Save', 'id="Updatecomp" 
+                            class="greenButton edtcompbtn2 " ');
+                            echo'<input type="button" id="com'.$comp->comp_id.'" 
+                            class="cancelupdatecomp_mpage greenButton edtcompbtn2" value="Cancel" />
+                            </div>
+                            
+                        </div>
+                        <div class="form-group invi updbuttons" >
+                            <div class="pull-right pads edteduc" >';
+                            echo form_submit('Removecomp','Remove this position', 'id="Remcomp'.$comp->comp_id.'" 
+                            class="remcomp rembtn"');
+                            echo '
+                            </div>
+                        </div>
+                                    
+                    </div>
+                    
+                    ';
+                    
+                }
+                ?>
+                </div>
+                <div class="col-lg-12 comp2 space ">
+                	<div id='comp' class='comp invi form-horizontal'>
+                        <div class='form-group comp'>
+                            <label for='fname' class='control-label col-sm-3'>Company Name:</label>
+                            <div class='col-sm-9'>
+                                <input type='text' id='compname' name='compname' 
+                                class='form-control edtcomp '  />
+                            </div>
+                            <div name='compname2_err' id='compname2_err' class='col-sm-12  error text-center'></div>
+                        </div>
+                        <div class='form-group tit'>
+                            <label for='fname' class='control-label col-sm-3'>Title:</label>
+                            <div class='col-sm-9'>
+                                <input type='text' id='title' name='title' class='form-control edtcomp'/>
+                            </div>
+                            <div name='title2_err' id='title2_err' class='col-sm-12  error text-center'></div>
+                        </div>
+                        <div class='form-group location'>
+                            <label for='fname' class='control-label col-sm-3'>Location:</label>
+                            <div class='col-sm-9'>
+                                <input type='text' id='loc' name='loc' class='form-control edtcomp'  />
+                            </div>
+                            <div name='loc2_err' id='loc2_err' class='col-sm-12  error text-center'></div>
+                        </div>
+                        <div class='form-group comTP'>
+                            <label for='fname' class='control-label col-sm-3'>Time Period:</label>
+                            <div class='col-sm-9 '>
+                                <div class='col-sm-3 pad'>
+                                    <?php
+                                    $month1 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
+                                    '3'=> 'March', '4'=>'May', '5'=>'May', '6'=> 'June', '7'=>'July', 
+                                    '8'=> 'August', '9'=>'September', '10'=>'October', 
+                                    '11'=>'November', '12'=>'December');
+                        
+                                    echo form_dropdown('mon1', $month1,'', 
+                                    "class='form-control edtcomp' id='mon1'");
+                                    ?>
+                                    </div>
+                                <div class='col-sm-2 pad'>
+                                    <select name='TPy1' id='year1' class='form-control edtcomp'>
+                                    <option>-</option>
+                                    <?php
+                                    $year = date('Y')+1; 
+                                    for ($y1 = 0; $y1 <= 100; $y1++) {
+                                        
+                                        $year--; 
+                                        echo '<option value="'.$year.'" >'.$year.'</option>';
+                                    }
+                                   ?>
+                                    </select>
+                                    
+                                </div>
+                                <div class='col-sm-2 pad'> - </div>
+                                <div class='col-sm-3 pad'>
+                                    <?php
+                                    $month2 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
+                                    '3'=> 'March', '4'=>'May', '5'=>'May', '6'=> 'June', '7'=>'July', 
+                                    '8'=> 'August', '9'=>'September', '10'=>'October', 
+                                    '11'=>'November', '12'=>'December');
+                        
+                                    echo form_dropdown('mon2', $month2,'', 
+                                    "class='form-control edtcomp' id='mon2'");
+                                    ?>
+                                    </div>
+                                <div class='col-sm-2 pad'>
+                                    <select name='TPy2' id='year2'  class='form-control edtcomp'>
+                                    <option>-</option>
+                                    <?php
+                                    $year = date('Y')+1; 
+                                    for ($y1 = 0; $y1 <= 100; $y1++) {
+                                        $year--; 
+                                        echo '<option value="'.$year.'">'.$year.'</option>';
+                                    }
+                                    ?>
+                                    </select>
+                                    
+                                    
+                                </div>
+                            </div>
+                            <div name='comTP2_err' id='comTP2_err' class='col-sm-12  error text-center'></div>
+                        </div>
+                        <div class='form-group'>
+                            <label for='desc' class='control-label col-sm-3'>Description:</label>
+                            <div class='col-sm-9'>
+                            <?php
+                                $desc = Array ('name' => 'PEdes', 'id'=>'PEdes', 'cols' => '24','rows' => '5',
+                                'class'=>'form-control edtcomp');
+                                
+                                echo Form_textarea($desc);
+                            ?>
+                            </div>
+                        </div>
+                                    
+                    </div>
+                    
+                    
+                    
+                   
+                    
+                    <div class="form-group" >
+                        <div class="pull-right pads edtcomp ">
+                            <?php echo form_submit('insertcomp','Save ', 'id="insertcomp" 
+                            class="greenButton edtcompbtn2 invi" ');?> 
+                            <input type="button" id="cancelcomp_mpage" class="greenButton edtcompbtn2  invi" value="Cancel" />
+                            
+                        </div>
+                        
+                    </div>
+                
+                </div>
+            </div>
             
             
             
             
             
-            
-            
-            
-            
-            
-            
-    	</div>
+            <div class=" col-lg-12"> 
+                <div class='col-lg-12 form_title space bg'>
+                	<span class="glyphicon glyphicon-plus click" id="addpref_mpage"></span> Professional Reference
+                </div >
+                <div class=" col-lg-12 pref1">
+                    <?php foreach($pref as $pref){ ?>
+                    <div class=" col-lg-12 space" id='<?php echo $pref->prefid; ?>'>
+                        <div class="col-lg-12 " >
+							<?php echo "<span class='glyphicon glyphicon-edit editpref_mpage click' 
+                            id='".$pref->prefid."'></span> ".$pref->pname; ?>
+                        </div>
+                        <div class="col-lg-12 ">
+							<?php echo "<span class='glyphicon glyphicon-edit editpref_mpage click' 
+                            id='".$pref->prefid."'></span> ".$pref->cnum; ?>
+                        </div>
+                        <div class="col-lg-12 space">
+							<?php echo "<span class='glyphicon glyphicon-edit editpref_mpage click' 
+                            id='".$pref->prefid."'></span> ".$pref->cemail; ?>
+                        </div>
+                    </div>
+				</div>
+                <div class=" col-lg-12 form-horizontal">
+					<?php echo"
+                    <div id='pref".$pref->prefid."' class='pref focus invi' tabindex='5'>
+                        <div class='form-group prnamedv".$pref->prefid."'>
+                            <label for='fname' class='control-label col-sm-3'>
+                                <span class='glyphicon glyphicon-edit editpref click' id='pref".$pref->prefid."'></span> Name:
+                            </label>
+                            <div class='col-sm-9'>
+                                <input type='text' id='prname".$pref->prefid."' name='prname".$pref->prefid."' 
+                                class='form-control editpref prname' value='".$pref->pname."' readOnly='true' />
+                            </div>
+                            <div name='prname_err".$pref->prefid."' id='prname_err".$pref->prefid."' 
+                            class='form-group error text-center'>
+                            </div>
+                        </div>
+                        
+                        <div class='form-group cnumdv".$pref->prefid."'>
+                            <label for='cnum' class='control-label col-sm-3  '>
+                                <span class='glyphicon glyphicon-edit editpref click' id='pref".$pref->prefid."'></span>
+                                Contact Number:
+                            </label>
+                            <div class='col-sm-9'>  
+                                <input type='text' id='cnum".$pref->prefid."'  class='form-control cnum editpref' 
+                                name='cnum".$pref->prefid."' value='".$pref->cnum."' readOnly='true' size='11'/>
+                            </div>
+                            <div name='cnum_err".$pref->prefid."' id='cnum_err".$pref->prefid."' 
+                            class='form-group error text-center'>
+                            </div>
+                        </div>
+                        <div class='form-group cemaildv".$pref->prefid."'>
+                            <label for='cemail' class='control-label col-sm-3  '>
+                                <span class='glyphicon glyphicon-edit editpref click' id='pref".$pref->prefid."'></span>
+                                Email Anddress:
+                            </label>
+                            <div class='col-sm-9'>  
+                                <input type='text' id='cemail".$pref->prefid."'  class='cemail form-control editpref' 
+                                name='cemail".$pref->prefid."' value='".$pref->cemail."' readOnly='true' />
+                            </div>
+                            <div name='cemail_err".$pref->prefid."' id='cemail_err".$pref->prefid."'
+                             class='form-group error text-center'>
+                            </div>
+                        
+                        </div>
+                        <div class='form-group invi updbuttons'  >
+                            <div class='pull-right pads edtpref' >";
+                            echo form_submit('Updatepref','Save', 'id="Updatepref" 
+                            class="greenButton edtprefbtn " ');
+                            echo'<input type="button" id="pref'.$pref->prefid.'" 
+                            class="cancelupdatepref_mpage greenButton edtprefbtn" value="Cancel" />
+                            
+                            </div>
+                            
+                        </div>
+                        <div class="form-group invi updbuttons" >
+                            <div class="pull-right pads edtpref" >';
+                            echo form_submit('Removepref','Remove this reference', 'id="Rempref'.$pref->prefid.'" 
+                            class="rempref rembtn" ').'
+                            
+                            
+                            
+                            </div>
+                        </div>
+                        
+                    </div>';
+                    }?>
+                    <div id='pref' class='new_pref invi'>
+                        <div class='form-group'>
+                            <label for='fname' class='control-label col-sm-3'>Name:</label>
+                            <div class='col-sm-9'>
+                                <input type='text' id='new_prname' name='prname' class='prname form-control edtpref'  />
+                            </div>
+                            <div name='prname2_err' id='prname2_err' class='col-sm-12 error text-center'></div>
+                        </div>
+                        <div class='form-group'>
+                            <label for='cnum' class='control-label col-sm-3  '>Contact Number:</label>
+                            <div class='col-sm-9'>  
+                                <input type='text' id='new_cnum'  class='cnum form-control edtpref' name='cnum' />
+                            </div>
+                            <div name='cnum2_err' id='cnum2_err' class='col-sm-12 error text-center'></div>
+                        </div>
+                        <div class='form-group'>
+                            <label for='cemail' class='control-label col-sm-3  '>Email Anddress:</label>
+                            <div class='col-sm-9'>  
+                                <input type='text' id='new_cemail'  class='cenail form-control edtpref' name='cemail'/>
+                            </div>
+                            <div name='cemail2_err' id='cemail2_err' class='col-sm-12 error text-center'></div>
+                            
+                        
+                        </div>
+                    </div>
+                
+                
+                
+                    <div class="form-group" >
+                        <div class="pull-right pads edtpref ">
+                            <?php echo form_submit('insertpref','Save', 'id="insertpref" 
+                            class="greenButton edtprefbtn2 invi" ');?> 
+                            <input type="button" id="cancelpref_mpage" class="greenButton edtprefbtn2 invi" value="Cancel" />
+                            
+                            
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                        
+					
+            </div>
+            <?php echo form_close();?>
+        </div>
     </header>       
                
 

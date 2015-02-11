@@ -278,12 +278,11 @@ $(document).ready(function(){
 		$('#page_update').val("main_page");
 		
 	});
-	$("#cancelpinfo_mpag").click(function(){
-		$('.update_pinfo2').find('*').Attr('disabled');
-		$('.update_pinfo2').find('*').prop('readonly', true);
-		$('.update_pinfo2').find('*').addClass('invi');
+	$("#cancelpinfo_mpage").click(function(){
 		$('.update_pinfo1').fadeIn(500);
 		$('.update_pinfo2').hide();
+		$('.update_pinfo2').find('*').attr('readonly', true);;
+		$('.update_pinfo2').find('*').prop("disabled", true);
 		
 	});
 	
@@ -334,7 +333,7 @@ $(document).ready(function(){
 	});
 	$("#canceleduc_mpage").click(function(){
 		$("#infos")[0].reset();
-		$('.educ_2').hide();
+		$("#educ").hide();
 		$('#addeduc_mpage').fadeIn(500);
 		$('.edteducbtn2').hide();
 		$('#case_update').val("");
@@ -351,20 +350,94 @@ $(document).ready(function(){
 		
             
 	});
-	/*
-	$('.educ2').hide();
-	$("#edteduc").click(function(){	
-		$('.educ1').hide();
-		$('.educ2').fadeIn(500);
+	
+	
+	
+	$(".editcomp_mpage").click(function(){
+		var compid = this.id;
+		$('#'+compid).hide();
+		$('#com'+compid).fadeIn(500);
+		$('#com'+compid).find('*').removeAttr('disabled');
+		$('#com'+compid).find('*').attr('readonly',false);
+		$('#com'+compid).find('*').removeClass('invi');
+		$('#case_update').val($("#Updatecomp").attr('id'));
+		$('#ctr_update').val(compid.match(/\d+$/));	
+		$('#addcomp').addClass('invi');
 		$('#page_update').val("main_page");
-		$('#case_update').val($("#edteduc").attr('name'));
-		$("#edteduc").hide();
-		$("#canceleduc_mpage").removeClass('invi');
+	});
+	$(".cancelupdatecomp_mpage ").click(function(){
+		var updcompid = this.id;
+		$('#'+updcompid).find('*').attr('disabled','disabled');
+		$('#'+updcompid).find('*').prop('readonly', true);
+		$('.updbuttons').addClass('invi');
+		$('#'+updcompid).hide();
+		$('#'+updcompid.match(/\d+$/)).fadeIn(500);
+		$('#addcomp').removeClass('invi');
+		
+	});
+	$("#addcomp_mpage").click(function(){
+		$('#cancelcomp_mpage').fadeIn(500);
+		$('#insertcomp').fadeIn(500);
+		$('#addcomp_mpage').hide();
+		$('.edtcompbtn2').show();
+		$("#comp").slideDown();
+		$('#page_update').val("main_page");
+		$('#case_update').val("insertcomp");
+            
+	});
+	$("#cancelcomp_mpage").click(function(){
+		$("#infos")[0].reset();
+		$("#comp").hide();
+		$('#addcomp_mpage').fadeIn(500);
+		$('.edtcompbtn2').hide();
+		$('#case_update').val("");
+		
+	});
+
+
+
+	$(".editpref_mpage").click(function(){
+		var prefid = this.id;
+		$('#'+prefid).hide();
+		$('#pref'+prefid).fadeIn(500);
+		$('#pref'+prefid).find('*').removeAttr('disabled');
+		$('#pref'+prefid).find('*').attr('readonly',false);
+		$('#pref'+prefid).find('*').removeClass('invi');
+		$('#case_update').val($("#Updatepref").attr('id'));
+		$('#ctr_update').val(prefid.match(/\d+$/));	
+		$('#addpref').addClass('invi');
+		$('#page_update').val("main_page");
 	});
 	
+	$(".cancelupdatepref_mpage ").click(function(){
+		var updprefid = this.id;
+		$('#'+updprefid).find('*').attr('disabled','disabled');
+		$('#'+updprefid).find('*').prop('readonly', true);
+		$('.updbuttons').addClass('invi');
+		$('#'+updprefid).hide();
+		$('#'+updprefid.match(/\d+$/)).fadeIn(500);
+		$('#addpref').removeClass('invi');
+		
+	});
+	$("#addpref_mpage").click(function(){
+		$('#cancelpref_mpage').fadeIn(500);
+		$('#insertpref').fadeIn(500);
+		$('#addpref_mpage').hide();
+		$('.edtprefbtn2').show();
+		$("#pref").slideDown();
+		$('#page_update').val("main_page");
+		$('#case_update').val("insertpref");
+            
+	});
 	
-*/
-
+	$("#cancelpref_mpage").click(function(){
+		$("#infos")[0].reset();
+		$("#pref").hide();
+		$('#addpref_mpage').fadeIn(500);
+		$('.edtprefbtn2').hide();
+		$('#case_update').val("");
+		
+	});
 	
 	
 });

@@ -485,7 +485,7 @@
                 
             </div>
             <div class="form_title">Professional Experience</div>
-             <?php $class="";
+             <?php
 			foreach($comp as $comp)
 			{	
 				
@@ -501,7 +501,7 @@
 							class='form-control compname editcomp '
 							readOnly='true' value='".$comp->compname."' />
 						</div>
-						<div name='compname_err".$comp->compname."' id='compname_err".$comp->compname."' 
+						<div name='compname_err".$comp->comp_id."' id='compname_err".$comp->compname."' 
 						class='col-sm-12  error text-center'></div>
 					</div>
 					<div class='form-group tit".$comp->comp_id."'>
@@ -818,21 +818,21 @@
 					<div class='form-group'>
 						<label for='fname' class='control-label col-sm-3'>Name:</label>
 						<div class='col-sm-9'>
-							<input type='text' id='new_prname' name='prname' class='form-control edtpref'  />
+							<input type='text' id='new_prname' name='prname' class='prname form-control edtpref'  />
 						</div>
                         <div name='prname2_err' id='prname2_err' class='col-sm-12 error text-center'></div>
 					</div>
 					<div class='form-group'>
 						<label for='cnum' class='control-label col-sm-3  '>Contact Number:</label>
 						<div class='col-sm-9'>  
-							<input type='text' id='new_cnum'  class='form-control edtpref' name='cnum' />
+							<input type='text' id='new_cnum'  class='cnum form-control edtpref' name='cnum' />
 						</div>
                         <div name='cnum2_err' id='cnum2_err' class='col-sm-12 error text-center'></div>
 					</div>
 					<div class='form-group'>
 						<label for='cemail' class='control-label col-sm-3  '>Email Anddress:</label>
 						<div class='col-sm-9'>  
-							<input type='text' id='new_cemail'  class='form-control edtpref' name='cemail'/>
+							<input type='text' id='new_cemail'  class='cenail form-control edtpref' name='cemail'/>
 						</div>
                         <div name='cemail2_err' id='cemail2_err' class='col-sm-12 error text-center'></div>
                         
