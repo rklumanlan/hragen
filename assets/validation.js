@@ -258,6 +258,10 @@ var Validator = function(form) {
 				handleError("cnum2_err" ,'Number is required.',$("#new_cnum").attr('id'));
 				e.preventDefault();
 			}
+			else if($("#new_cnum").val().length != "11" && $(".new_pref").is(":visible")){
+				handleError("cnum2_err" ,'Number is invalid.',$("#new_cnum").attr('id'));
+				e.preventDefault();
+			}
 			else if(!numbers.test($("#new_cnum").val()) && $(".new_pref").is(":visible")){
 				handleError("cnum2_err",'Contact Number is invalid.',$("#new_cnum").attr('id'));
 				e.preventDefault();
