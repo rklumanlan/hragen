@@ -152,7 +152,7 @@
             <div class=" col-lg-12 form-horizontal"> 
             	<div class='col-lg-12 form_title space bg'>Technical Skills</div >
                 <div class="col-lg-12 space">
-            	<div class="col-lg-12 space">
+            	<div class="col-lg-12 ">
                 	<div class="col-sm-4 bold">
                 		<span class='glyphicon glyphicon-edit edittskills click' id='edittskills'></span> Languages:
                         
@@ -184,7 +184,7 @@
                     ?>
                     </div>
                 </div>
-            	<div class="col-lg-12 space">
+            	<div class="col-lg-12 ">
                 	<div class="col-sm-4 bold">
                 		<span class='glyphicon glyphicon-edit edittskills click' id='edittskills'></span> Operating Systems:
                     </div>
@@ -212,7 +212,7 @@
                     ?>
                    </div>
                 </div>
-            	<div class="col-lg-12 space">
+            	<div class="col-lg-12 ">
                 	<div class="col-sm-4 bold ">
                 		<span class='glyphicon glyphicon-edit edittskills click' id='edittskills'></span> Frameworks:
                     </div>
@@ -259,9 +259,9 @@
                 
                 </div >
                 <?php foreach($educ as $educ){ ?>
-                <div class="col-lg-12 educ1 space ">
+                <div class="col-lg-12 educ1 space">
                     <div class="col-lg-12" id="<?php echo $educ->educ_id; ?>">
-                        <div class="col-sm-12 form_title">
+                        <div class="col-sm-12 bold">
                             <?php echo "<span class='glyphicon glyphicon-edit editeduc_mpage click' 
 							id='".$educ->educ_id."'></span>
 							".$educ->school; ?>
@@ -283,7 +283,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12 educ2 space form-horizontal ">
+                <div class="col-lg-12 educ2 form-horizontal ">
                 	<?php
 					echo"
 					
@@ -597,10 +597,10 @@
                 	Professional Experience
                 	
                 </div >
-                <div class="col-lg-12 comp1 space ">
+                <div class="col-lg-12 comp1  ">
                 <?php foreach($comp as $comp){ ?>
                 
-                    <div class=" col-lg-12" id='<?php echo $comp->comp_id; ?>'>
+                    <div class="space col-lg-12" id='<?php echo $comp->comp_id; ?>'>
                         <div class="col-sm-12 bold">
                             <?php echo "<span class='glyphicon glyphicon-edit editcomp_mpage click' id='".$comp->comp_id."'>
                             </span> ".$comp->compname; ?>
@@ -618,14 +618,14 @@
                             <?php echo "<span class='glyphicon glyphicon-edit editcomp_mpage click' id='".$comp->comp_id."'>
                             </span> ".$comp->title; ?>
                         </div>
-                        <div class="col-lg-12 comp1 space">
+                        <div class="col-lg-12 comp1 ">
                             <?php if ($comp->prdesc!="")echo "<span class='glyphicon glyphicon-edit editcomp_mpage click' id='".$comp->comp_id."'>
                             </span> ".$comp->prdesc; ?>
                         </div>
                     </div> 
                 </div>
                 
-                <div class="col-lg-12 comp2 space form-horizontal ">
+                <div class="col-lg-12 comp2 form-horizontal ">
                 <?php echo"
                     <div id='com".$comp->comp_id."' class='com focus invi' tabindex='4'>
                         <div class='form-group comp".$comp->comp_id."'>
@@ -769,7 +769,7 @@
                 }
                 ?>
                 </div>
-                <div class="col-lg-12 comp2 space ">
+                <div class="col-lg-12 comp2  ">
                 	<div id='comp' class='comp invi form-horizontal'>
                         <div class='form-group comp'>
                             <label for='fname' class='control-label col-sm-3'>Company Name:</label>
@@ -891,7 +891,7 @@
                 </div >
                 <div class=" col-lg-12 pref1">
                     <?php foreach($pref as $pref){ ?>
-                    <div class=" col-lg-12 space" id='<?php echo $pref->prefid; ?>'>
+                    <div class="space col-lg-12 " id='<?php echo $pref->prefid; ?>'>
                         <div class="col-lg-12 " >
 							<?php echo "<span class='glyphicon glyphicon-edit editpref_mpage click' 
                             id='".$pref->prefid."'></span> ".$pref->pname; ?>
@@ -900,7 +900,7 @@
 							<?php echo "<span class='glyphicon glyphicon-edit editpref_mpage click' 
                             id='".$pref->prefid."'></span> ".$pref->cnum; ?>
                         </div>
-                        <div class="col-lg-12 space">
+                        <div class="col-lg-12 ">
 							<?php echo "<span class='glyphicon glyphicon-edit editpref_mpage click' 
                             id='".$pref->prefid."'></span> ".$pref->cemail; ?>
                         </div>

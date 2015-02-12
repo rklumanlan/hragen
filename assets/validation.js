@@ -248,9 +248,9 @@ var Validator = function(form) {
 			
 			
 			var numbers = /^[0-9]+$/;
-			var emailVal = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var emailVal = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
 			if($("#new_prname").val() == "" && $(".new_pref").is(":visible")){
-				handleError("prname2_err" ,'Name is required.',$("new_#prname").attr('id'));
+				handleError("prname2_err" ,'Name is required.',$("#new_prname").attr('id'));
 				e.preventDefault();
 			}
 			
@@ -267,12 +267,10 @@ var Validator = function(form) {
 				e.preventDefault();
 			}
 			
-			else if(!emailVal.test($("#new_cemail").val()) && $("new_pref").is(":visible")){
+			else if(emailVal.test($("#new_cnum").val()) &&  $(".new_pref").is(":visible")){
 				handleError("cemail2_err" ,'Email address is invalid.',$("#new_cemail").attr('id'));
-			
 				e.preventDefault();
 			}
-			
 			
 			
 			
@@ -341,7 +339,6 @@ var Validator = function(form) {
 			while(b<=$(".compname:visible").length-1){
 				window["compctr" + b] =$(".compname:visible").get(b).id;
 				window["compctr" + b]= window["compctr" + b].match(/\d+$/);	
-				alert(window["compctr" + b]);
 				if($(".compname:visible").get(b).value == "")
 				{
 					handleError("compname_err"+ window["compctr" + b],'Company Name is required.',$(".compname:visible").get(b).id);
@@ -397,7 +394,6 @@ var Validator = function(form) {
 			
 			
 			var c=0;
-			
 			while(c<=$(".prname:visible").length-1){
 				window["prefctr" + c] =$(".prname:visible").get(c).id;
 				window["prefctr" + c]= window["prefctr" + c].match(/\d+$/);	
