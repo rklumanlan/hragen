@@ -245,7 +245,7 @@
 					<div class='form-group sch".$educ->educ_id."' > 
             			
 						<label for='fname' class='control-label col-sm-3 ' >
-							<span class='glyphicon glyphicon-edit editeduc click' id='educ".$educ->educ_id."'></span> 
+							<span class='glyphicon glyphicon-edit edit click' id='educ".$educ->educ_id."'></span> 
 							School:
 						</label>
 						<div class='col-sm-9 '>
@@ -257,7 +257,7 @@
 					</div>
 					<div class='form-group date".$educ->educ_id."' id='date".$educ->educ_id."'> 
 						<label for='fname'  class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit editeduc click' id='educ".$educ->educ_id."'></span> 
+							<span class='glyphicon glyphicon-edit edit click' id='educ".$educ->educ_id."'></span> 
 							Dates Attended:
 						</label>
 						<div class='col-sm-9'>
@@ -306,7 +306,7 @@
 					</div>
 					<div class='form-group major".$educ->educ_id."'>
 						<label for='fname' class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit editeduc click' id='educ".$educ->educ_id."'></span> 
+							<span class='glyphicon glyphicon-edit edit click' id='educ".$educ->educ_id."'></span> 
 							Feild of Study:
 						</label>
 						<div class='col-sm-9'>
@@ -318,7 +318,7 @@
 					</div>
 					<div class='form-group dgree".$educ->educ_id."'>
 						<label for='degree' class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit editeduc click' id='educ".$educ->educ_id."'></span>
+							<span class='glyphicon glyphicon-edit edit click' id='educ".$educ->educ_id."'></span>
 							Degree:
 						</label>
 						<div class='col-sm-9'>";
@@ -345,7 +345,7 @@
 					</div>
 					<div class='form-group'>
 						<label for='desc' class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit editeduc click' id='educ".$educ->educ_id."'></span> 
+							<span class='glyphicon glyphicon-edit edit click' id='educ".$educ->educ_id."'></span> 
 							Description:
 						</label>
 						<div class='col-sm-9'>";
@@ -359,14 +359,14 @@
 						<div class="pull-right pads edteduc" >';
 						echo form_submit('Updateeduc','Save', 'id="Updateeduc" 
 						class="greenButton edteducbtn " ');
-						echo'<input type="button" id="educ'.$educ->educ_id.'" class="cancelupdateeduc greenButton edteducbtn" value="Cancel" />
+						echo'<input type="button" id="educ'.$educ->educ_id.'" class="cancelupdate greenButton edteducbtn" value="Cancel" />
 						</div>
 						
 					</div>
 					<div class="form-group invi updbuttons" >
 						<div class="pull-right pads edteduc" >';
 						echo form_submit('Removeeduc','Remove this school', 'id="Remeduc'.$educ->educ_id.'" 
-						class="remeduc rembtn" ').'
+						class="remove rembtn" ').'
 						
 						
 						
@@ -389,11 +389,11 @@
 			
 			
 			?>
-            <div id='educ' class='educ_2 invi'>
+            <div id='educ_new' class='educ_2 invi'>
                 <div class='form-group sch' > 
                     <label for='fname' class='control-label col-sm-3'>School:</label>
                     <div class='col-sm-9 '>
-                        <input type='text' id='new_school' name='school' class='form-control school edteduc'
+                        <input type='text' id='new_school' name='school' class='form-control edteduc'
                           />
                     </div>
                     <div name='sch2' id='sch2' class='col-sm-12  error text-center'></div>
@@ -477,10 +477,10 @@
             <div class="form-group" >
             	<div class="pull-right pads edteduc ">
                 	
-                    <input type="button" id="addeduc" class="greenButton edteducbtn" value="Add Education" />
+                    <input type="button" id="educ" class="addbtn greenButton edteducbtn" value="Add Education" />
                     <?php echo form_submit('inserteduc','Save ', 'id="inserteduc" 
 					class="greenButton edteducbtn invi" ');?> 
-                    <input type="button" id="canceleduc" class="greenButton edteducbtn invi" value="Cancel" />
+                    <input type="button" id="ceduc" class="cancelbtn greenButton edteducbtn invi" value="Cancel" />
                 </div>
                 
             </div>
@@ -493,7 +493,7 @@
 				<div id='com".$comp->comp_id."' class='com focus' tabindex='4'>
 					<div class='form-group comp".$comp->comp_id."'>
 						<label for='fname' class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit editcomp click' id='com".$comp->comp_id."'></span>
+							<span class='glyphicon glyphicon-edit edit click' id='com".$comp->comp_id."'></span>
 							Company Name: 
 						</label>
 						<div class='col-sm-9'>
@@ -506,7 +506,7 @@
 					</div>
 					<div class='form-group tit".$comp->comp_id."'>
 						<label for='fname' class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit editcomp click' id='com".$comp->comp_id."'></span>
+							<span class='glyphicon glyphicon-edit edit click' id='com".$comp->comp_id."'></span>
 							Title:
 						</label>
 						<div class='col-sm-9'>
@@ -519,7 +519,7 @@
 					</div>
 					<div class='form-group location".$comp->comp_id."'>
 						<label for='fname' class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit editcomp click' id='com".$comp->comp_id."'></span>
+							<span class='glyphicon glyphicon-edit edit click' id='com".$comp->comp_id."'></span>
 							Location:
 						</label>
 						<div class='col-sm-9'>
@@ -531,7 +531,7 @@
 					</div>
 					<div class='form-group comTP".$comp->comp_id."'>
 						<label for='fname' class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit editcomp click' id='com".$comp->comp_id."'></span>
+							<span class='glyphicon glyphicon-edit edit click' id='com".$comp->comp_id."'></span>
 							Time Period:
 						</label>
 						<div class='col-sm-9 '>
@@ -598,7 +598,7 @@
 					</div>
 					<div class='form-group'>
 						<label for='desc' class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit editcomp click' id='com".$comp->comp_id."'></span>
+							<span class='glyphicon glyphicon-edit edit click' id='com".$comp->comp_id."'></span>
 							Description:
 						</label>
 						<div class='col-sm-9'>";
@@ -613,14 +613,14 @@
 						echo form_submit('Updatecomp','Save', 'id="Updatecomp" 
 						class="greenButton edtcompbtn " ');
 						echo'<input type="button" id="com'.$comp->comp_id.'" 
-						class="cancelupdatecomp greenButton edtcompbtn" value="Cancel" />
+						class="cancelupdate greenButton edtcompbtn" value="Cancel" />
 						</div>
 						
 					</div>
 					<div class="form-group invi updbuttons" >
 						<div class="pull-right pads edteduc" >';
 						echo form_submit('Removecomp','Remove this position', 'id="Remcomp'.$comp->comp_id.'" 
-						class="remcomp rembtn"');
+						class="remove rembtn"');
 						echo '
 						</div>
 					</div>
@@ -633,7 +633,7 @@
 			?>
             
             
-            <div id='comp' class='pexp invi'>
+            <div id='comp_new' class='pexp invi'>
                 <div class='form-group comp'>
                     <label for='fname' class='control-label col-sm-3'>Company Name:</label>
                     <div class='col-sm-9'>
@@ -733,10 +733,10 @@
            	
             <div class="form-group" >
             	<div class="pull-right pads edtcomp ">
-                	<input type="button" id="addcomp" class="greenButton edtcompbtn" value="Add Position" />
+                	<input type="button" id="com" class="addbtn greenButton edtcompbtn" value="Add Position" />
                     <?php echo form_submit('insertcomp','Save ', 'id="insertcomp" 
 					class="greenButton edtcompbtn invi" ');?> 
-                    <input type="button" id="cancelcomp" class="greenButton edtcompbtn invi" value="Cancel" />
+                    <input type="button" id="ccom" class="cancelbtn greenButton edtcompbtn invi" value="Cancel" />
                     
                 </div>
                 
@@ -751,7 +751,7 @@
 					<div id='pref".$pref->prefid."' class='pref focus' tabindex='5'>
 						<div class='form-group prnamedv".$pref->prefid."'>
 							<label for='fname' class='control-label col-sm-3'>
-								<span class='glyphicon glyphicon-edit editpref click' id='pref".$pref->prefid."'></span> Name:
+								<span class='glyphicon glyphicon-edit edit click' id='pref".$pref->prefid."'></span> Name:
 							</label>
 							<div class='col-sm-9'>
 								<input type='text' id='prname".$pref->prefid."' name='prname".$pref->prefid."' 
@@ -764,7 +764,7 @@
 						
 						<div class='form-group cnumdv".$pref->prefid."'>
 							<label for='cnum' class='control-label col-sm-3  '>
-								<span class='glyphicon glyphicon-edit editpref click' id='pref".$pref->prefid."'></span>
+								<span class='glyphicon glyphicon-edit edit click' id='pref".$pref->prefid."'></span>
 								Contact Number:
 							</label>
 							<div class='col-sm-9'>  
@@ -777,7 +777,7 @@
 						</div>
 						<div class='form-group cemaildv".$pref->prefid."'>
 							<label for='cemail' class='control-label col-sm-3  '>
-								<span class='glyphicon glyphicon-edit editpref click' id='pref".$pref->prefid."'></span>
+								<span class='glyphicon glyphicon-edit edit click' id='pref".$pref->prefid."'></span>
 								Email Anddress:
 							</label>
 							<div class='col-sm-9'>  
@@ -794,7 +794,7 @@
 							echo form_submit('Updatepref','Save', 'id="Updatepref" 
 							class="greenButton edtprefbtn " ');
 							echo'<input type="button" id="pref'.$pref->prefid.'" 
-							class="cancelupdatepref greenButton edtprefbtn" value="Cancel" />
+							class="cancelupdate greenButton edtprefbtn" value="Cancel" />
 							
 							</div>
 							
@@ -802,7 +802,7 @@
 						<div class="form-group invi updbuttons" >
 							<div class="pull-right pads edtpref" >';
 							echo form_submit('Removepref','Remove this reference', 'id="Rempref'.$pref->prefid.'" 
-							class="rempref rembtn" ').'
+							class="remove rembtn" ').'
 							
 							
 							
@@ -814,11 +814,11 @@
 				}
 			}
             ?>
-            <div id='pref' class='new_pref invi'>
+            <div id='pref_new' class='new_pref invi'>
 					<div class='form-group'>
 						<label for='fname' class='control-label col-sm-3'>Name:</label>
 						<div class='col-sm-9'>
-							<input type='text' id='new_prname' name='prname' class='prname form-control edtpref'  />
+							<input type='text' id='new_prname' name='prname' class=' form-control edtpref'  />
 						</div>
                         <div name='prname2_err' id='prname2_err' class='col-sm-12 error text-center'></div>
 					</div>
@@ -845,10 +845,10 @@
             
             <div class="form-group" >
             	<div class="pull-right pads edtpref ">
-                	<input type="button" id="addpref" class="greenButton edtprefbtn" value="Add Reference" />
+                	<input type="button" id="pref" class="addbtn greenButton edtprefbtn" value="Add Reference" />
                     <?php echo form_submit('insertpref','Save', 'id="insertpref" 
 					class="greenButton edtprefbtn invi" ');?> 
-                    <input type="button" id="cancelpref" class="greenButton edtprefbtn invi" value="Cancel" />
+                    <input type="button" id="cpref" class="cancelbtn greenButton edtprefbtn invi" value="Cancel" />
                     
                     
                     

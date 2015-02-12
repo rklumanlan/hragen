@@ -412,7 +412,7 @@
 						<div class="form-group invi updbuttons" >
 							<div class="pull-right pads edteduc" >';
 							echo form_submit('Removeeduc','Remove this school', 'id="Remeduc'.$educ->educ_id.'" 
-							class="remeduc rembtn" ').'
+							class="remove rembtn" ').'
 							
 							
 							
@@ -434,7 +434,7 @@
                     <div class='form-group sch' > 
                         <label for='fname' class='control-label col-sm-3'>School:</label>
                         <div class='col-sm-9 '>
-                            <input type='text' id='new_school' name='school' class='form-control school edteduc'
+                            <input type='text' id='new_school' name='school' class='form-control edteduc'
                               />
                         </div>
                         <div name='sch2' id='sch2' class='col-sm-12  error text-center'></div>
@@ -757,7 +757,7 @@
                         <div class="form-group invi updbuttons" >
                             <div class="pull-right pads edteduc" >';
                             echo form_submit('Removecomp','Remove this position', 'id="Remcomp'.$comp->comp_id.'" 
-                            class="remcomp rembtn"');
+                            class="remove rembtn"');
                             echo '
                             </div>
                         </div>
@@ -962,7 +962,7 @@
                         <div class="form-group invi updbuttons" >
                             <div class="pull-right pads edtpref" >';
                             echo form_submit('Removepref','Remove this reference', 'id="Rempref'.$pref->prefid.'" 
-                            class="rempref rembtn" ').'
+                            class="remove rembtn" ').'
                             
                             
                             
@@ -975,7 +975,7 @@
                         <div class='form-group'>
                             <label for='fname' class='control-label col-sm-3'>Name:</label>
                             <div class='col-sm-9'>
-                                <input type='text' id='new_prname' name='prname' class='prname form-control edtpref'  />
+                                <input type='text' id='new_prname' name='prname' class='form-control edtpref'  />
                             </div>
                             <div name='prname2_err' id='prname2_err' class='col-sm-12 error text-center'></div>
                         </div>
