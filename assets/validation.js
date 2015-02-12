@@ -135,157 +135,6 @@ var Validator = function(form) {
 			var sex = $("#sex").val() 
 			var age = $("#age").val() 
 			
-			if(imgval=='true'){
-				handleError("img_err",'Image size must be 1.5 inches X 1.5 inches.',"userfile");	
-				e.preventDefault();
-				
-			}
-			
-			
-			if(fname == "")
-			{
-				handleError("fname_err",'First Name is required.',"fname");
-				e.preventDefault();
-			
-			}
-			if(lname == "")
-			{
-				handleError("lname_err",'Last Name is required.',"lname");
-				e.preventDefault();
-			}
-			if(add == "")
-			{
-				handleError("add_err",'Address is required.',"add");
-				e.preventDefault();
-			}
-			if(prov_mun == "")
-			{
-				
-				handleError("prov_mun_err",'Province/Municipality is required.',"prov_mun");
-				e.preventDefault();
-			}
-			if(sex == "-")
-			{
-				handleError("sex_err",'Please select valid sex.',"sex");
-				e.preventDefault();	
-			}
-			if(age == "-")
-			{
-				handleError("age_err",'Please select valid age.',"age");
-				e.preventDefault();
-			}
-			
-			
-			
-			if($("#new_school").val() == "" && $(".educ_2").is(":visible"))
-			{
-				handleError("sch2",'School is required.',$("#new_school").attr('id'));
-				e.preventDefault();
-			}
-			if($("#new_mjr").val() == "" && $(".educ_2").is(":visible"))
-			{	
-				handleError("major2",'Field of Study is required.',$("#new_mjr").attr('id'));
-				e.preventDefault();
-			}
-			if($("#new_degree").val() == "-" && $(".educ_2").is(":visible"))
-			{
-				handleError("dgree2",'Please select valid degree.',$("#new_degree").attr('id'));
-				e.preventDefault();
-			}
-			if($("#new_DAtty1").val() > $("#new_DAtty2").val() && $(".educ_2").is(":visible"))
-			{ 
-				handleError("date2",'Please be sure the start date is not after the end date.',$("#new_DAtty2").attr('id'));
-				e.preventDefault();
-			}
-			
-			else if((($("#new_DAtty1").val() == $("#new_DAtty2").val()) || 
-			($("#new_DAtty1").val()=="-" && $("#new_DAtty2").val()=="-")) 
-			&& $(".educ_2").is(":visible"))
-			
-			
-			{ 
-				handleError("date2",'Please be select valid date.',$("#new_DAtty2").attr('id'));
-				e.preventDefault();
-			}
-			
-			
-			
-			
-			if($("#compname").val() == "" && $(".pexp").is(":visible"))
-			{
-				handleError("compname2_err",'Company Name is required.',$("#compname").attr('id'));
-				e.preventDefault();
-			}
-			if($("#title").val() == "" && $(".pexp").is(":visible"))
-			{
-				handleError("title2_err",'Title is required.',$("#title").attr('id'));
-				e.preventDefault();
-			}
-			if($("#loc").val() == "" && $(".pexp").is(":visible"))
-			{
-				handleError("loc2_err",'Location is required.',$("#loc").attr('id'));					e.			
-				preventDefault();
-			}
-			if((($("#year1").val()> $("#year2").val()) && 
-			$("#mon1").val()> $("#mon2").val()) && $(".pexp").is(":visible"))
-			{
-				handleError("comTP2_err",'Please be sure the start date is not after the end date.',$("#year2").attr('id'));
-				e.preventDefault();
-			}
-			else if((($("#year1").val() == $("#year2").val()) && $("#mon1").val() > $("#mon2").val())
-			&& $(".pexp").is(":visible"))
-			{
-				handleError("comTP2_err",'Please be sure the start date is not after the end date.',$("#mon2").attr('id'));
-				e.preventDefault();
-			}
-			
-			else if(($("#mon1").val()=="0" || $("#mon2").val()=="0" || 
-			$("#year1").val()=="-" || $("#year2").val() =="-") && $(".pexp").is(":visible") )
-			{
-				handleError("comTP2_err",'Please select a valid date.',$("#year2").attr('id'));
-				e.preventDefault();
-			}
-			
-			
-			var numbers = /^[0-9]+$/;
-			var emailVal = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-			if($("#new_prname").val() == "" && $(".new_pref").is(":visible")){
-				handleError("prname2_err" ,'Name is required.',$("#new_prname").attr('id'));
-				e.preventDefault();
-			}
-			
-			if($("#new_cnum").val() == "" && $(".new_pref").is(":visible")){
-				handleError("cnum2_err" ,'Number is required.',$("#new_cnum").attr('id'));
-				e.preventDefault();
-			}
-			else if($("#new_cnum").val().length != "11" && $(".new_pref").is(":visible")){
-				handleError("cnum2_err" ,'Number is invalid.',$("#new_cnum").attr('id'));
-				e.preventDefault();
-			}
-			else if(!numbers.test($("#new_cnum").val()) && $(".new_pref").is(":visible")){
-				handleError("cnum2_err",'Contact Number is invalid.',$("#new_cnum").attr('id'));
-				e.preventDefault();
-			}
-			if($("#new_cemail").val() == "" && $(".new_pref").is(":visible")){
-				handleError("cemail2_err" ,'Email address is required.',$("#new_cemail").attr('id'));
-				e.preventDefault();
-			}
-			
-			else if(!emailVal.test($("#new_cemail").val()) &&  $(".new_pref").is(":visible")){
-				handleError("cemail2_err" ,'Email address is invalid.',$("#new_cemail").attr('id'));
-				e.preventDefault();
-			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			var a=0;
 			while(a<=$(".school:visible").length-1){
 				
@@ -436,6 +285,161 @@ var Validator = function(form) {
 				
 				c=c+1;
 			}
+			
+			
+			if(imgval=='true'){
+				handleError("img_err",'Image size must be 1.5 inches X 1.5 inches.',"userfile");	
+				e.preventDefault();
+				
+			}
+			
+			
+			if(fname == "")
+			{
+				handleError("fname_err",'First Name is required.',"fname");
+				e.preventDefault();
+			
+			}
+			if(lname == "")
+			{
+				handleError("lname_err",'Last Name is required.',"lname");
+				e.preventDefault();
+			}
+			if(add == "")
+			{
+				handleError("add_err",'Address is required.',"add");
+				e.preventDefault();
+			}
+			if(prov_mun == "")
+			{
+				
+				handleError("prov_mun_err",'Province/Municipality is required.',"prov_mun");
+				e.preventDefault();
+			}
+			if(sex == "-")
+			{
+				handleError("sex_err",'Please select valid sex.',"sex");
+				e.preventDefault();	
+			}
+			if(age == "-")
+			{
+				handleError("age_err",'Please select valid age.',"age");
+				e.preventDefault();
+			}
+			
+			
+			
+			if($("#new_school").val() == "" && $(".educ_2").is(":visible"))
+			{
+				handleError("sch2",'School is required.',$("#new_school").attr('id'));
+				e.preventDefault();
+			}
+			if($("#new_mjr").val() == "" && $(".educ_2").is(":visible"))
+			{	
+				handleError("major2",'Field of Study is required.',$("#new_mjr").attr('id'));
+				e.preventDefault();
+			}
+			if($("#new_degree").val() == "-" && $(".educ_2").is(":visible"))
+			{
+				handleError("dgree2",'Please select valid degree.',$("#new_degree").attr('id'));
+				e.preventDefault();
+			}
+			if($("#new_DAtty1").val() > $("#new_DAtty2").val() && $(".educ_2").is(":visible"))
+			{ 
+				handleError("date2",'Please be sure the start date is not after the end date.',$("#new_DAtty2").attr('id'));
+				e.preventDefault();
+			}
+			
+			else if((($("#new_DAtty1").val() == $("#new_DAtty2").val()) || 
+			($("#new_DAtty1").val()=="-" && $("#new_DAtty2").val()=="-")) 
+			&& $(".educ_2").is(":visible"))
+			
+			
+			{ 
+				handleError("date2",'Please be select valid date.',$("#new_DAtty2").attr('id'));
+				e.preventDefault();
+			}
+			
+			
+			
+			
+			if($("#compname").val() == "" && $(".pexp").is(":visible"))
+			{
+				handleError("compname2_err",'Company Name is required.',$("#compname").attr('id'));
+				e.preventDefault();
+			}
+			if($("#title").val() == "" && $(".pexp").is(":visible"))
+			{
+				handleError("title2_err",'Title is required.',$("#title").attr('id'));
+				e.preventDefault();
+			}
+			if($("#loc").val() == "" && $(".pexp").is(":visible"))
+			{
+				handleError("loc2_err",'Location is required.',$("#loc").attr('id'));					e.			
+				preventDefault();
+			}
+			if((($("#year1").val()> $("#year2").val()) && 
+			$("#mon1").val()> $("#mon2").val()) && $(".pexp").is(":visible"))
+			{
+				handleError("comTP2_err",'Please be sure the start date is not after the end date.',$("#year2").attr('id'));
+				e.preventDefault();
+			}
+			else if((($("#year1").val() == $("#year2").val()) && $("#mon1").val() > $("#mon2").val())
+			&& $(".pexp").is(":visible"))
+			{
+				handleError("comTP2_err",'Please be sure the start date is not after the end date.',$("#mon2").attr('id'));
+				e.preventDefault();
+			}
+			
+			else if(($("#mon1").val()=="0" || $("#mon2").val()=="0" || 
+			$("#year1").val()=="-" || $("#year2").val() =="-") && $(".pexp").is(":visible") )
+			{
+				handleError("comTP2_err",'Please select a valid date.',$("#year2").attr('id'));
+				e.preventDefault();
+			}
+			
+			
+			var numbers = /^[0-9]+$/;
+			var emailVal = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+			if($("#new_prname").val() == "" && $(".new_pref").is(":visible")){
+				handleError("prname2_err" ,'Name is required.',$("#new_prname").attr('id'));
+				e.preventDefault();
+			}
+			
+			if($("#new_cnum").val() == "" && $(".new_pref").is(":visible")){
+				handleError("cnum2_err" ,'Number is required.',$("#new_cnum").attr('id'));
+				e.preventDefault();
+			}
+			else if($("#new_cnum").val().length != "11" && $(".new_pref").is(":visible")){
+				handleError("cnum2_err" ,'Number is invalid.',$("#new_cnum").attr('id'));
+				e.preventDefault();
+			}
+			else if(!numbers.test($("#new_cnum").val()) && $(".new_pref").is(":visible")){
+				handleError("cnum2_err",'Contact Number is invalid.',$("#new_cnum").attr('id'));
+				
+				e.preventDefault();
+			}
+			if($("#new_cemail").val() == "" && $(".new_pref").is(":visible")){
+				handleError("cemail2_err" ,'Email address is required.',$("#new_cemail").attr('id'));
+				e.preventDefault();
+			}
+			
+			else if(!emailVal.test($("#new_cemail").val()) &&  $(".new_pref").is(":visible")){
+				handleError("cemail2_err" ,'Email address is invalid.',$("#new_cemail").attr('id'));
+				e.preventDefault();
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
