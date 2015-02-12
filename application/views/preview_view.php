@@ -769,7 +769,7 @@
 							</label>
 							<div class='col-sm-9'>  
 								<input type='text' id='cnum".$pref->prefid."'  class='form-control cnum editpref' 
-								name='cnum".$pref->prefid."' value='".$pref->cnum."' readOnly='true' size='11'/>
+								name='cnum".$pref->prefid."' value='".$pref->cnum."' readOnly='true' maxlength='11'/>
 							</div>
 							<div name='cnum_err".$pref->prefid."' id='cnum_err".$pref->prefid."' 
 							class='form-group error text-center'>
@@ -825,7 +825,7 @@
 					<div class='form-group'>
 						<label for='cnum' class='control-label col-sm-3  '>Contact Number:</label>
 						<div class='col-sm-9'>  
-							<input type='text' id='new_cnum'  class='cnum form-control edtpref' name='cnum' />
+							<input type='text' id='new_cnum'  class='cnum form-control edtpref' name='cnum' maxlength="11" />
 						</div>
                         <div name='cnum2_err' id='cnum2_err' class='col-sm-12 error text-center'></div>
 					</div>

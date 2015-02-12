@@ -267,7 +267,7 @@ var Validator = function(form) {
 				e.preventDefault();
 			}
 			
-			else if(emailVal.test($("#new_cnum").val()) &&  $(".new_pref").is(":visible")){
+			else if(!emailVal.test($("#new_cemail").val()) &&  $(".new_pref").is(":visible")){
 				handleError("cemail2_err" ,'Email address is invalid.',$("#new_cemail").attr('id'));
 				e.preventDefault();
 			}
@@ -405,6 +405,11 @@ var Validator = function(form) {
 					e.preventDefault();
 				}
 				if(!numbers.test($(".cnum:visible").get(c).value)){
+					handleError("cnum_err"+ window["prefctr" + c] ,'Contact Number is invalid.',
+					$(".cnum:visible").get(c).id);
+					e.preventDefault();
+				}
+				else if($(".cnum:visible").get(c).value.length!=11 ){
 					handleError("cnum_err"+ window["prefctr" + c] ,'Contact Number is invalid.',
 					$(".cnum:visible").get(c).id);
 					e.preventDefault();

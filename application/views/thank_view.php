@@ -32,10 +32,6 @@
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer col-xs-12 col-sm-12 col-md-12 col-lg-12  ">
         <h2>Thank you!</h2>
-        <div class="reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1  ">
-        	
-            
-        </div>
 	</div>
             
         </header>
