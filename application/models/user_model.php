@@ -292,12 +292,6 @@ class User_model extends CI_Model {
 		$os=$this->input->post('os');
 		$fwork=$this->input->post('fwork');
 		
-		
-		
-		
-		$query='';
-		$qry='';
-		
 		if($name!=''){
 		$this->db->like('fname', $name); 
 		}
@@ -339,7 +333,11 @@ class User_model extends CI_Model {
 		$rs = $this->db->get(); 
 		if ($rs->num_rows() > 0)
 		{
-			return $rs; // just return $query
+			return $rs->result(); // just return $query
+		}
+		else
+		{
+			return array();
 		}
 
     }

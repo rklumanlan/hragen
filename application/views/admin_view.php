@@ -107,7 +107,7 @@
             <div class="form-group" >
             	
             	<div class="col-xs-offset-6 col-sm-offset-8 col-md-offset-8 col-lg-offset-9 ">
-                	<input type="submit" id="search" class="greenButton" value="Search" />
+                	<input type="submit" id="search" name="search" class="greenButton" value="Search" />
                 </div>
             </div>
         <?php echo form_close(); ?>
@@ -118,68 +118,73 @@
     </div>
 	<?php echo form_open("user/view"); 
 			
-			if(isset($search)){
-			
-        	echo '<div id="results" class=" reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 
-						col-md-offset-1  ">
-				<div class="table-responsive">
-				<table  class="table table-hover table-condensed">
-					<thead>
-					<tr>
-						<th ></th>
-						<th >No.</th>
-						<th >Name</th>
-						<th >Sex</th>
-						<th >Age</th>
-						<th >Languages</th>
-						<th >Operating System</th>
-						<th >Frameworks</th>
-					</tr>
-					</thead>
-					<tbody>';
-				$ctr =1;
-				$ctr2=0;
-				foreach($search->result() as $search)
-				{ 
-					echo "<tr>
-					<td><input type='radio' name='viewCTR' value='".$search->uid."'/></td>
-					<td>".$ctr ."</td>
-					<td>".$search->fname." ".$search->mname." ".$search->lname ."</td>
-					<td>".$search->sex."</td>
-					<td>".$search->age."</td>
-					<td>".$search->lang_code."</td>
-					<td>".$search->os_code."</td>
-					<td>".$search->fwork_code."</td>";
-					
-					
-					
-					$ctr++;
-					
+			if($this->input->post('search')){
+				if($search>0){
 				
-				
-				}
 					
-				
-               echo" 
-                </tbody>
-            </table>
-            </div>
-			<div class='form-group' >
-            	
-            	<div class='col-xs-offset-6 col-sm-offset-8 col-md-offset-8 col-lg-offset-9 '>
-                	<input type='submit' id='view' class='greenButton' value='View' />
-                </div>
-            </div>
-        </div>";
-        }
-		else{
+					echo '<div id="results" class=" reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 
+					col-xs-offset-1 col-sm-offset-1 
+								col-md-offset-1  ">
+						<div class="table-responsive">
+						<table  class="table table-hover table-condensed">
+							<thead>
+							<tr>
+								<th ></th>
+								<th >No.</th>
+								<th >Name</th>
+								<th >Sex</th>
+								<th >Age</th>
+								<th >Languages</th>
+								<th >Operating System</th>
+								<th >Frameworks</th>
+							</tr>
+							</thead>
+							<tbody>';
+						$ctr =1;
+						$ctr2=0;
+						foreach($search as $search)
+						{ 
+							echo "<tr>
+							<td><input type='radio' name='viewCTR' value='".$search->uid."'/></td>
+							<td>".$ctr ."</td>
+							<td>".$search->fname." ".$search->mname." ".$search->lname ."</td>
+							<td>".$search->sex."</td>
+							<td>".$search->age."</td>
+							<td>".$search->lang_code."</td>
+							<td>".$search->os_code."</td>
+							<td>".$search->fwork_code."</td>";
+							
+							
+							
+							$ctr++;
+							
+						
+						
+						}
+							
+						
+					   echo" 
+						</tbody>
+					</table>
+					</div>
+					<div class='form-group' >
+						
+						<div class='col-xs-offset-6 col-sm-offset-8 col-md-offset-8 col-lg-offset-9 '>
+							<input type='submit' id='view' class='greenButton' value='View' />
+						</div>
+					</div>
+				</div>";
+        	}
+			else{
 			echo '<div id="results" class=" reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 
 				col-md-offset-1  ">
 					<div class="form_title">No Match Found!</div>
 					</div>';
 			
 			
+			}
 		}
+		
 		echo form_close();
 		?>    
         </header>

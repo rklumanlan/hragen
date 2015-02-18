@@ -73,18 +73,18 @@ $(document).ready(function(){
 			$('input:text').val('');
 			$('select').val('-');
 			$('input:checkbox').removeAttr('checked');
-			$("#refineRes").css('display','none');
-			$("#results").css('display','none');
-			$("#criteria").css('display','block');
+			$("#refineRes").hide();
+			$("#results").hide();
+			$("#criteria").fadeIn(500);
 		});
 	
 	
 	
 	if ($("#results").is(':visible')){
-	   $("#criteria").css('display','none');
+	   $("#criteria").hide();
 	}
-	if ($("#criteria").is(':visible')){
-	   $("#refineRes").css('display','none');
+	else if ($("#criteria").is(':visible')){
+	   $("#refineRes").hide();
 	   
 	}
 	
@@ -130,25 +130,52 @@ $(document).ready(function(){
 	$(".edit").click(function(edit){
 		edit.preventDefault();
 		var editid = this.id;
-		alert(editid);
-		$('#'+editid).find('*').removeAttr('disabled');
-		$('#'+editid).find('*').attr('readonly',false);
-		$('#'+editid).find('*').fadeIn(500);
-		$('#case_update').val($("#Updateeduc").attr('id'));
+		$('#'+editid).hide();
+		
+		if($('#page_update').val()=="main_page"){
+			var editctr = "2"+editid;
+		}
+		else{ 
+			var editctr=editid;
+		}
+		
+		$('#'+editctr).fadeIn(500);
+		$('#'+editctr).find('*').removeAttr('disabled');
+		$('#'+editctr).find('*').attr('readonly',false);
+		$('#'+editctr).find('*').fadeIn(500);
 		$('#ctr_update').val(editid.match(/\d+$/));	
 		var editid  = editid.replace(editid.match(/\d+$/), '');
-		$('#'+editid).hide();
+		$('#case_update').val($("#Update"+editid).attr('id'));
+			
+		
 	});
 	
 	//cancel update company/educ/pref
 	$(".cancelupdate").click(function(cupd){
 			cupd.preventDefault();
 			var updcupdid = this.id;
-			$('#'+updcupdid).find('*').attr('disabled','disabled');
-			$('#'+updcupdid).find('*').prop('readonly', true);
+			if($('#page_update').val()=="main_page"){
+				var updcupdctr = "2"+updcupdid;
+				$('#'+updcupdctr).hide();
+				$('#'+updcupdid).fadeIn(500);
+			}
+			else{ 
+				var updcupdctr=updcupdid;
+			}
+			$('#'+updcupdctr).find('*').attr('disabled','disabled');
+			$('#'+updcupdctr).find('*').prop('readonly', true);
 			$('.updbuttons').hide();
-			var updcupdid  = updcupdid.replace(updcupdid.match(/\d+$/), '');
-			$('#'+updcupdid).fadeIn(500);
+			
+			
+			
+			/*var updeducid = this.id;
+			$('#'+updeducid).find('*').attr('disabled','disabled');
+			$('#'+updeducid).find('*').prop('readonly', true);
+			$('.updbuttons').addClass('invi');
+			$('#'+updeducid).hide();
+			$('#'+updeducid.match(/\d+$/)).fadeIn(500);
+			$('#addeduc').removeClass('invi');*/
+			
 			
 		});
 		
@@ -206,7 +233,7 @@ $(document).ready(function(){
 		
 	
 	});
-	
+	/*
 	$(".editeduc_mpage").click(function(){
 		var educid = this.id;
 		$('#'+educid).hide();
@@ -334,7 +361,7 @@ $(document).ready(function(){
 		$('.edtprefbtn2').hide();
 		$('#case_update').val("");
 		
-	});
+	});*/
 	
 	
 });

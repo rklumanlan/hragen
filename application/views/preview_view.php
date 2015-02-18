@@ -490,10 +490,10 @@
 			{	
 				
 				echo"
-				<div id='com".$comp->comp_id."' class='com focus' tabindex='4'>
+				<div id='comp".$comp->comp_id."' class='com focus' tabindex='4'>
 					<div class='form-group comp".$comp->comp_id."'>
 						<label for='fname' class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit edit click' id='com".$comp->comp_id."'></span>
+							<span class='glyphicon glyphicon-edit edit click' id='comp".$comp->comp_id."'></span>
 							Company Name: 
 						</label>
 						<div class='col-sm-9'>
@@ -519,7 +519,7 @@
 					</div>
 					<div class='form-group location".$comp->comp_id."'>
 						<label for='fname' class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit edit click' id='com".$comp->comp_id."'></span>
+							<span class='glyphicon glyphicon-edit edit click' id='comp".$comp->comp_id."'></span>
 							Location:
 						</label>
 						<div class='col-sm-9'>
@@ -531,7 +531,7 @@
 					</div>
 					<div class='form-group comTP".$comp->comp_id."'>
 						<label for='fname' class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit edit click' id='com".$comp->comp_id."'></span>
+							<span class='glyphicon glyphicon-edit edit click' id='comp".$comp->comp_id."'></span>
 							Time Period:
 						</label>
 						<div class='col-sm-9 '>
@@ -598,7 +598,7 @@
 					</div>
 					<div class='form-group'>
 						<label for='desc' class='control-label col-sm-3'>
-							<span class='glyphicon glyphicon-edit edit click' id='com".$comp->comp_id."'></span>
+							<span class='glyphicon glyphicon-edit edit click' id='comp".$comp->comp_id."'></span>
 							Description:
 						</label>
 						<div class='col-sm-9'>";
@@ -612,7 +612,7 @@
 						<div class='pull-right pads edtcomp' >";
 						echo form_submit('Updatecomp','Save', 'id="Updatecomp" 
 						class="greenButton edtcompbtn " ');
-						echo'<input type="button" id="com'.$comp->comp_id.'" 
+						echo'<input type="button" id="comp'.$comp->comp_id.'" 
 						class="cancelupdate greenButton edtcompbtn" value="Cancel" />
 						</div>
 						
@@ -733,10 +733,10 @@
            	
             <div class="form-group" >
             	<div class="pull-right pads edtcomp ">
-                	<input type="button" id="com" class="addbtn greenButton edtcompbtn" value="Add Position" />
+                	<input type="button" id="comp" class="addbtn greenButton edtcompbtn" value="Add Position" />
                     <?php echo form_submit('insertcomp','Save ', 'id="insertcomp" 
 					class="greenButton edtcompbtn invi" ');?> 
-                    <input type="button" id="ccom" class="cancelbtn greenButton edtcompbtn invi" value="Cancel" />
+                    <input type="button" id="ccomp" class="cancelbtn greenButton edtcompbtn invi" value="Cancel" />
                     
                 </div>
                 
@@ -815,31 +815,31 @@
 			}
             ?>
             <div id='pref_new' class='new_pref invi'>
-					<div class='form-group'>
-						<label for='fname' class='control-label col-sm-3'>Name:</label>
-						<div class='col-sm-9'>
-							<input type='text' id='new_prname' name='prname' class=' form-control edtpref'  />
-						</div>
-                        <div name='prname2_err' id='prname2_err' class='col-sm-12 error text-center'></div>
-					</div>
-					<div class='form-group'>
-						<label for='cnum' class='control-label col-sm-3  '>Contact Number:</label>
-						<div class='col-sm-9'>  
-							<input type='text' id='new_cnum'  class='cnum form-control edtpref' name='cnum' maxlength="11" />
-						</div>
-                        <div name='cnum2_err' id='cnum2_err' class='col-sm-12 error text-center'></div>
-					</div>
-					<div class='form-group'>
-						<label for='cemail' class='control-label col-sm-3  '>Email Anddress:</label>
-						<div class='col-sm-9'>  
-							<input type='text' id='new_cemail'  class='cenail form-control edtpref' name='cemail'/>
-						</div>
-                        <div name='cemail2_err' id='cemail2_err' class='col-sm-12 error text-center'></div>
-                        
-					
-					</div>
-					
-				</div>
+                <div class='form-group'>
+                    <label for='fname' class='control-label col-sm-3'>Name:</label>
+                    <div class='col-sm-9'>
+                        <input type='text' id='new_prname' name='prname' class=' form-control edtpref'  />
+                    </div>
+                    <div name='prname2_err' id='prname2_err' class='col-sm-12 error text-center'></div>
+                </div>
+                <div class='form-group'>
+                    <label for='cnum' class='control-label col-sm-3  '>Contact Number:</label>
+                    <div class='col-sm-9'>  
+                        <input type='text' id='new_cnum'  class='cnum form-control edtpref' name='cnum' maxlength="11" />
+                    </div>
+                    <div name='cnum2_err' id='cnum2_err' class='col-sm-12 error text-center'></div>
+                </div>
+                <div class='form-group'>
+                    <label for='cemail' class='control-label col-sm-3  '>Email Anddress:</label>
+                    <div class='col-sm-9'>  
+                        <input type='text' id='new_cemail'  class='cemail form-control edtpref' name='cemail'/>
+                    </div>
+                    <div name='cemail2_err' id='cemail2_err' class='col-sm-12 error text-center'></div>
+                    
+                
+                </div>
+                
+            </div>
             
             
             
@@ -870,14 +870,25 @@
 <script type='text/javascript'> 
 	$(document).ready(function(){
 	<?php
-		if($this->input->post('Removepref')||$this->input->post('insertpref')||$this->input->post('Updatepref')){
-			
+		if($this->input->post('Removepref')||$this->input->post('Updatepref')){
+			echo "var res =".$this->input->post('ctr_update').";";
+			echo"$('#pref'+res).focus();";
+		}
+		if($this->input->post('insertpref')){
 			echo"$('#'+$('.pref').attr('id')).focus();";
 		}
-		if($this->input->post('Removecomp')||$this->input->post('insertcomp')||$this->input->post('Updatecomp')){
-			echo"$('#'+$('.com').attr('id')).focus();";
+		if($this->input->post('Removecomp')||$this->input->post('Updatecomp')){
+			echo "var res =".$this->input->post('ctr_update').";";
+			echo"$('#comp'+res).focus();";
 		}
-		if($this->input->post('Removeeduc')||$this->input->post('inserteduc')||$this->input->post('Updateeduc')){
+		if($this->input->post('insertcomp')){
+			echo"$('#'+$('.comp').attr('id')).focus();";
+		}
+		if($this->input->post('Removeeduc')||$this->input->post('Updateeduc')){
+			echo "var res =".$this->input->post('ctr_update').";";
+			echo"$('#educ'+res).focus();";
+		}
+		if($this->input->post('inserteduc')){
 			echo"$('#'+$('.educ').attr('id')).focus();";
 		}
 		if($this->input->post('Updatetskills')){
