@@ -142,7 +142,7 @@ class User extends CI_Controller{
 			$data['pref']=$this->user_model->pop_pref();
 			
 			$this->load->view('header_view');
-			$this->load->view('welcomenew_view.php', $data);
+			$this->load->view('viewapp_view.php', $data);
 			$this->load->view('footer_view');
 		}
 	}
