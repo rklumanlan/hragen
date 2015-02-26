@@ -5,6 +5,7 @@ class User extends CI_Controller{
 		parent::__construct();
 		$this->load->model('user_model');
 		$this->load->helper(array('form', 'url'));
+        $this->load->library("pagination");
 	}
 	public function index()
 	{
@@ -110,22 +111,51 @@ class User extends CI_Controller{
 	}
 	public function search()
 	{
+		/*if($this->input->post('search')){
+			$this->session->set_userdata(array(
+					'name'     => $this->input->post('name'),
+					'sex'      => $this->input->post('sex'),
+					'age'      => $this->input->post('age'),
+					'lang'     => $this->input->post('lang'),
+					'os'   => $this->input->post('os'),
+					'fwork'   => $this->input->post('fwork')
+			));
+			
+			
+		}*/
 		if($this->session->userdata('logged_in')=='FALSE' || $this->session->userdata('logged_in')=='')
 		{
 			$this->index();
 		}
 		else{
 			$data['title']= 'Search';
-			$data['search']=$this->user_model->search();
+			//$data['search']=$this->user_model->search();
 			$data['language']=$this->user_model->pop_lang();
 			$data['os']=$this->user_model->pop_os();
 			$data['fwork']=$this->user_model->pop_fwork();
 			
+			$config["base_url"] = base_url() . "index.php/user/search";
+			$config["total_rows"] = $this->user_model->record_count();
+			$config["per_page"] = 2;
+			$config["uri_segment"] = 3;
+			$choice = $config["total_rows"] / $config["per_page"];
+			$config["num_links"] = round($choice);
+		 
+			$this->pagination->initialize($config);
+			$page = ($this->uri->segment(3))? $this->uri->segment(3) : 0;
+			$data["results"] = $this->user_model->fetch_applicants($config["per_page"], $page);
+			$data["links"] = $this->pagination->create_links();
+			
 			$this->load->view('header_view');
 			$this->load->view('admin_view.php', $data);
 			$this->load->view('footer_view');
+			
+		echo $this->user_model->record_count();
 		}
 	}
+	
+	
+	
 	public function view()
 	{
 		if($this->session->userdata('logged_in')=='FALSE' || $this->session->userdata('logged_in')=='')
@@ -332,25 +362,7 @@ class User extends CI_Controller{
 
 		
 	}
-	public function edit_mpage()
-	{
-		$data['language']=$this->user_model->pop_lang();
-		$data['os']=$this->user_model->pop_os();
-		$data['fwork']=$this->user_model->pop_fwork();
-		
-		$data['pinfo']=$this->user_model->pop_pinfo();
-		$data['educ']=$this->user_model->pop_educ();
-		$data['comp']=$this->user_model->pop_comp();
-		$data['pref']=$this->user_model->pop_pref();
-		$data['tskills']=$this->user_model->pop_tskills();
-		
-		$data['title']= 'Edit';
-		
-		$this->load->view('header_view') ;
-		$this->load->view('preview_view', $data);
-		$this->load->view('footer_view');
-		
-	}
+	
 	
 	
 }

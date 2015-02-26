@@ -233,9 +233,8 @@ $(document).ready(function(){
 		
 	
 	});
-	$('#pagi').click(function(event) {
+	$('#pagi').click(function() {
 		$("#search")[0].submit();
-        event.preventDefault();
     });
 		/*
 	$(".editeduc_mpage").click(function(){

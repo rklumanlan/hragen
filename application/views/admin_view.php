@@ -119,7 +119,12 @@
     To refine your search <span id="clickhere" >click here</span>
     </div>
 	<?php echo form_open("user/view"); 
-			
+	
+		foreach($results as $data) {
+		echo $data->sex . "<br>";
+		}
+		echo "<div><p id='pagi'>".$links."</p></div>";
+				/*
 			if($this->input->post('search')){
 				
 				if($search>0){
@@ -187,7 +192,7 @@
 			
 			}
 		}
-		
+		*/
 		echo form_close();
 		?>    
         </header>
