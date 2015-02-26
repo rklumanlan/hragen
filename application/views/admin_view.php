@@ -107,10 +107,12 @@
             <div class="form-group" >
             	
             	<div class="col-xs-offset-6 col-sm-offset-8 col-md-offset-8 col-lg-offset-9 ">
-                	<input type="submit" id="search" name="search" class="greenButton" value="Search" />
+                	<input type="submit" id="searchbtn" name="search" class="greenButton" value="Search" />
                 </div>
             </div>
-        <?php echo form_close(); ?>
+        <?php 
+		
+		echo form_close(); ?>
         
 	</div>
     <div id="refineRes" class=" reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 ">
@@ -119,6 +121,7 @@
 	<?php echo form_open("user/view"); 
 			
 			if($this->input->post('search')){
+				
 				if($search>0){
 				
 					

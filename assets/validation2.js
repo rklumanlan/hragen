@@ -233,7 +233,11 @@ $(document).ready(function(){
 		
 	
 	});
-	/*
+	$('#pagi').click(function(event) {
+		$("#search")[0].submit();
+        event.preventDefault();
+    });
+		/*
 	$(".editeduc_mpage").click(function(){
 		var educid = this.id;
 		$('#'+educid).hide();
