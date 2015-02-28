@@ -31,7 +31,6 @@
 
         <!-- Jumbotron Header -->
         <header class=" jumbotron hero-spacer col-xs-12 col-sm-12 col-md-12 col-lg-12  ">
-        <h2>Welcome Back, <?php echo $this->session->userdata('name'); ?>!</h2>
         
         <div id="criteria"  class="  reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1  ">
         <?php echo form_open("user/search","id = 'search'");  ?>
@@ -39,7 +38,7 @@
                     <label for="name" class="control-label col-sm-1 ">Name:</label>
                     <div class="col-sm-3">
                     	<input type="text" id="name" name="name" class="form-control"
-                         value="<?php echo set_value('name'); ?>" />
+                         value="<?php echo  set_value('name'); ?>" />
                     </div>
                     <label for="sex" class="control-label col-sm-1">Sex:</label>
                     <div class="col-sm-3 "> 
@@ -119,18 +118,8 @@
     To refine your search <span id="clickhere" >click here</span>
     </div>
 	<?php echo form_open("user/view"); 
-	
-		foreach($results as $data) {
-		echo $data->sex . "<br>";
-		}
-		echo "<div><p id='pagi'>".$links."</p></div>";
-				/*
-			if($this->input->post('search')){
-				
-				if($search>0){
-				
-					
-					echo '<div id="results" class=" reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 
+		if($results!=NULL){
+			echo '<div id="results" class=" reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 
 					col-xs-offset-1 col-sm-offset-1 
 								col-md-offset-1  ">
 						<div class="table-responsive">
@@ -150,17 +139,17 @@
 							<tbody>';
 						$ctr =1;
 						$ctr2=0;
-						foreach($search as $search)
+						foreach($results as $data) 
 						{ 
 							echo "<tr>
-							<td><input type='radio' name='viewCTR' value='".$search->uid."'/></td>
+							<td><input type='radio' name='viewCTR' value='".$data->uid."'/></td>
 							<td>".$ctr ."</td>
-							<td>".$search->fname." ".$search->mname." ".$search->lname ."</td>
-							<td>".$search->sex."</td>
-							<td>".$search->age."</td>
-							<td>".$search->lang_code."</td>
-							<td>".$search->os_code."</td>
-							<td>".$search->fwork_code."</td>";
+							<td>".$data->fname." ".$data->mname." ".$data->lname ."</td>
+							<td>".$data->sex."</td>
+							<td>".$data->age."</td>
+							<td>".$data->lang_code."</td>
+							<td>".$data->os_code."</td>
+							<td>".$data->fwork_code."</td>";
 							
 							
 							
@@ -175,6 +164,10 @@
 						</tbody>
 					</table>
 					</div>
+					<div class='form-group text-center ' >
+						
+						<div class='pagination centered'>".$links."</div>
+					</div>
 					<div class='form-group' >
 						
 						<div class='col-xs-offset-6 col-sm-offset-8 col-md-offset-8 col-lg-offset-9 '>
@@ -182,17 +175,16 @@
 						</div>
 					</div>
 				</div>";
-        	}
-			else{
-			echo '<div id="results" class=" reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 
-				col-md-offset-1  ">
-					<div class="form_title">No Match Found!</div>
-					</div>';
-			
-			
-			}
 		}
-		*/
+		else if($results==NULL && $this->input->post('search')){
+		echo '<div id="results" class=" reg_form col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 
+			col-md-offset-1  ">
+				<div class="form_title">No Match Found!</div>
+				</div>';
+		
+		
+		}
+			
 		echo form_close();
 		?>    
         </header>

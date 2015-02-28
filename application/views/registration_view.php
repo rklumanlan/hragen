@@ -7,7 +7,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Human Resource Agency</a>
+                <?php echo anchor('user/index', 'Human Resource Agency','class="navbar-brand"'); ?>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" aria-expanded="false">
@@ -37,7 +37,7 @@
         col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
         <div class="form_title">Sign Up</div>
         <div class="form_sub_title">It's free and anyone can join</div>
-        <?php echo form_open("user/registration"); ?>
+        <?php echo form_open("user/registration",'id="regform"'); ?>
             <div class="form-horizontal">
                 <div class="form-group">
                     <label for="user_name" class="control-label col-sm-4 ">User Name:</label>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-xs-offset-6 col-sm-offset-8 col-md-offset-8 col-lg-offset-9 ">
-                        <input type="submit" class="greenButton" value="Submit" />
+                        <input type="submit" class="greenButton" name="submit" value="Submit" />
                     </div>
                 </div>
             <?php echo form_close(); ?>
@@ -87,6 +87,10 @@
 	</div>
             
 </header>
+
+
+
+
 
 
 

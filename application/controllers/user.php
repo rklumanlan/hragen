@@ -8,6 +8,7 @@ class User extends CI_Controller{
         $this->load->library("pagination");
 	}
 	public function index()
+	
 	{
 		if(($this->session->userdata('user_name')!=""))
 		{
@@ -63,6 +64,7 @@ class User extends CI_Controller{
 						$data['language']=$this->user_model->pop_lang();
 						$data['os']=$this->user_model->pop_os();
 						$data['fwork']=$this->user_model->pop_fwork();
+						$data['results']="";
 						
 						$this->load->view('header_view');
 						$this->load->view('admin_view', $data);
@@ -73,7 +75,10 @@ class User extends CI_Controller{
 					}
 				}
 		}
-		else        {$this->index(); }
+		else{
+			echo"<script>alert('Incorrect Email/Password!');</script>";
+			$this->index(); 
+		}
 	}
 	public function profile()
 	{
@@ -81,6 +86,7 @@ class User extends CI_Controller{
 			$data['language']=$this->user_model->pop_lang();
 			$data['os']=$this->user_model->pop_os();
 			$data['fwork']=$this->user_model->pop_fwork();
+			$data['results']="";
 			
 			$this->load->view('header_view');
 			$this->load->view('admin_view', $data);
@@ -140,6 +146,14 @@ class User extends CI_Controller{
 			$config["uri_segment"] = 3;
 			$choice = $config["total_rows"] / $config["per_page"];
 			$config["num_links"] = round($choice);
+			$config['first_tag_open'] = $config['last_tag_open']= 
+			$config['next_tag_open']= $config['prev_tag_open'] = 
+			$config['num_tag_open'] = '<li>';
+        	$config['first_tag_close'] = $config['last_tag_close']= 
+			$config['next_tag_close']= $config['prev_tag_close'] = $config['num_tag_close'] = '</li>';
+         
+			$config['cur_tag_open'] = "<li><span><b>";
+			$config['cur_tag_close'] = "</b></span></li>";
 		 
 			$this->pagination->initialize($config);
 			$page = ($this->uri->segment(3))? $this->uri->segment(3) : 0;
@@ -150,7 +164,6 @@ class User extends CI_Controller{
 			$this->load->view('admin_view.php', $data);
 			$this->load->view('footer_view');
 			
-		echo $this->user_model->record_count();
 		}
 	}
 	
@@ -191,8 +204,14 @@ class User extends CI_Controller{
 		}
 		else
 		{
-			$this->user_model->add_user();
-			$this->thank();
+			
+			if($this->user_model->adduser() == TRUE){
+				echo"<script>alert('User already exists!');</script>";
+				$this->index();
+			}
+			else{
+				$this->thank();
+			}
 		}
 	}
 	public function logout()
@@ -206,13 +225,25 @@ class User extends CI_Controller{
 		$this->session->unset_userdata($newdata );
 		$this->session->sess_destroy();
 		
-		$newdata = array(
+		$newdata2 = array(
 		'uname'   =>'',
 		'name'  =>'',
 		'logged_in' => FALSE,
 		);
-		$this->session->unset_userdata($newdata );
+		$this->session->unset_userdata($newdata2 );
 		$this->session->sess_destroy();
+		
+		$newdata3 = array(
+		'name'   =>'',
+		'sex'  =>'',
+		'age' => '',
+		'os'   =>'',
+		'fwork'  =>'',
+		'lang' => '',
+		);
+		$this->session->unset_userdata($newdata3 );
+		$this->session->sess_destroy();
+		
 		$this->index();
 	}
 	public function preview()

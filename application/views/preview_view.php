@@ -501,7 +501,7 @@
 							class='form-control compname editcomp '
 							readOnly='true' value='".$comp->compname."' />
 						</div>
-						<div name='compname_err".$comp->comp_id."' id='compname_err".$comp->compname."' 
+						<div name='compname_err".$comp->comp_id."' id='compname_err".$comp->comp_id."' 
 						class='col-sm-12  error text-center'></div>
 					</div>
 					<div class='form-group tit".$comp->comp_id."'>
