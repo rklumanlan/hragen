@@ -93,19 +93,37 @@ class User extends CI_Controller{
 			$this->load->view('footer_view');
 		}
 		else {
-			$data['language']=$this->user_model->pop_lang();
-			$data['os']=$this->user_model->pop_os();
-			$data['fwork']=$this->user_model->pop_fwork();
-			
-			$data['pinfo']=$this->user_model->pop_pinfo();
-			$data['tskills']=$this->user_model->pop_tskills();
-			$data['educ']=$this->user_model->pop_educ();
-			$data['comp']=$this->user_model->pop_comp();
-			$data['pref']=$this->user_model->pop_pref();
-			
-			$this->load->view('header_view');
-			$this->load->view('welcomenew2_view',  $data);
-			$this->load->view('footer_view');
+			if($this->user_model->check_data() == true){
+				$data['language']=$this->user_model->pop_lang();
+				$data['os']=$this->user_model->pop_os();
+				$data['fwork']=$this->user_model->pop_fwork();
+				
+				$data['pinfo']=$this->user_model->pop_pinfo();
+				$data['tskills']=$this->user_model->pop_tskills();
+				$data['educ']=$this->user_model->pop_educ();
+				$data['comp']=$this->user_model->pop_comp();
+				$data['pref']=$this->user_model->pop_pref();
+				
+				$this->load->view('header_view');
+				$this->load->view('welcomenew2_view',  $data);
+				$this->load->view('footer_view');
+			}
+			else{
+				$data['language']=$this->user_model->pop_lang();
+				$data['os']=$this->user_model->pop_os();
+				$data['fwork']=$this->user_model->pop_fwork();
+				
+				$data['pinfo']=$this->user_model->pop_pinfo();
+				$data['tskills']=$this->user_model->pop_tskills();
+				$data['educ']=$this->user_model->pop_educ();
+				$data['comp']=$this->user_model->pop_comp();
+				$data['pref']=$this->user_model->pop_pref();
+				
+				$this->load->view('header_view');
+				$this->load->view('welcome_view',  $data);
+				$this->load->view('footer_view');
+				
+			}
 		}
 	}
 	public function thank()
@@ -117,25 +135,12 @@ class User extends CI_Controller{
 	}
 	public function search()
 	{
-		/*if($this->input->post('search')){
-			$this->session->set_userdata(array(
-					'name'     => $this->input->post('name'),
-					'sex'      => $this->input->post('sex'),
-					'age'      => $this->input->post('age'),
-					'lang'     => $this->input->post('lang'),
-					'os'   => $this->input->post('os'),
-					'fwork'   => $this->input->post('fwork')
-			));
-			
-			
-		}*/
 		if($this->session->userdata('logged_in')=='FALSE' || $this->session->userdata('logged_in')=='')
 		{
 			$this->index();
 		}
 		else{
 			$data['title']= 'Search';
-			//$data['search']=$this->user_model->search();
 			$data['language']=$this->user_model->pop_lang();
 			$data['os']=$this->user_model->pop_os();
 			$data['fwork']=$this->user_model->pop_fwork();

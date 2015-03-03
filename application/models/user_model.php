@@ -283,65 +283,7 @@ class User_model extends CI_Model {
 	
 
     }
-	/*function search()
-    {	
-		$name=trim($this->input->post('name'));
-		$age=trim($this->input->post('age'));
-		$sex=trim($this->input->post('sex'));
-		
-		$language=$this->input->post('lang');
-		$os=$this->input->post('os');
-		$fwork=$this->input->post('fwork');
-		
-		if($name!=''){
-		$this->db->like('fname', $name); 
-		}
-		if($age!='-'){
-		$this->db->where('age', $age);
-		}
-		if($sex!='-'){
-		$this->db->where('sex', $sex);
-		}
-		for($i=0;$i<count($os);$i++)
-		{
-				$osl = $os[$i];
-				if($osl!='')
-				{
-				$this->db->where("FIND_IN_SET('".$osl."', os_code)");
-				}
-		}
-		for($i=0;$i<count($language);$i++)
-		{
-				$languagel = $language[$i];
-				if($languagel!='')
-				{
-				$this->db->where("FIND_IN_SET('".$languagel."', lang_code)");
-				}
-		}
-		for($i=0;$i<count($fwork);$i++)
-		{
-				$fworkl = $fwork[$i];
-				if($fworkl!='')
-				{
-				$this->db->where("FIND_IN_SET('".$fworkl."', fwork_code)");
-				}
-		}
-		
-		
-		$this->db->select('*');
-		$this->db->from('pinfo');
-		$this->db->join('tskills', 'pinfo.uid = tskills.uid');
-		$rs = $this->db->get(); 
-		if ($rs->num_rows() > 0)
-		{
-			return $rs->result(); // just return $query
-		}
-		else
-		{
-			return array();
-		}
-
-    }*/
+	
 	function query(){
 		if($this->input->post('search')){
 			$this->session->set_userdata(array(
@@ -356,12 +298,6 @@ class User_model extends CI_Model {
 			
 		}
 		
-		/*$name=trim($this->input->post('name'));
-		$age=trim($this->input->post('age'));
-		$sex=trim($this->input->post('sex'));
-		
-		*/
-		
 		$name=$this->session->userdata('name');
 		$age=$this->session->userdata('age');
 		$sex=$this->session->userdata('sex');
@@ -370,10 +306,6 @@ class User_model extends CI_Model {
 		$os=$this->session->userdata('os');
 		$fwork=$this->session->userdata('fwork');
 		
-		
-	/*	$language=$this->input->post('lang');
-		$os=$this->input->post('os');
-		$fwork=$this->input->post('fwork');*/
 		
 		if($name!=''){
 		
