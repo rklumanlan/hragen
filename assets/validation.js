@@ -4,6 +4,7 @@ $(document).ready(function () {
 	var pr=1;
 	var educ=1;
 	var comp=1;
+	
 
 	$("#addref").click(function(){
 		while(pr<=3){
