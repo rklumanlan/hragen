@@ -4,9 +4,9 @@ class User_model extends CI_Model {
     {
         parent::__construct();
     }
-	
+
 	function login($email,$password)
-    {	
+    {
 		if($email=='admin'){
 			$this->db->where("uname",$email);
 			$this->db->where("pword",$password);
@@ -23,16 +23,16 @@ class User_model extends CI_Model {
 					   );
 				}
 					$this->session->set_userdata($newdata);
-					return true;       
-						 
+					return true;
+
 			}
-			
+
 		}
-		
+
 			else{
 			$this->db->where("email",$email);
 			$this->db->where("password",$password);
-				
+
 			$query=$this->db->get("user");
 			if($query->num_rows()>0)
 			{
@@ -41,19 +41,18 @@ class User_model extends CI_Model {
 					//add all data to session
 					$newdata = array(
 							'user_id' 		=> $rows->id,
-							'user_name' 	=> $rows->username,
 							'user_email'    => $rows->email,
 							'logged_in' 	=> TRUE,
 					   );
 				}
 					$this->session->set_userdata($newdata);
-					return true;       
-						 
+					return true;
+
 			}
 		}
 		return false;
     }
-	
+
 	function check_data()
     {	$pid=$this->session->userdata('user_id');
 		$this->db->where("uid",$pid);
@@ -63,16 +62,16 @@ class User_model extends CI_Model {
                 return true;
 		}
 		return false;
-		
-		
+
+
     }
-	
+
 	function pop_lang()
-    {	
+    {
 		$this->db->select('*');
-		$this->db->from('languages'); 
-		$query = $this->db->get(); 
-	
+		$this->db->from('languages');
+		$query = $this->db->get();
+
 		if ($query->num_rows() > 0)
 		{
 			return $query->result(); // just return $query
@@ -81,15 +80,15 @@ class User_model extends CI_Model {
 		{
 			return array();
 		}
-	
+
 
     }
 	function pop_os()
-    {	
+    {
 		$this->db->select('*');
-		$this->db->from('os'); 
-		$query = $this->db->get(); 
-	
+		$this->db->from('os');
+		$query = $this->db->get();
+
 		if ($query->num_rows() > 0)
 		{
 			return $query->result(); // just return $query
@@ -98,15 +97,15 @@ class User_model extends CI_Model {
 		{
 			return array();
 		}
-	
+
 
     }
 	function pop_fwork()
-    {	
+    {
 		$this->db->select('*');
-		$this->db->from('fwork'); 
-		$query = $this->db->get(); 
-	
+		$this->db->from('fwork');
+		$query = $this->db->get();
+
 		if ($query->num_rows() > 0)
 		{
 			return $query->result(); // just return $query
@@ -115,36 +114,36 @@ class User_model extends CI_Model {
 		{
 			return array();
 		}
-	
+
 
     }
-	
-	
-	
-	
-	
+
+
+
+
+
 	function pop_data()
-    {	
+    {
 		$this->db->select('*');
-		$this->db->from('pinfo a'); 
+		$this->db->from('pinfo a');
 		$this->db->join('tskills b', 'b.uid=a.uid', 'left');
-		
-		
+
+
 		//$this->db->select('*');
 		//$this->db->from('pinfo');
-		$query = $this->db->get(); 
-	
+		$query = $this->db->get();
+
 		if ($query->num_rows() > 0)
 		{
 			return $query; // just return $query
 		}
-	
+
 
     }
-	
-	
+
+
 	function pop_pinfo()
-    {	
+    {
 		if($this->input->post('viewCTR')!=NULL)
 		{
 			$pid=$this->input->post('viewCTR');
@@ -152,13 +151,13 @@ class User_model extends CI_Model {
 		else{
 			$pid=$this->session->userdata('user_id');
 		}
-		
-		
+
+
 		$this->db->select('*');
 		$this->db->where('uid', $pid);
 		$this->db->from('pinfo');
-		$query = $this->db->get(); 
-	
+		$query = $this->db->get();
+
 		if ($query->num_rows() > 0)
 		{
 			return $query->result(); // just return $query
@@ -167,12 +166,12 @@ class User_model extends CI_Model {
 		{
 			return array();
 		}
-	
+
 
     }
 	function pop_tskills()
-    {	
-		
+    {
+
 		if($this->input->post('viewCTR')!=NULL)
 		{
 			$pid=$this->input->post('viewCTR');
@@ -180,13 +179,13 @@ class User_model extends CI_Model {
 		else{
 			$pid=$this->session->userdata('user_id');
 		}
-		
-		
+
+
 		$this->db->select('*');
 		$this->db->where('uid', $pid);
 		$this->db->from('tskills');
-		$query = $this->db->get(); 
-	
+		$query = $this->db->get();
+
 		if ($query->num_rows() > 0)
 		{
 			return $query->result(); // just return $query
@@ -195,12 +194,12 @@ class User_model extends CI_Model {
 		{
 			return array();
 		}
-	
+
 
     }
 	function pop_educ()
-    {	
-		
+    {
+
 		if($this->input->post('viewCTR')!=NULL)
 		{
 			$pid=$this->input->post('viewCTR');
@@ -208,13 +207,13 @@ class User_model extends CI_Model {
 		else{
 			$pid=$this->session->userdata('user_id');
 		}
-		
-		
+
+
 		$this->db->select('*');
 		$this->db->where('uid', $pid);
 		$this->db->from('educ');
-		$query = $this->db->get(); 
-	
+		$query = $this->db->get();
+
 		if ($query->num_rows() > 0)
 		{
 			return $query->result(); // just return $query
@@ -223,12 +222,12 @@ class User_model extends CI_Model {
 		{
 			return array();
 		}
-	
+
 
     }
 	function pop_comp()
-    {	
-		
+    {
+
 		if($this->input->post('viewCTR')!=NULL)
 		{
 			$pid=$this->input->post('viewCTR');
@@ -236,13 +235,13 @@ class User_model extends CI_Model {
 		else{
 			$pid=$this->session->userdata('user_id');
 		}
-		
-		
+
+
 		$this->db->select('*');
 		$this->db->from('comp');
 		$this->db->where('uid', $pid);
-		$query = $this->db->get(); 
-	
+		$query = $this->db->get();
+
 		if ($query->num_rows() > 0)
 		{
 			return $query->result(); // just return $query
@@ -251,12 +250,12 @@ class User_model extends CI_Model {
 		{
 			return array();
 		}
-	
+
 
     }
 	function pop_pref()
-    {	
-		
+    {
+
 		if($this->input->post('viewCTR')!=NULL)
 		{
 			$pid=$this->input->post('viewCTR');
@@ -264,13 +263,13 @@ class User_model extends CI_Model {
 		else{
 			$pid=$this->session->userdata('user_id');
 		}
-		
-		
+
+
 		$this->db->select('*');
 		$this->db->where('uid', $pid);
 		$this->db->from('pref');
-		$query = $this->db->get(); 
-	
+		$query = $this->db->get();
+
 		if ($query->num_rows() > 0)
 		{
 			return $query->result(); // just return $query
@@ -279,69 +278,11 @@ class User_model extends CI_Model {
 		{
 			return array();
 		}
-		
-	
+
+
 
     }
-	/*function search()
-    {	
-		$name=trim($this->input->post('name'));
-		$age=trim($this->input->post('age'));
-		$sex=trim($this->input->post('sex'));
-		
-		$language=$this->input->post('lang');
-		$os=$this->input->post('os');
-		$fwork=$this->input->post('fwork');
-		
-		if($name!=''){
-		$this->db->like('fname', $name); 
-		}
-		if($age!='-'){
-		$this->db->where('age', $age);
-		}
-		if($sex!='-'){
-		$this->db->where('sex', $sex);
-		}
-		for($i=0;$i<count($os);$i++)
-		{
-				$osl = $os[$i];
-				if($osl!='')
-				{
-				$this->db->where("FIND_IN_SET('".$osl."', os_code)");
-				}
-		}
-		for($i=0;$i<count($language);$i++)
-		{
-				$languagel = $language[$i];
-				if($languagel!='')
-				{
-				$this->db->where("FIND_IN_SET('".$languagel."', lang_code)");
-				}
-		}
-		for($i=0;$i<count($fwork);$i++)
-		{
-				$fworkl = $fwork[$i];
-				if($fworkl!='')
-				{
-				$this->db->where("FIND_IN_SET('".$fworkl."', fwork_code)");
-				}
-		}
-		
-		
-		$this->db->select('*');
-		$this->db->from('pinfo');
-		$this->db->join('tskills', 'pinfo.uid = tskills.uid');
-		$rs = $this->db->get(); 
-		if ($rs->num_rows() > 0)
-		{
-			return $rs->result(); // just return $query
-		}
-		else
-		{
-			return array();
-		}
 
-    }*/
 	function query(){
 		if($this->input->post('search')){
 			$this->session->set_userdata(array(
@@ -352,32 +293,22 @@ class User_model extends CI_Model {
 					'os'   => $this->input->post('os'),
 					'fwork'   => $this->input->post('fwork')
 			));
-			
-			
+
+
 		}
-		
-		/*$name=trim($this->input->post('name'));
-		$age=trim($this->input->post('age'));
-		$sex=trim($this->input->post('sex'));
-		
-		*/
-		
+
 		$name=$this->session->userdata('name');
 		$age=$this->session->userdata('age');
 		$sex=$this->session->userdata('sex');
-		
+
 		$language=$this->session->userdata('lang');
 		$os=$this->session->userdata('os');
 		$fwork=$this->session->userdata('fwork');
-		
-		
-	/*	$language=$this->input->post('lang');
-		$os=$this->input->post('os');
-		$fwork=$this->input->post('fwork');*/
-		
+
+
 		if($name!=''){
-		
-		$this->db->like('pinfo.fname', $name); 
+
+		$this->db->like('pinfo.fname', $name);
 		}
 		if($age!='-'){
 		$this->db->where('pinfo.age', $age);
@@ -406,8 +337,8 @@ class User_model extends CI_Model {
 				$this->db->where("FIND_IN_SET('".$fworkl."', tskills.fwork_code)");
 			}
 		}
-		
-		
+
+
 		$this->db->select('*');
 		$this->db->from('pinfo');
 		$this->db->join('tskills', 'pinfo.uid = tskills.uid');
@@ -416,12 +347,12 @@ class User_model extends CI_Model {
 		$this->query();
         return $this->db->count_all_results();
     }
- 	
+
     function fetch_applicants($limit, $start) {
 		$this->db->limit($limit, $start);
 		$this->query();
         $query = $this->db->get();
- 
+
        if ($query->num_rows() > 0)
 		{
 			return $query->result(); // just return $query
@@ -431,41 +362,39 @@ class User_model extends CI_Model {
 			return array();
 		}
    }
-	
-	
+
+
 	function adduser()
-    {	
-		$this->db->where("username",$this->input->post('user_name'));
-		$this->db->where("email",trim($this->input->post('email_address')));
-		$this->db->where("password",md5($this->input->post('password')));
-		$this->db->select('*');
-		$this->db->from('user');
-		
-		
+    {
+  		$this->db->where("email",trim($this->input->post('email_address')));
+  		$this->db->where("password",md5($this->input->post('password')));
+  		$this->db->select('*');
+  		$this->db->from('user');
+
+
         $query=$this->db->get();
-		$query2= $query->result();
+        $query2= $query->result();
         if($query->num_rows()>0)
         {
              return TRUE;
 		}
 		else{
 			$data=array(
-				'username'=>$this->input->post('user_name'),
 				'email'=>$this->input->post('email_address'),
 				'password'=>md5($this->input->post('password'))
 				);
 			$this->db->insert('user',$data);
 			return FALSE;
 		}
-		
+
     }
 
-	
-	
+
+
 	public function add_pinfo($file_name)
 	{
-		
-		
+
+
 		$data=array(
 			'uid'=>$this->session->userdata('user_id'),
 			'fname'=>$this->input->post('fname'),
@@ -477,7 +406,7 @@ class User_model extends CI_Model {
 			'age'=>$this->input->post('age'),
 			'imgfname'=>$file_name
 			);
-			
+
 		$query = $this->db->get_where('pinfo',$data);
 		if($query->num_rows()>0)
         {
@@ -486,17 +415,17 @@ class User_model extends CI_Model {
 		else{
 			$this->db->insert('pinfo',$data);
 		}
-			
-			
-		
-		
+
+
+
+
 		$lang=$this->input->post('lang');
 		$os=$this->input->post('os');
 		$fwork=$this->input->post('fwork');
-		
-		
+
+
 		$pid=$this->session->userdata('user_id');
-		
+
 		if($lang!=NULL){
 			$langval=implode(',', $lang);
 		}
@@ -516,15 +445,15 @@ class User_model extends CI_Model {
 			$fworkval="";
 		}
 		$data = array('lang_code'=>$langval,'fwork_code'=>$fworkval,'os_code'=>$osval,'uid'=>$pid);
-		$this->db->insert('tskills', $data); 
-		
-		
-		
-		
-		
-	
-		
-	
+		$this->db->insert('tskills', $data);
+
+
+
+
+
+
+
+
 		for ($a=1;$a<=4;$a++)
 		{
 			${"dateY1" . $a}=$this->input->post('DAtty1'.$a);
@@ -543,10 +472,10 @@ class User_model extends CI_Model {
 				$this->db->insert('educ',$data3);
 			}
 		}
-		
+
 		for ($b=1;$b<=4;$b++)
 		{
-			if($this->input->post('mon1'.$b) != 0 || $this->input->post('mon2'.$b) != 0 || 
+			if($this->input->post('mon1'.$b) != 0 || $this->input->post('mon2'.$b) != 0 ||
 			$this->input->post('TPy1'.$b)!= 0 || $this->input->post('TPy2'.$b) != 0 )
 			{
 				$data4=array(
@@ -556,17 +485,17 @@ class User_model extends CI_Model {
 					'prdesc'=>$this->input->post('PEdes'.$b),
 					'loc'=>$this->input->post('loc'.$b),
 					'month1'=>$this->input->post('mon1'.$b),
-					'month2'=>$this->input->post('mon1'.$b),
+					'month2'=>$this->input->post('mon2'.$b),
 					'year1'=>$this->input->post('TPy1'.$b),
 					'year2'=>$this->input->post('TPy2'.$b),
-					
+
 					);
 				$this->db->insert('comp',$data4);
 			}
 		}
 		for ($c=1;$c<=3;$c++)
 		{
-			if($this->input->post('prname'.$c)!="" || $this->input->post('cnum'.$c)!="" || 
+			if($this->input->post('prname'.$c)!="" || $this->input->post('cnum'.$c)!="" ||
 			$this->input->post('cemail'.$c)!="")
 			{
 				$data5=array(
@@ -579,14 +508,14 @@ class User_model extends CI_Model {
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	function insert_educ()
-    {	
-			
-			
-		$data2 = array( 
+    {
+
+
+		$data2 = array(
 			'uid'=>$this->session->userdata('user_id'),
 			'school'=>$this->input->post('school'),
 			'yearFrom'=>$this->input->post('DAtty1'),
@@ -595,38 +524,38 @@ class User_model extends CI_Model {
 			'degree'=>$this->input->post('degree'),
 			'desc'=>$this->input->post('EAdes')
 			);
-		$query = $this->db->get_where('educ',$data2);	
+		$query = $this->db->get_where('educ',$data2);
 		if($query->num_rows()>0)
         {
              return False;
 		}
 		else{
-			$this->db->insert('educ', $data2); 
+			$this->db->insert('educ', $data2);
 		}
-	
+
 	}
-	
+
 	function insert_pref()
-    {	
+    {
 		$prefdata=array(
 			'pname'=>$this->input->post('prname'),
 			'cnum'=>$this->input->post('cnum'),
 			'cemail'=>$this->input->post('cemail'),
 			'uid'=>$this->session->userdata('user_id')
 			);
-		$query = $this->db->get_where('pref',$prefdata);	
+		$query = $this->db->get_where('pref',$prefdata);
 		if($query->num_rows()>0)
         {
              return False;
 		}
 		else{
-			$this->db->insert('pref',$prefdata); 	
+			$this->db->insert('pref',$prefdata);
 		}
 
 	}
-	
+
 	function insert_comp()
-    {	
+    {
 		$data4=array(
 				'uid'=>$this->session->userdata('user_id'),
 				'compname'=>$this->input->post('compname'),
@@ -638,19 +567,19 @@ class User_model extends CI_Model {
 				'year1'=>$this->input->post('TPy1'),
 				'year2'=>$this->input->post('TPy2')
 			);
-		$query = $this->db->get_where('comp',$data4);	
+		$query = $this->db->get_where('comp',$data4);
 		if($query->num_rows()>0)
         {
              return False;
 		}
 		else{
-			$this->db->insert('comp', $data4); 	
+			$this->db->insert('comp', $data4);
 		}
-	
+
 	}
-	
+
 	function update_pinfo()
-    {	
+    {
 		$pid=$this->session->userdata('user_id');
 		$data = array(
 			'fname'=>$this->input->post('fname'),
@@ -661,16 +590,16 @@ class User_model extends CI_Model {
 			'sex'=>$this->input->post('sex'),
 			'age'=>$this->input->post('age')
 			);
-	
+
 		$this->db->where('uid', $pid);
-		$this->db->update('pinfo', $data); 
+		$this->db->update('pinfo', $data);
 
 	}
-		
+
 	function update_educ()
-    {	
+    {
 		$educCTR=$this->input->post('ctr_update');
-		$data2 = array( 
+		$data2 = array(
 			'school'=>$this->input->post('school'.$educCTR),
 			'yearFrom'=>$this->input->post('1DAtty'.$educCTR),
 			'yearTo'=>$this->input->post('2DAtty'.$educCTR),
@@ -678,16 +607,16 @@ class User_model extends CI_Model {
 			'degree'=>$this->input->post('degree'.$educCTR),
 			'desc'=>$this->input->post('EAdes'.$educCTR)
 			);
-		$this->db->where('uid',$this->session->userdata('user_id'));	
+		$this->db->where('uid',$this->session->userdata('user_id'));
 		$this->db->where('educ_id',$educCTR);
-		$this->db->update('educ', $data2); 	
-		
-			
+		$this->db->update('educ', $data2);
+
+
 	}
 	function update_comp()
-    {	
+    {
 		$compCTR=$this->input->post('ctr_update');
-		$data3 = array( 
+		$data3 = array(
 				'compname'=>$this->input->post('compname'.$compCTR),
 				'title'=>$this->input->post('title'.$compCTR),
 				'prdesc'=>$this->input->post('PEdes'.$compCTR),
@@ -699,29 +628,29 @@ class User_model extends CI_Model {
 			);
 		$this->db->where('comp_id',$compCTR);
 		$this->db->where('uid',$this->session->userdata('user_id'));
-		$this->db->update('comp', $data3); 	
-		
-	
+		$this->db->update('comp', $data3);
+
+
 	}
-	
+
 	function update_pref()
-    {	
+    {
 		$prefCTR=$this->input->post('ctr_update');
-		$data4 = array( 
+		$data4 = array(
 			'pname'=>$this->input->post('prname'.$prefCTR),
 			'cnum'=>$this->input->post('cnum'.$prefCTR),
 			'cemail'=>$this->input->post('cemail'.$prefCTR),
 			);
 		$this->db->where('prefid',$prefCTR);
-		$this->db->where('uid',$this->session->userdata('user_id'));	
-		$this->db->update('pref', $data4); 	
-				
-		
-	
+		$this->db->where('uid',$this->session->userdata('user_id'));
+		$this->db->update('pref', $data4);
+
+
+
 	}
-	
+
 	function update_tskills()
-    {	
+    {
 		$lang=$this->input->post('lang');
 		$os=$this->input->post('os');
 		$fwork=$this->input->post('fwork');
@@ -743,65 +672,65 @@ class User_model extends CI_Model {
 		else{
 			$fworkval="";
 		}
-		
+
 		$this->db->select('*');
-		$this->db->from('tskills'); 
-		$query = $this->db->get(); 
-	
+		$this->db->from('tskills');
+		$query = $this->db->get();
+
 		if ($query->num_rows() > 0)
 		{
 			$data = array('lang_code'=>$langval,'fwork_code'=>$fworkval,'os_code'=>$osval);
 			$this->db->where('uid', $this->session->userdata('user_id'));
-			$this->db->update('tskills', $data); 
-			
+			$this->db->update('tskills', $data);
+
 		}
 		else
 		{
 			$data = array('lang_code'=>$langval,'fwork_code'=>$fworkval,'os_code'=>$osval,
 				'uid'=>$this->session->userdata('user_id'));
-			$this->db->insert('tskills', $data); 
+			$this->db->insert('tskills', $data);
 		}
-	
+
 	}
-	
+
 	function remove_pref()
-    {	
+    {
 		$prefCTR=$this->input->post('ctr_update');
 		$this->db->where('prefid',$prefCTR);
 		$this->db->where('uid', $this->session->userdata('user_id'));
-		$this->db->delete('pref'); 
-		
-	
+		$this->db->delete('pref');
+
+
 	}
 	function remove_comp()
-    {	
+    {
 		$prefCTR=$this->input->post('ctr_update');
 		$this->db->where('comp_id',$prefCTR);
 		$this->db->where('uid', $this->session->userdata('user_id'));
-		$this->db->delete('comp'); 
-		
-	
+		$this->db->delete('comp');
+
+
 	}
 	function remove_educ()
-    {	
+    {
 		$prefCTR=$this->input->post('ctr_update');
 		$this->db->where('educ_id',$prefCTR);
 		$this->db->where('uid', $this->session->userdata('user_id'));
-		$this->db->delete('educ'); 
-		
-	
+		$this->db->delete('educ');
+
+
 	}
 	/*public function record_count() {
 		$name=trim($this->input->post('name'));
 		$age=trim($this->input->post('age'));
 		$sex=trim($this->input->post('sex'));
-		
+
 		$language=$this->input->post('lang');
 		$os=$this->input->post('os');
 		$fwork=$this->input->post('fwork');
-		
+
 		if($name!=''){
-		$this->db->like('fname', $name); 
+		$this->db->like('fname', $name);
 		}
 		if($age!='-'){
 		$this->db->like('age', $age);
@@ -833,19 +762,19 @@ class User_model extends CI_Model {
 				$this->db->where("FIND_IN_SET('".$fworkl."', fwork_code)");
 				}
 		}
-		
+
 		$this->db->select('*');
 		$this->db->from('pinfo');
 		$this->db->join('tskills', 'pinfo.uid = tskills.uid');
-		
+
 		return $this->db->count_all_results();
-		
-		
+
+
     }*/
-			
-			
-		
-		
+
+
+
+
 }
 
 ?>

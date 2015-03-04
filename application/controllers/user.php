@@ -1,3 +1,4 @@
+
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class User extends CI_Controller{
 	public function __construct()
@@ -8,9 +9,9 @@ class User extends CI_Controller{
         $this->load->library("pagination");
 	}
 	public function index()
-	
+
 	{
-		if(($this->session->userdata('user_name')!=""))
+		if(($this->session->userdata('user_email')!=""))
 		{
 			$this->welcome();
 		}
@@ -45,18 +46,18 @@ class User extends CI_Controller{
 					$data['language']=$this->user_model->pop_lang();
 					$data['os']=$this->user_model->pop_os();
 					$data['fwork']=$this->user_model->pop_fwork();
-					
+
 					$data['pinfo']=$this->user_model->pop_pinfo();
 					$data['tskills']=$this->user_model->pop_tskills();
 					$data['educ']=$this->user_model->pop_educ();
 					$data['comp']=$this->user_model->pop_comp();
 					$data['pref']=$this->user_model->pop_pref();
-					
+
 					$this->load->view('header_view');
 					$this->load->view('welcomenew2_view',  $data);
 					$this->load->view('footer_view');
-					
-					
+
+
 				}
 				else
 				{
@@ -65,7 +66,7 @@ class User extends CI_Controller{
 						$data['os']=$this->user_model->pop_os();
 						$data['fwork']=$this->user_model->pop_fwork();
 						$data['results']="";
-						
+
 						$this->load->view('header_view');
 						$this->load->view('admin_view', $data);
 						$this->load->view('footer_view');
@@ -77,7 +78,7 @@ class User extends CI_Controller{
 		}
 		else{
 			echo"<script>alert('Incorrect Email/Password!');</script>";
-			$this->index(); 
+			$this->index();
 		}
 	}
 	public function profile()
@@ -87,25 +88,43 @@ class User extends CI_Controller{
 			$data['os']=$this->user_model->pop_os();
 			$data['fwork']=$this->user_model->pop_fwork();
 			$data['results']="";
-			
+
 			$this->load->view('header_view');
 			$this->load->view('admin_view', $data);
 			$this->load->view('footer_view');
 		}
 		else {
-			$data['language']=$this->user_model->pop_lang();
-			$data['os']=$this->user_model->pop_os();
-			$data['fwork']=$this->user_model->pop_fwork();
-			
-			$data['pinfo']=$this->user_model->pop_pinfo();
-			$data['tskills']=$this->user_model->pop_tskills();
-			$data['educ']=$this->user_model->pop_educ();
-			$data['comp']=$this->user_model->pop_comp();
-			$data['pref']=$this->user_model->pop_pref();
-			
-			$this->load->view('header_view');
-			$this->load->view('welcomenew2_view',  $data);
-			$this->load->view('footer_view');
+			if($this->user_model->check_data() == true){
+				$data['language']=$this->user_model->pop_lang();
+				$data['os']=$this->user_model->pop_os();
+				$data['fwork']=$this->user_model->pop_fwork();
+
+				$data['pinfo']=$this->user_model->pop_pinfo();
+				$data['tskills']=$this->user_model->pop_tskills();
+				$data['educ']=$this->user_model->pop_educ();
+				$data['comp']=$this->user_model->pop_comp();
+				$data['pref']=$this->user_model->pop_pref();
+
+				$this->load->view('header_view');
+				$this->load->view('welcomenew2_view',  $data);
+				$this->load->view('footer_view');
+			}
+			else{
+				$data['language']=$this->user_model->pop_lang();
+				$data['os']=$this->user_model->pop_os();
+				$data['fwork']=$this->user_model->pop_fwork();
+
+				$data['pinfo']=$this->user_model->pop_pinfo();
+				$data['tskills']=$this->user_model->pop_tskills();
+				$data['educ']=$this->user_model->pop_educ();
+				$data['comp']=$this->user_model->pop_comp();
+				$data['pref']=$this->user_model->pop_pref();
+
+				$this->load->view('header_view');
+				$this->load->view('welcome_view',  $data);
+				$this->load->view('footer_view');
+
+			}
 		}
 	}
 	public function thank()
@@ -117,58 +136,45 @@ class User extends CI_Controller{
 	}
 	public function search()
 	{
-		/*if($this->input->post('search')){
-			$this->session->set_userdata(array(
-					'name'     => $this->input->post('name'),
-					'sex'      => $this->input->post('sex'),
-					'age'      => $this->input->post('age'),
-					'lang'     => $this->input->post('lang'),
-					'os'   => $this->input->post('os'),
-					'fwork'   => $this->input->post('fwork')
-			));
-			
-			
-		}*/
 		if($this->session->userdata('logged_in')=='FALSE' || $this->session->userdata('logged_in')=='')
 		{
 			$this->index();
 		}
 		else{
 			$data['title']= 'Search';
-			//$data['search']=$this->user_model->search();
 			$data['language']=$this->user_model->pop_lang();
 			$data['os']=$this->user_model->pop_os();
 			$data['fwork']=$this->user_model->pop_fwork();
-			
+
 			$config["base_url"] = base_url() . "index.php/user/search";
 			$config["total_rows"] = $this->user_model->record_count();
 			$config["per_page"] = 2;
 			$config["uri_segment"] = 3;
 			$choice = $config["total_rows"] / $config["per_page"];
 			$config["num_links"] = round($choice);
-			$config['first_tag_open'] = $config['last_tag_open']= 
-			$config['next_tag_open']= $config['prev_tag_open'] = 
+			$config['first_tag_open'] = $config['last_tag_open']=
+			$config['next_tag_open']= $config['prev_tag_open'] =
 			$config['num_tag_open'] = '<li>';
-        	$config['first_tag_close'] = $config['last_tag_close']= 
+        	$config['first_tag_close'] = $config['last_tag_close']=
 			$config['next_tag_close']= $config['prev_tag_close'] = $config['num_tag_close'] = '</li>';
-         
+
 			$config['cur_tag_open'] = "<li><span><b>";
 			$config['cur_tag_close'] = "</b></span></li>";
-		 
+
 			$this->pagination->initialize($config);
 			$page = ($this->uri->segment(3))? $this->uri->segment(3) : 0;
 			$data["results"] = $this->user_model->fetch_applicants($config["per_page"], $page);
 			$data["links"] = $this->pagination->create_links();
-			
+
 			$this->load->view('header_view');
 			$this->load->view('admin_view.php', $data);
 			$this->load->view('footer_view');
-			
+
 		}
 	}
-	
-	
-	
+
+
+
 	public function view()
 	{
 		if($this->session->userdata('logged_in')=='FALSE' || $this->session->userdata('logged_in')=='')
@@ -177,13 +183,13 @@ class User extends CI_Controller{
 		}
 		else{
 			$data['title']= 'View Applicant';
-			
+
 			$data['pinfo']=$this->user_model->pop_pinfo();
 			$data['tskills']=$this->user_model->pop_tskills();
 			$data['educ']=$this->user_model->pop_educ();
 			$data['comp']=$this->user_model->pop_comp();
 			$data['pref']=$this->user_model->pop_pref();
-			
+
 			$this->load->view('header_view');
 			$this->load->view('viewapp_view.php', $data);
 			$this->load->view('footer_view');
@@ -193,7 +199,6 @@ class User extends CI_Controller{
 	{
 		$this->load->library('form_validation');
 		// field name, error message, validation rules
-		$this->form_validation->set_rules('user_name', 'User Name', 'trim|required|min_length[4]|xss_clean');
 		$this->form_validation->set_rules('email_address', 'Your Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
 		$this->form_validation->set_rules('con_password', 'Password Confirmation', 'trim|required|matches[password]');
@@ -204,7 +209,7 @@ class User extends CI_Controller{
 		}
 		else
 		{
-			
+
 			if($this->user_model->adduser() == TRUE){
 				echo"<script>alert('User already exists!');</script>";
 				$this->index();
@@ -218,13 +223,12 @@ class User extends CI_Controller{
 	{
 		$newdata = array(
 		'user_id'   =>'',
-		'user_name'  =>'',
 		'user_email'     => '',
 		'logged_in' => FALSE,
 		);
 		$this->session->unset_userdata($newdata );
 		$this->session->sess_destroy();
-		
+
 		$newdata2 = array(
 		'uname'   =>'',
 		'name'  =>'',
@@ -232,7 +236,7 @@ class User extends CI_Controller{
 		);
 		$this->session->unset_userdata($newdata2 );
 		$this->session->sess_destroy();
-		
+
 		$newdata3 = array(
 		'name'   =>'',
 		'sex'  =>'',
@@ -243,19 +247,19 @@ class User extends CI_Controller{
 		);
 		$this->session->unset_userdata($newdata3 );
 		$this->session->sess_destroy();
-		
+
 		$this->index();
 	}
 	public function preview()
-	{	
+	{
 		if($this->session->userdata('logged_in')=='FALSE' || $this->session->userdata('logged_in')=='')
 		{
 			$this->index();
 		}
 		else{
-			
-	
-	
+
+
+
 			$config = array(
 			'upload_path' => "./uploads/",
 			'allowed_types' => "gif|jpg|png|jpeg",
@@ -263,94 +267,104 @@ class User extends CI_Controller{
 			'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
 			);
 			$this->load->library('upload', $config);
+			if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+
+			$this->load->view('welcome_view', $error);
+		}
+
+
+
+
 			if($this->upload->do_upload())
 			{
-				$upload_data = $this->upload->data(); 
+				$upload_data = $this->upload->data();
 				$file_name =   $upload_data['file_name'];
-				
-				
-				
+
+
+
 				$this->user_model->add_pinfo($file_name);
-				
+
 				$data['language']=$this->user_model->pop_lang();
 				$data['os']=$this->user_model->pop_os();
 				$data['fwork']=$this->user_model->pop_fwork();
-				
+
 				$data['pinfo']=$this->user_model->pop_pinfo();
 				$data['educ']=$this->user_model->pop_educ();
 				$data['comp']=$this->user_model->pop_comp();
 				$data['pref']=$this->user_model->pop_pref();
 				$data['tskills']=$this->user_model->pop_tskills();
-				
+
 				$data['title']= 'Welcome';
-				
+
 				$this->load->view('header_view') ;
 				$this->load->view('preview_view', $data);
 				$this->load->view('footer_view');
-				
+
 			}
 			else
 			{
 				$data['language']=$this->user_model->pop_lang();
 				$data['os']=$this->user_model->pop_os();
 				$data['fwork']=$this->user_model->pop_fwork();
-				
-				
+
+
 				$this->load->view('header_view');
 				$this->load->view('welcome_view.php', $data);
 				$this->load->view('footer_view');
 			}
 		}
-	
-						
-      
 
-	
-	
-		
-		
+
+
+
+
+
+
+
 	}
 	public function update_info()
-	{	
+	{
 		$data['language']=$this->user_model->pop_lang();
 		$data['os']=$this->user_model->pop_os();
 		$data['fwork']=$this->user_model->pop_fwork();
-	
-		
+
+
 		switch ($this->input->post('case_update')) {
 			//update only
-			
+
 			case "Updatepinfo":
 				$this->user_model->update_pinfo();
 				break;
 			case "Updatetskills":
 				$this->user_model->update_tskills();
 				break;
-			case "Updateeduc":	
+			case "Updateeduc":
 				$this->user_model->update_educ();
 				break;
 			case "Updatecomp":
 				$this->user_model->update_comp();
 				break;
-			
+
 			case "Updatepref":
 				$this->user_model->update_pref();
 				break;
-			
-			
-			//add additional	
+
+
+			//add additional
 			case "inserteduc":
 				$this->user_model->insert_educ();
 				break;
-			
+
 			case "insertcomp":
 				$this->user_model->insert_comp();
 				break;
-				
+
 			case "insertpref":
 				$this->user_model->insert_pref();
 				break;
-				
+
 			//remove
 			case "Rempref":
 				$this->user_model->remove_pref();
@@ -363,16 +377,16 @@ class User extends CI_Controller{
 				break;
 
 		}
-		
-			
+
+
 		if($this->input->post('page_update')=='main_page'){
-		
+
 			$data['pinfo']=$this->user_model->pop_pinfo();
 			$data['educ']=$this->user_model->pop_educ();
 			$data['comp']=$this->user_model->pop_comp();
 			$data['pref']=$this->user_model->pop_pref();
 			$data['tskills']=$this->user_model->pop_tskills();
-			
+
 			$this->load->view('header_view');
 			$this->load->view('welcomenew2_view.php',$data);
 			$this->load->view('footer_view');
@@ -383,18 +397,18 @@ class User extends CI_Controller{
 			$data['comp']=$this->user_model->pop_comp();
 			$data['pref']=$this->user_model->pop_pref();
 			$data['tskills']=$this->user_model->pop_tskills();
-			
+
 			$this->load->view('header_view');
 			$this->load->view('preview_view.php',$data);
 			$this->load->view('footer_view');
-			
-			
+
+
 		}
 
-		
+
 	}
-	
-	
-	
+
+
+
 }
 ?>
