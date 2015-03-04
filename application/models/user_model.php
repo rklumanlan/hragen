@@ -485,7 +485,7 @@ class User_model extends CI_Model {
 					'prdesc'=>$this->input->post('PEdes'.$b),
 					'loc'=>$this->input->post('loc'.$b),
 					'month1'=>$this->input->post('mon1'.$b),
-					'month2'=>$this->input->post('mon1'.$b),
+					'month2'=>$this->input->post('mon2'.$b),
 					'year1'=>$this->input->post('TPy1'.$b),
 					'year2'=>$this->input->post('TPy2'.$b),
 
