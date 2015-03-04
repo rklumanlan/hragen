@@ -304,7 +304,7 @@
 								echo form_dropdown('mon1'.$ctr.'', $month1,'', "class='form-control monFrom' id='mon1".$ctr."'");
 							echo "
 							</div>
-							<div class='col-sm-2 pad '>
+							<div class='col-sm-2 pad'>
 								<select name='TPy1".$ctr."' id='year1".$ctr."' class='form-control yearFrom' >
 								<option>-</option>";
 								$year = date('Y')+1;
@@ -315,7 +315,7 @@
 								</select>
 							</div>
 							<div class='col-sm-2 pad'> - </div>
-							<div class='col-sm-3 pad to' id='".$ctr."'>";
+							<div class='col-sm-3 pad'>";
 								$month2 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
 								'3'=> 'March', '4'=>'April', '5'=>'May', '6'=> 'June', '7'=>'July',
 								'8'=> 'August', '9'=>'September', '10'=>'October',
@@ -324,9 +324,9 @@
 								echo form_dropdown('mon2'.$ctr.'', $month2,'', "class='form-control monTo' id='mon2".$ctr."'");
 								echo"
 							</div>
-							<div class='col-sm-2 pad to' id='to".$ctr."'>
+							<div class='col-sm-2 pad'>
 								<select name='TPy2".$ctr."' id='year2".$ctr."' class='form-control yearTo' >
-								<option >-</option>";
+								<option>-</option>";
 								$year = date('Y')+1;
 								for ($y1 = 0; $y1 <= 100; $y1++) {
 									$year--; echo '<option value="'.$year.'">'.$year.'</option>';
@@ -334,12 +334,6 @@
 							echo"
 								</select>
 							</div>
-              <div class='col-sm-5 pad to invi' id='idTo".$ctr."'>
-                <input type='text' value='Present' class='form-control present' id='present".$ctr."' readonly='true'/>
-              </div>
-              <div class='col-sm-5 pad col-sm-offset-6'>
-                <input type='checkbox' id='cbox_work".$ctr."' class='cbox'> I currently work here
-              </div>
 						</div>
 						<div name='comTP_err".$ctr."' id='comTP_err".$ctr."' class='col-sm-12 invi error text-center'></div>
 

@@ -138,28 +138,11 @@ $(document).ready(function(){
 		else{
 			var editctr=editid;
 		}
+
 		$('#'+editctr).fadeIn(500);
 		$('#'+editctr).find('*').removeAttr('disabled');
 		$('#'+editctr).find('*').attr('readonly',false);
 		$('#'+editctr).find('*').fadeIn(500);
-		if ($("#"+$(".cbox").attr('id')).is(':checked')) {
-			var cbox = $(".cbox").attr('id');
-			var cbox = cbox.replace(/\D/g, "");
-			$("#"+ cbox).hide();
-			$("#to"+ cbox).hide();
-			$("#idTo"+ cbox).show();
-			$("#present"+ cbox).prop('readonly', true);
-		}
-		else{alert('dd');
-			var cbox = $(".cbox").attr('id');
-			var cbox = cbox.replace(/\D/g, "");
-			$("#"+ cbox).show();
-			$("#to"+ cbox).show();
-			$("#idTo"+ cbox).hide();
-
-
-		}
-
 		$('#ctr_update').val(editid.match(/\d+$/));
 		var editid  = editid.replace(editid.match(/\d+$/), '');
 		$('#case_update').val($("#Update"+editid).attr('id'));
@@ -169,7 +152,6 @@ $(document).ready(function(){
 
 	//cancel update company/educ/pref
 	$(".cancelupdate").click(function(cupd){
-			$("#infos")[0].reset();
 			cupd.preventDefault();
 			var updcupdid = this.id;
 			if($('#page_update').val()=="main_page"){
@@ -186,23 +168,13 @@ $(document).ready(function(){
 
 
 
-			if ($(".cbox").is(':checked')) {
-
-				var cbox = $(".cbox").attr('id');
-				var cbox = cbox.replace(/\D/g, "");
-				$("#"+ cbox).hide();
-				$("#to"+ cbox).hide();
-				$("#idTo"+ cbox).show();
-			}
-			else{
-				var cbox = $(".cbox").attr('id');
-				var cbox = cbox.replace(/\D/g, "");
-				$("#"+ cbox).show();
-				$("#to"+ cbox).show();
-				$("#idTo"+ cbox).hide();
-
-
-			}
+			/*var updeducid = this.id;
+			$('#'+updeducid).find('*').attr('disabled','disabled');
+			$('#'+updeducid).find('*').prop('readonly', true);
+			$('.updbuttons').addClass('invi');
+			$('#'+updeducid).hide();
+			$('#'+updeducid.match(/\d+$/)).fadeIn(500);
+			$('#addeduc').removeClass('invi');*/
 
 
 		});
@@ -262,7 +234,7 @@ $(document).ready(function(){
 
 	});
 
-
+	
 
 
 });
