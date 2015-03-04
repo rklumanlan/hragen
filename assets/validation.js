@@ -5,13 +5,37 @@ $(document).ready(function () {
 	var educ=1;
 	var comp=1;
 
+	$(".cbox").click(function(){
+		var cbox = this.id;
+		var cbox = cbox.replace(/\D/g, "");
+
+		$("#"+ cbox).toggle();
+		$("#idTo"+ cbox).toggle();
+		$("#to"+ cbox).toggle();
+		if ($("#"+this.id).is(':checked')) {
+			var ndate = new Date();
+			var year = ndate.getFullYear();
+
+
+
+			$("#"+$(".monTo:hidden").attr('id')).append('<option value=13>Present</option>');
+			$("#"+$(".monTo:hidden").attr('id')).val('13');
+			$("#"+$(".yearTo:hidden").attr('id')).val(year);
+
+		}
+		else{
+		$("#"+$(".monTo:visible").attr('id')).find('option:contains(Present)').remove();
+			$("#"+$(".yearTo:visible").attr('id')).val('-');
+		}
+	});
+
 	$("#addref").click(function(){
 		while(pr<=3){
 
 			pr++;
 			$("#pr"+pr).slideDown();
 			break;
-		  }
+			}
 	});
 
 	$("#remref").click(function(){
@@ -188,6 +212,8 @@ var Validator = function(form) {
 
 
 			var b=0;
+			var ndate = new Date();
+			var year = ndate.getFullYear();
 
 			while(b<=$(".compname:visible").length-1){
 				window["compctr" + b] =$(".compname:visible").get(b).id;
@@ -208,8 +234,31 @@ var Validator = function(form) {
 					preventDefault();
 				}
 
+				if( $(".monFrom:visible").get(b).value=="0" && $(".yearFrom:visible").get(b).value=="-"
+					&& $(".present").is(":visible") )
+				{
+					handleError("comTP_err"+ window["compctr" + b] ,'Please select a valid date.',$(".yearFrom:visible").get(b).id);
+					e.preventDefault();
+				}
 
-				if(($(".yearFrom:visible").get(b).value > $(".yearTo:visible").get(b).value) &&
+				else if( $(".monFrom:visible").get(b).value!=0 && $(".yearFrom:visible").get(b).value!="-"
+					&& $(".present").is(":visible") )
+				{
+				}
+				else if( $(".monFrom:visible").get(b).value!=0 && $(".yearFrom:visible").get(b).value=="-"
+					&& $(".present").is(":visible") )
+				{
+					handleError("comTP_err"+ window["compctr" + b] ,'Please select a valid date.',$(".yearFrom:visible").get(b).id);
+					e.preventDefault();
+				}
+				else if( $(".monFrom:visible").get(b).value==0 && $(".yearFrom:visible").get(b).value!="-"
+					&& $(".present").is(":visible") )
+				{
+					handleError("comTP_err"+ window["compctr" + b] ,'Please select a valid date.',$(".yearFrom:visible").get(b).id);
+					e.preventDefault();
+				}
+
+				else if(($(".yearFrom:visible").get(b).value > $(".yearTo:visible").get(b).value) &&
 				$(".monFrom:visible").get(b).value > $(".monTo:visible").get(b).value)
 				{
 					handleError("comTP_err"+ window["compctr" + b] ,
@@ -240,6 +289,9 @@ var Validator = function(form) {
 					handleError("comTP_err"+ window["compctr" + b] ,'Please select a valid date.',$(".yearTo:visible").get(b).id);
 					e.preventDefault();
 				}
+
+
+
 
 				b=b+1;
 
