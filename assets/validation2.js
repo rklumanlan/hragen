@@ -66,8 +66,10 @@ function cancel(value,val2){
 
 }
 
-
 $(document).ready(function(){
+	
+	
+	
 	//admin view
 	$("#clickhere").click(function(){
 			$('input:text').val('');
@@ -144,11 +146,34 @@ $(document).ready(function(){
 		$('#'+editctr).find('*').attr('readonly',false);
 		$('#'+editctr).find('*').fadeIn(500);
 		$('#ctr_update').val(editid.match(/\d+$/));
+		var id2 = editid.replace(/\D/g,'');
 		var editid  = editid.replace(editid.match(/\d+$/), '');
 		$('#case_update').val($("#Update"+editid).attr('id'));
+		
+		hide_show(id2);
 
 
 	});
+	
+	function hide_show(id2){
+		
+		if($("#mon2"+id2).val() == 13){
+			var d= new Date();
+			var ndate = d.getFullYear();
+			$('#year2'+id2).val(ndate);
+			$('#year2'+id2).css('display','none');
+			$('#mTo'+id2).removeClass('col-sm-3');
+			$('#yTo'+id2).removeClass('col-sm-2');
+			$('#mTo'+id2).addClass('col-sm-5');
+		}
+		else{
+			$('#year2'+id2).css('display','block');
+			$('#mTo'+id2).removeClass('col-sm-5');
+			$('#mTo'+id2).addClass('col-sm-3');
+			$('#yTo'+id2).addClass('col-sm-2');
+		}
+		
+	}
 
 	//cancel update company/educ/pref
 	$(".cancelupdate").click(function(cupd){
@@ -162,20 +187,16 @@ $(document).ready(function(){
 			else{
 				var updcupdctr=updcupdid;
 			}
+			
+			
+			$("#infos")[0].reset();
+			var id2 = updcupdctr.replace(/\D/g,'');
+			hide_show(id2);
+			
 			$('#'+updcupdctr).find('*').attr('disabled','disabled');
 			$('#'+updcupdctr).find('*').prop('readonly', true);
 			$('.updbuttons').hide();
-
-
-
-			/*var updeducid = this.id;
-			$('#'+updeducid).find('*').attr('disabled','disabled');
-			$('#'+updeducid).find('*').prop('readonly', true);
-			$('.updbuttons').addClass('invi');
-			$('#'+updeducid).hide();
-			$('#'+updeducid.match(/\d+$/)).fadeIn(500);
-			$('#addeduc').removeClass('invi');*/
-
+			
 
 		});
 

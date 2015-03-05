@@ -315,16 +315,16 @@
 								</select>
 							</div>
 							<div class='col-sm-2 pad'> - </div>
-							<div class='col-sm-3 pad'>";
+							<div class='col-sm-3 pad' id='mTo".$ctr."'>";
 								$month2 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
 								'3'=> 'March', '4'=>'April', '5'=>'May', '6'=> 'June', '7'=>'July',
 								'8'=> 'August', '9'=>'September', '10'=>'October',
-								'11'=>'November', '12'=>'December');
+								'11'=>'November', '12'=>'December', '13'=>'Present');
 
 								echo form_dropdown('mon2'.$ctr.'', $month2,'', "class='form-control monTo' id='mon2".$ctr."'");
 								echo"
 							</div>
-							<div class='col-sm-2 pad'>
+							<div class='col-sm-2 pad' id='yTo".$ctr."'>
 								<select name='TPy2".$ctr."' id='year2".$ctr."' class='form-control yearTo' >
 								<option>-</option>";
 								$year = date('Y')+1;

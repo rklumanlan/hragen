@@ -562,10 +562,10 @@ class User_model extends CI_Model {
 				'title'=>$this->input->post('title'),
 				'prdesc'=>$this->input->post('PEdes'),
 				'loc'=>$this->input->post('loc'),
-				'month1'=>$this->input->post('mon1'),
-				'month2'=>$this->input->post('mon2'),
-				'year1'=>$this->input->post('TPy1'),
-				'year2'=>$this->input->post('TPy2')
+				'month1'=>$this->input->post('monA'),
+				'month2'=>$this->input->post('monB'),
+				'year1'=>$this->input->post('TPyA'),
+				'year2'=>$this->input->post('TPyB')
 			);
 		$query = $this->db->get_where('comp',$data4);
 		if($query->num_rows()>0)
@@ -621,10 +621,10 @@ class User_model extends CI_Model {
 				'title'=>$this->input->post('title'.$compCTR),
 				'prdesc'=>$this->input->post('PEdes'.$compCTR),
 				'loc'=>$this->input->post('loc'.$compCTR),
-				'month1'=>$this->input->post('1mon'.$compCTR),
-				'month2'=>$this->input->post('2mon'.$compCTR),
-				'year1'=>$this->input->post('1TPy'.$compCTR),
-				'year2'=>$this->input->post('2TPy'.$compCTR),
+				'month1'=>$this->input->post('mon1'.$compCTR),
+				'month2'=>$this->input->post('mon2'.$compCTR),
+				'year1'=>$this->input->post('TPy1'.$compCTR),
+				'year2'=>$this->input->post('TPy2'.$compCTR),
 			);
 		$this->db->where('comp_id',$compCTR);
 		$this->db->where('uid',$this->session->userdata('user_id'));

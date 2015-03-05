@@ -4,7 +4,65 @@ $(document).ready(function () {
 	var pr=1;
 	var educ=1;
 	var comp=1;
-
+	
+	$(".monTo").change(function(){
+		var id= this.id;
+		if(id=="monB"){
+			if($("#"+id).val() == 13){
+				var d= new Date();
+				var ndate = d.getFullYear();
+				$('#yearB').val(ndate);
+				$('#yearB').css('display','none');
+				$('#mTo').removeClass('col-sm-3');
+				$('#yTo').removeClass('col-sm-2');
+				$('#mTo').addClass('col-sm-5');
+			}
+			else{
+				$('#yearB').css('display','block');
+				$('#mTo').removeClass('col-sm-5');
+				$('#mTo').addClass('col-sm-3');
+				$('#yTo').addClass('col-sm-2');
+			}
+			
+		}
+		else{
+			if($("#"+id).val() == 13){
+				var id2 = id.replace('mon2', '');
+				var d= new Date();
+				var ndate = d.getFullYear();
+				$('#year2'+id2).val(ndate);
+				$('#year2'+id2).css('display','none');
+				$('#mTo'+id2).removeClass('col-sm-3');
+				$('#yTo'+id2).removeClass('col-sm-2');
+				$('#mTo'+id2).addClass('col-sm-5');
+			}
+			else{
+				var id2 = id.replace('mon2', '');
+				$('#year2'+id2).css('display','block');
+				$('#mTo'+id2).removeClass('col-sm-5');
+				$('#mTo'+id2).addClass('col-sm-3');
+				$('#yTo'+id2).addClass('col-sm-2');
+			}
+		}
+	});
+	$(".monTo2").change(function(){
+		var id= this.id;
+		if($("#"+id).val() == 13){
+			var d= new Date();
+			var ndate = d.getFullYear();
+			$('#year2').val(ndate);
+			$('#year2').css('display','none');
+			$('#mTo').removeClass('col-sm-3');
+			$('#yTo').removeClass('col-sm-2');
+			$('#mTo').addClass('col-sm-5');
+		}
+		else{
+			$('#year2').css('display','block');
+			$('#mTo').removeClass('col-sm-5');
+			$('#mTo').addClass('col-sm-3');
+			$('#yTo').addClass('col-sm-2');
+		}
+	});
 	$("#addref").click(function(){
 		while(pr<=3){
 
@@ -188,59 +246,99 @@ var Validator = function(form) {
 
 
 			var b=0;
-
+			$('.yearFrom:visible').each(function(index, value){
+				var id = $(this).attr('id');
+				
+				var id2 = id.replace('year1','');
+				if($("#year1"+id2).val() !="-" && 
+				$("#mon1"+id2).val() =="0"  &&
+				$("#mon2"+id2).val() =="13")
+				{
+					handleError("comTP_err"+ id2,
+					'Please be sure the start date is not after the end date.',
+					"mon1"+id2);
+					e.preventDefault();
+				}
+				if($("#year1"+id2).val() =="-" && 
+				$("#mon1"+id2).val() !="0"  &&
+				$("#mon2"+id2).val() =="13" )
+				{
+					handleError("comTP_err"+ id2,
+					'Please be sure the start date is not after the end date.',
+					"year1"+id2);
+					e.preventDefault();
+				}
+				else if($("#year1"+id2).val() =="-" && 
+				$("#mon1"+id2).val() =="0"  &&
+				$("#mon2"+id2).val() =="13")
+				{
+					handleError("comTP_err"+ id2,
+					'Please be sure the start date is not after the end date.',
+					"year1"+id2);
+					e.preventDefault();
+				}
+				else if(($("#year1"+id2).val() > $("#year2"+id2).val()))
+				{
+					handleError("comTP_err"+ id2,
+					'Please be sure the start date is not after the end date.',
+					"year2"+id2);
+					e.preventDefault();
+				}
+				else if(($("#year1"+id2).val() > $("#year2"+id2).val()) &&
+				$("#mon1"+id2).val() > $("#mon2"+id2).val())
+				{
+					handleError("comTP_err"+ id2,
+					'Please be sure the start date is not after the end date.',
+					"year2"+id2);
+					e.preventDefault();
+				}
+				else if(($("#year1"+id2).val()  == $("#year2"+id2).val() ) &&
+				$("#mon1"+id2).val()  > $("#mon2"+id2).val())
+				{
+					handleError("comTP_err"+ id2,
+					'Please be sure the start date is not after the end date.',
+					"mon2"+id2);
+					e.preventDefault();
+				}
+				else if(($("#year1"+id2).val() > $("#year2"+id2).val()) &&
+				$("#mon1"+id2).val() == $("#mon2"+id2).val())
+				{
+					handleError("comTP_err"+ id2,
+					'Please be sure the start date is not after the end date.',
+					"year2"+id2);
+					e.preventDefault();
+				}
+				else if( $("#mon1"+id2).val()=="0" || $("#mon21"+id2).val()=="0" ||
+				$("#year1"+id2).val()=="-" || $("#year2"+id2).val() =="-" )
+				{
+					handleError("comTP_err"+ id2,
+					'Please be sure the start date is not after the end date.',
+					"year2"+id2);
+					e.preventDefault();
+				}
+			
+			});
 			while(b<=$(".compname:visible").length-1){
 				window["compctr" + b] =$(".compname:visible").get(b).id;
 				window["compctr" + b]= window["compctr" + b].match(/\d+$/);
 				if($(".compname:visible").get(b).value == "")
 				{
-					handleError("compname_err"+ window["compctr" + b],'Company Name is required.',$(".compname:visible").get(b).id);
+					handleError("compname_err"+ window["compctr" + b],'Company Name is required.',
+					$(".compname:visible").get(b).id);
 					e.preventDefault();
 				}
 				if($(".title:visible").get(b).value == "")
 				{
-					handleError("title_err"+ window["compctr" + b],'Title is required.',$(".title:visible").get(b).id);
+					handleError("title_err"+ window["compctr" + b],'Title is required.',
+					$(".title:visible").get(b).id);
 					e.preventDefault();
 				}
 				if($(".loca:visible").get(b).value == "")
 				{
-					handleError("loc_err"+ window["compctr" + b],'Location is required.',$(".loca:visible").get(b).id);					e.
+					handleError("loc_err"+ window["compctr" + b],'Location is required.',
+					$(".loca:visible").get(b).id);					e.
 					preventDefault();
 				}
-
-
-				if(($(".yearFrom:visible").get(b).value > $(".yearTo:visible").get(b).value) &&
-				$(".monFrom:visible").get(b).value > $(".monTo:visible").get(b).value)
-				{
-					handleError("comTP_err"+ window["compctr" + b] ,
-					'Please be sure the start date is not after the end date.',
-					$(".yearTo:visible").get(b).id);
-					e.preventDefault();
-				}
-
-				else if(($(".yearFrom:visible").get(b).value == $(".yearTo:visible").get(b).value) &&
-				$(".monFrom:visible").get(b).value > $(".monTo:visible").get(b).value)
-				{
-					handleError("comTP_err"+ window["compctr" + b] ,
-					'Please be sure the start date is not after the end date.',$(".monTo:visible").get(b).id);
-					e.preventDefault();
-				}
-
-				else if(($(".yearFrom:visible").get(b).value > $(".yearTo:visible").get(b).value) &&
-				$(".monFrom:visible").get(b).value == $(".monTo:visible").get(b).value)
-				{
-					handleError("comTP_err"+ window["compctr" + b] ,
-					'Please be sure the start date is not after the end date.',$(".monTo:visible").get(b).id);
-					e.preventDefault();
-				}
-
-				else if( $(".monFrom:visible").get(b).value=="0" || $(".monTo:visible").get(b).value=="0" ||
-				$(".yearFrom:visible").get(b).value=="-" || $(".yearTo:visible").get(b).value =="-" )
-				{
-					handleError("comTP_err"+ window["compctr" + b] ,'Please select a valid date.',$(".yearTo:visible").get(b).id);
-					e.preventDefault();
-				}
-
 				b=b+1;
 
 			}
@@ -288,7 +386,7 @@ var Validator = function(form) {
 
 
 			if(imgval=='true'){
-				handleError("img_err",'Image size must be 1.5 inches X 1.5 inches.',"userfile");
+				handleError("img_err",'Image size must be 1.5 inches x 1.5 inches (144 pixels x 144 pixels).',"userfile");
 				e.preventDefault();
 
 			}
@@ -378,23 +476,28 @@ var Validator = function(form) {
 				handleError("loc2_err",'Location is required.',$("#loc").attr('id'));					e.
 				preventDefault();
 			}
-			if((($("#year1").val()> $("#year2").val()) &&
-			$("#mon1").val()> $("#mon2").val()) && $(".pexp").is(":visible"))
+			if((($("#yearA").val()> $("#yearB").val()) &&
+			$("#monA").val()> $("#monB").val()) && $(".pexp").is(":visible"))
 			{
-				handleError("comTP2_err",'Please be sure the start date is not after the end date.',$("#year2").attr('id'));
+				handleError("comTP2_err",'Please be sure the start date is not after the end date.',$("#yearB").attr('id'));
 				e.preventDefault();
 			}
-			else if((($("#year1").val() == $("#year2").val()) && $("#mon1").val() > $("#mon2").val())
+			else if($("#yearA").val()> $("#yearB").val())
+			{
+				handleError("comTP2_err",'Please be sure the start date is not after the end date.',$("#yearB").attr('id'));
+				e.preventDefault();
+			}
+			else if((($("#yearA").val() == $("#yearB").val()) && $("#monA").val() > $("#monB").val())
 			&& $(".pexp").is(":visible"))
 			{
-				handleError("comTP2_err",'Please be sure the start date is not after the end date.',$("#mon2").attr('id'));
+				handleError("comTP2_err",'Please be sure the start date is not after the end date.',$("#monB").attr('id'));
 				e.preventDefault();
 			}
 
-			else if(($("#mon1").val()=="0" || $("#mon2").val()=="0" ||
-			$("#year1").val()=="-" || $("#year2").val() =="-") && $(".pexp").is(":visible") )
+			else if(($("#monA").val()=="0" || $("#monB").val()=="0" ||
+			$("#yearA").val()=="-" || $("#yearB").val() =="-") && $(".pexp").is(":visible") )
 			{
-				handleError("comTP2_err",'Please select a valid date.',$("#year2").attr('id'));
+				handleError("comTP2_err",'Please select a valid date.',$("#yearB").attr('id'));
 				e.preventDefault();
 			}
 

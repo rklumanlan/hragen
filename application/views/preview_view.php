@@ -541,11 +541,32 @@
 								'8'=> 'August', '9'=>'September', '10'=>'October', 
 								'11'=>'November', '12'=>'December');
 					
-								echo form_dropdown('1mon'.$comp->comp_id.'', $month1,$comp->month1, 
-								"disabled class='form-control monFrom editcomp' id='1mon".$comp->comp_id."'");
+								echo form_dropdown('mon1'.$comp->comp_id.'', $month1,$comp->month1, 
+								"disabled class='form-control monFrom editcomp' id='mon1".$comp->comp_id."'");
+								if($comp->month2 == 13){
+									echo"
+									<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+									<script>
+									$(document).ready(function () {
+									if($('#mon2".$comp->comp_id."').val()==13){
+										$('#year2".$comp->comp_id."').css('display','none');
+										$('#mTo".$comp->comp_id."').removeClass('col-sm-3');
+										$('#yTo".$comp->comp_id."').removeClass('col-sm-2');
+										$('#mTo".$comp->comp_id."').addClass('col-sm-5');
+									}
+									else{
+										$('#year2".$comp->comp_id."').css('display','block');
+										$('#mTo".$comp->comp_id."').removeClass('col-sm-5');
+										$('#mTo".$comp->comp_id."').addClass('col-sm-3');
+										$('#yTo".$comp->comp_id."').addClass('col-sm-2');
+									}
+									});
+									</script>
+									";
+								}
 							echo "</div>
 							<div class='col-sm-2 pad'>
-								<select name='1TPy".$comp->comp_id."' id='1year".$comp->comp_id."' 
+								<select name='TPy1".$comp->comp_id."' id='year1".$comp->comp_id."' 
 								class='form-control yearFrom editcomp' 
 								disabled >
 								<option>-</option>";
@@ -564,17 +585,17 @@
 								
 							</div>
 							<div class='col-sm-2 pad'> - </div>
-							<div class='col-sm-3 pad'>";
+							<div class='col-sm-3 pad' id='mTo".$comp->comp_id."'>";
 								$month2 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
 								'3'=> 'March', '4'=>'May', '5'=>'May', '6'=> 'June', '7'=>'July', 
 								'8'=> 'August', '9'=>'September', '10'=>'October', 
-								'11'=>'November', '12'=>'December');
+								'11'=>'November', '12'=>'December', '13'=>'Present');
 					
-								echo form_dropdown('2mon'.$comp->comp_id.'', $month2,$comp->month2, 
-								"disabled class='form-control monTo editcomp' id='2mon".$comp->comp_id."'");
+								echo form_dropdown('mon2'.$comp->comp_id.'', $month2,$comp->month2, 
+								"disabled class='form-control monTo editcomp' id='mon2".$comp->comp_id."'");
 							echo"</div>
-							<div class='col-sm-2 pad'>
-								<select name='2TPy".$comp->comp_id."' id='2year".$comp->comp_id."'  
+							<div class='col-sm-2 pad' id='yTo".$comp->comp_id."'>
+								<select name='TPy2".$comp->comp_id."' id='year2".$comp->comp_id."'  
 								class='form-control yearTo editcomp' 
 								disabled >
 								<option>-</option>";
@@ -666,12 +687,12 @@
                             '8'=> 'August', '9'=>'September', '10'=>'October', 
                             '11'=>'November', '12'=>'December');
                 
-                            echo form_dropdown('mon1', $month1,'', 
-                            "class='form-control edtcomp' id='mon1'");
+                            echo form_dropdown('monA', $month1,'', 
+                            "class='form-control edtcomp' id='monA'");
                             ?>
                         	</div>
                         <div class='col-sm-2 pad'>
-                            <select name='TPy1' id='year1' class='form-control edtcomp'>
+                            <select name='TPyA' id='yearA' class='form-control edtcomp'>
                             <option>-</option>
                             <?php
                             $year = date('Y')+1; 
@@ -685,19 +706,19 @@
                             
                         </div>
                         <div class='col-sm-2 pad'> - </div>
-                        <div class='col-sm-3 pad'>
+                        <div class='col-sm-3 pad' id='mTo'>
                             <?php
                             $month2 = array('0'=>'Choose...','1'=>'January','2'=>'Febrauary',
                             '3'=> 'March', '4'=>'May', '5'=>'May', '6'=> 'June', '7'=>'July', 
                             '8'=> 'August', '9'=>'September', '10'=>'October', 
-                            '11'=>'November', '12'=>'December');
+                            '11'=>'November', '12'=>'December', '13'=>'Present');
                 
-                            echo form_dropdown('mon2', $month2,'', 
-                            "class='form-control edtcomp' id='mon2'");
+                            echo form_dropdown('monB', $month2,'', 
+                            "class='monTo form-control edtcomp' id='monB'");
                             ?>
                         	</div>
-                        <div class='col-sm-2 pad'>
-                            <select name='TPy2' id='year2'  class='form-control edtcomp'>
+                        <div class='col-sm-2 pad' id='yTo'>
+                            <select name='TPyB' id='yearB'  class='yearTo form-control edtcomp'>
                             <option>-</option>
                             <?php
                             $year = date('Y')+1; 
@@ -894,6 +915,7 @@
 		if($this->input->post('Updatetskills')){
 			echo"$('#'+$('.tskills').attr('id')).focus();";
 		}
+		
 	?>
 	});
 </script>
