@@ -137,13 +137,11 @@
 							</tr>
 							</thead>
 							<tbody>';
-						$ctr =1;
-						$ctr2=0;
 						foreach($results as $data) 
 						{ 
 							echo "<tr>
 							<td><input type='radio' name='viewCTR' value='".$data->uid."'/></td>
-							<td>".$ctr ."</td>
+							<td>".$data->pinfo_id."</td>
 							<td>".$data->fname." ".$data->mname." ".$data->lname ."</td>
 							<td>".$data->sex."</td>
 							<td>".$data->age."</td>
@@ -151,9 +149,6 @@
 							<td>".$data->os_code."</td>
 							<td>".$data->fwork_code."</td>";
 							
-							
-							
-							$ctr++;
 							
 						
 						
