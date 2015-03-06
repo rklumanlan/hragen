@@ -16,9 +16,9 @@
             <li>
             <?php echo anchor('user/logout', 'Logout'); ?>
             </li>
-            
+
             </ul>
-            
+
         </div>
         <!-- /.navbar-collapse -->
     </div>
@@ -32,69 +32,69 @@
     <header class="jumbotron hero-spacer col-xs-12 col-sm-12 col-md-12 col-lg-12  ">
         <div class="reg_form col-xs-10 col-sm-10 col-md-10 col-lg-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-1  ">
             <div class="update_pinfo1 col-lg-12">
-            	
-				<?php 
+
+				<?php
                 foreach($pinfo as $pinfo)
-                { 
+                {
                 echo "<div class='col-centered col-lg-3'>
                         <img src='". base_url()."uploads/".$pinfo->imgfname."' class='img-responsive' />
-                    </div >"; 
-                echo "<div class='col-centered col-lg-9'> 
+                    </div >";
+                echo "<div class='col-centered col-lg-9'>
 						<div class='form_title'>".
 						$pinfo->fname." ".$pinfo->mname." ".$pinfo->lname ."</div >
 						<div >".$pinfo->address." ".$pinfo->city."</div >
 						<div >".$pinfo->sex."</div >
 						<div >".$pinfo->age."</div >
 					</div >";
-				}?> 
-                 
+				}?>
+
     		</div>
             <div class="col-lg-12 update_pinfo1 "><hr class="lne" /></div>
-            
-            
-            <?php 
-			foreach($tskills as $tskills){     
+
+
+            <?php
+			foreach($tskills as $tskills){
 			?>
-            <div class=" col-lg-12 form-horizontal"> 
+            <div class=" col-lg-12 form-horizontal">
             	<div class='col-lg-12 form_title space bg'>Technical Skills</div >
                 <div class="col-lg-12 space">
                     <div class="col-lg-12 ">
                         <div class="col-sm-4 bold">
                            Languages:
                         </div>
-                        <div class="col-sm-8 tskills1 "> 
+                        <div class="col-sm-8 tskills1 ">
                             <?php echo $tskills->lang_code; ?>
                         </div>
-                        
+
                     </div>
                     <div class="col-lg-12 ">
                         <div class="col-sm-4 bold">
                            Operating Systems:
                         </div>
-                        <div class="col-sm-8 tskills1"> 
+                        <div class="col-sm-8 tskills1">
                             <?php echo $tskills->os_code; ?>
                         </div>
-                        
+
                     </div>
                     <div class="col-lg-12 ">
                         <div class="col-sm-4 bold ">
                             Frameworks:
                         </div>
-                        <div class="col-sm-8 tskills1"> 
+                        <div class="col-sm-8 tskills1">
                             <?php echo $tskills->fwork_code; ?>
                         </div>
-                        
+
                     </div>
-                    
+
                 </div>
             </div>
             <?php
 			}
 			?>
-            <div class=" col-lg-12"> 
+            <div class=" col-lg-12">
                 <div class='col-lg-12 form_title space bg'>
-                	Educational Attainment 
-                
+                	Educational Attainment
+
                 </div >
                 <?php foreach($educ as $educ){ ?>
                 <div class="col-lg-12 educ1 space">
@@ -113,11 +113,11 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <?php }?>
-            	
+
              <?php
-			
+
              function month($mon){
 				 switch ($mon) {
 					case "1":
@@ -158,18 +158,18 @@
 						break;
 					 }
 			}
-			
+
 			?>
-             
+
     		</div>
-            <div class=" col-lg-12"> 
+            <div class=" col-lg-12">
                 <div class='col-lg-12 form_title space bg'>
                 	Professional Experience
-                	
+
                 </div >
                 <div class="col-lg-12 comp1  ">
                 <?php foreach($comp as $comp){ ?>
-                
+
                     <div class="space col-lg-12 focus" id='comp<?php echo $comp->comp_id; ?>' tabindex='4'>
                         <div class="col-sm-12 bold">
                             <?php echo $comp->compname; ?>
@@ -187,23 +187,23 @@
                         <div class="col-lg-12 comp1 ">
                             <?php echo $comp->prdesc; ?>
                         </div>
-                    </div> 
-                </div>
+                    </div>
+
                 <?php  } ?>
-                	 
+                </div>
             </div>
-            
-            
-            
-            
-            
-            <div class=" col-lg-12"> 
+
+
+
+
+
+            <div class=" col-lg-12">
                 <div class='col-lg-12 form_title space bg'>
                 	Professional Reference
                 </div >
                 <div class=" col-lg-12 pref1" >
                     <?php foreach($pref as $pref){ ?>
-                    <div class="space col-lg-12 focus " id='pref<?php echo $pref->prefid; ?>' tabindex='5'> 
+                    <div class="space col-lg-12 focus " id='pref<?php echo $pref->prefid; ?>' tabindex='5'>
                         <div class="col-lg-12 " >
 							<?php echo $pref->pname; ?>
                         </div>
@@ -216,8 +216,8 @@
                     </div>
                     <?php } ?>
 				</div>
-                        
-					
+
+
             </div>
         </div>
-    </header>       
+    </header>
