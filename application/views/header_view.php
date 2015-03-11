@@ -16,7 +16,6 @@
     <link href="<?php echo base_url();?>css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link  href="<?php echo base_url();?>/css/bootstrap/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>/css/bootstrap/css/agency.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -28,11 +27,7 @@
 
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/images/tecbico.png">
 	  <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/style.css" />
-	  <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/bootstrap/css/main.css" />
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
 
 
 </head>
@@ -50,32 +45,37 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <?php echo anchor('user/index', '<div><img src="'.base_url().'/assets/images/tecblogo.png" height="10%" class="img-responsive" alt="NTECB"  />
-              Nemoto Technical Brain Phil. Co. Inc.</div>','class="navbar-brand"'); ?>
+              <div class="navbar-brand compname"><?php echo anchor('user/index', '<img
+                src="'.base_url().'/assets/images/tecblogo.png" class="logo" alt="NTECB"  />
+              Nemoto Technical Brain Phil. Co. Inc.'); ?>
+            </div>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li class="hidden">
-                <a href="#page-top"></a>
+                  <a href="#page-top"></a>
               </li>
               <li>
-                <a class="page-scroll" href="#services">Home</a>
+                  <a class="page-scroll" href="#services">Services</a>
               </li>
               <li>
-                <a class="page-scroll" href="#portfolio">About Us</a>
+                  <a class="page-scroll" href="#portfolio">Portfolio</a>
               </li>
               <li>
-                <a class="page-scroll" href="#contact">Contact</a>
+                  <a class="page-scroll" href="#about">About</a>
               </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>
-                <i class="glyphicon glyphicon-chevron-down"></i></a>
-                <ul class="dropdown-menu">
-                  <li ><a data-toggle="modal" data-target="#login" href="">Login</a></li>
-                </ul>
+              <li>
+                  <a class="page-scroll" href="#team">Team</a>
               </li>
-            </ul>
+              <li>
+                  <a class="page-scroll" href="#contact">Contact</a>
+              </li>
+              <li >
+                <a data-toggle="modal" data-target="#login" href="">
+                  <i class="glyphicon glyphicon-lock"></i>
+                </a>
+              </li>
           </div>
         <!-- /.navbar-collapse -->
         </div>

@@ -35,7 +35,7 @@ a.active {
 }
 
 a {
-    color: #fed136;
+    color: #E4F1FE;
 }
 
 a:hover,
@@ -65,7 +65,7 @@ h6 {
 }
 
 .bg-darkest-gray {
-    background-color: #222;
+    background-color: #22A7F0;
 }
 
 .btn-primary {
@@ -169,14 +169,28 @@ fieldset[disabled] .btn-xl.active {
     background-color: #fff;
 }
 
+.navbar-nav{
+    margin: 7.5px -15px;
+}
+
+.navbar-brand{
+  height:100%;
+  padding: 0px 15px;
+
+}
+
 .navbar-default {
     border-color: transparent;
-    background-color: #222;
+    background-color: #22A7F0;
 }
 
 .navbar-default .navbar-brand {
     font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
     color: #fed136;
+}
+
+.navbar-default .navbar-brand .logo {
+    height:80px;
 }
 
 .navbar-default .navbar-brand:hover,
@@ -221,7 +235,7 @@ fieldset[disabled] .btn-xl.active {
 .navbar-default .navbar-nav>.active>a {
     border-radius: 0;
     color: #fff;
-    background-color: #fed136;
+    background-color: #4183D7;
 }
 
 .navbar-default .navbar-nav>.active>a:hover,
@@ -231,8 +245,9 @@ fieldset[disabled] .btn-xl.active {
 }
 
 @media(min-width:768px) {
+
     .navbar-default {
-        padding: 25px 0;
+        padding: 10px 0;
         border: 0;
         background-color: transparent;
         -webkit-transition: padding .3s;
@@ -241,23 +256,24 @@ fieldset[disabled] .btn-xl.active {
     }
 
     .navbar-default .navbar-brand {
-        font-size: 2em;
+        font-size: 1.8em;
         -webkit-transition: all .3s;
         -moz-transition: all .3s;
         transition: all .3s;
     }
 
-    .navbar-default .navbar-nav>.active>a {
-        border-radius: 3px;
-    }
 
     .navbar-default.navbar-shrink {
-        padding: 10px 0;
-        background-color: #222;
+        background-color: #22A7F0;
+        margin:0px;
     }
 
     .navbar-default.navbar-shrink .navbar-brand {
         font-size: 1.5em;
+    }
+
+    .navbar-default.navbar-shrink .navbar-brand .logo {
+        height:70px;
     }
 }
 
@@ -265,7 +281,7 @@ header {
     text-align: center;
     color: #fff;
     background-attachment: scroll;
-    background-image: url(../img/header-bg.jpg);
+    background-image: url(../../../assets/images/mac.jpg);
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
@@ -652,8 +668,8 @@ aside.clients img {
 }
 
 section#contact {
-    background-color: #222;
-    background-image: url(../img/map-image.png);
+    background-color: #3498DB;
+    background-image: url(../../../img/map-image.png);
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -749,7 +765,7 @@ ul.social-buttons li a {
     line-height: 40px;
     outline: 0;
     color: #fff;
-    background-color: #222;
+    background-color: #22A7F0;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     transition: all .3s;
@@ -823,7 +839,7 @@ ul.social-buttons li a:active {
     width: 1px;
     height: 75px;
     margin-left: 35px;
-    background-color: #222;
+    background-color: #22A7F0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
@@ -833,7 +849,7 @@ ul.social-buttons li a:active {
     z-index: 1052;
     width: 1px;
     height: 75px;
-    background-color: #222;
+    background-color: #22A7F0;
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
@@ -863,5 +879,6 @@ img::-moz-selection {
 }
 
 body {
+    background-color:#ecf0f1;
     webkit-tap-highlight-color: #fed136;
 }
