@@ -65,7 +65,7 @@
                             <i class="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="<?php echo base_url();?>img/portfolio/roundicons.png" class="img-responsive" alt="">
+                    <img src="<?php echo base_url();?>/img/portfolio/roundicons.png" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Round Icons</h4>
@@ -79,7 +79,7 @@
                             <i class="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="<?php echo base_url();?>img/portfolio/startup-framework.png" class="img-responsive" alt="">
+                    <img src="<?php echo base_url();?>/img/portfolio/startup-framework.png" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Startup Framework</h4>
@@ -93,7 +93,7 @@
                             <i class="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="<?php echo base_url();?>img/portfolio/treehouse.png" class="img-responsive" alt="">
+                    <img src="<?php echo base_url();?>/img/portfolio/treehouse.png" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Treehouse</h4>
@@ -107,7 +107,7 @@
                             <i class="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="<?php echo base_url();?>img/portfolio/golden.png" class="img-responsive" alt="">
+                    <img src="<?php echo base_url();?>/img/portfolio/golden.png" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Golden</h4>
@@ -121,7 +121,7 @@
                             <i class="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="<?php echo base_url();?>img/portfolio/escape.png" class="img-responsive" alt="">
+                    <img src="<?php echo base_url();?>/img/portfolio/escape.png" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Escape</h4>
@@ -135,7 +135,7 @@
                             <i class="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="<?php echo base_url();?>img/portfolio/dreams.png" class="img-responsive" alt="">
+                    <img src="<?php echo base_url();?>/img/portfolio/dreams.png" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Dreams</h4>
@@ -160,7 +160,7 @@
                 <ul class="timeline">
                     <li>
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="<?php echo base_url();?>img/about/1.jpg" alt="">
+                            <img class="img-circle img-responsive" src="<?php echo base_url();?>/img/about/1.jpg" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -174,7 +174,7 @@
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="<?php echo base_url();?>img/about/2.jpg" alt="">
+                            <img class="img-circle img-responsive" src="<?php echo base_url();?>/img/about/2.jpg" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -188,7 +188,7 @@
                     </li>
                     <li>
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="<?php echo base_url();?>img/about/3.jpg" alt="">
+                            <img class="img-circle img-responsive" src="<?php echo base_url();?>/img/about/3.jpg" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -202,7 +202,7 @@
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="<?php echo base_url();?>img/about/4.jpg" alt="">
+                            <img class="img-circle img-responsive" src="<?php echo base_url();?>/img/about/4.jpg" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -239,7 +239,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img src="<?php echo base_url();?>img/team/1.jpg" class="img-responsive img-circle" alt="">
+                    <img src="<?php echo base_url();?>/img/team/1.jpg" class="img-responsive img-circle" alt="">
                     <h4>Kay Garland</h4>
                     <p class="text-muted">Lead Designer</p>
                     <ul class="list-inline social-buttons">
@@ -254,7 +254,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img src="<?php echo base_url();?>img/team/2.jpg" class="img-responsive img-circle" alt="">
+                    <img src="<?php echo base_url();?>/img/team/2.jpg" class="img-responsive img-circle" alt="">
                     <h4>Larry Parker</h4>
                     <p class="text-muted">Lead Marketer</p>
                     <ul class="list-inline social-buttons">
@@ -269,7 +269,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img src="<?php echo base_url();?>img/team/3.jpg" class="img-responsive img-circle" alt="">
+                    <img src="<?php echo base_url();?>/img/team/3.jpg" class="img-responsive img-circle" alt="">
                     <h4>Diana Pertersen</h4>
                     <p class="text-muted">Lead Developer</p>
                     <ul class="list-inline social-buttons">
@@ -297,22 +297,22 @@
         <div class="row">
             <div class="col-md-3 col-sm-6">
                 <a href="#">
-                    <img src="<?php echo base_url();?>img/logos/envato.jpg" class="img-responsive img-centered" alt="">
+                    <img src="<?php echo base_url();?>/img/logos/envato.jpg" class="img-responsive img-centered" alt="">
                 </a>
             </div>
             <div class="col-md-3 col-sm-6">
                 <a href="#">
-                    <img src="<?php echo base_url();?>img/logos/designmodo.jpg" class="img-responsive img-centered" alt="">
+                    <img src="<?php echo base_url();?>/img/logos/designmodo.jpg" class="img-responsive img-centered" alt="">
                 </a>
             </div>
             <div class="col-md-3 col-sm-6">
                 <a href="#">
-                    <img src="<?php echo base_url();?>img/logos/themeforest.jpg" class="img-responsive img-centered" alt="">
+                    <img src="<?php echo base_url();?>/img/logos/themeforest.jpg" class="img-responsive img-centered" alt="">
                 </a>
             </div>
             <div class="col-md-3 col-sm-6">
                 <a href="#">
-                    <img src="<?php echo base_url();?>img/logos/creative-market.jpg" class="img-responsive img-centered" alt="">
+                    <img src="<?php echo base_url();?>/img/logos/creative-market.jpg" class="img-responsive img-centered" alt="">
                 </a>
             </div>
         </div>
