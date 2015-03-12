@@ -393,6 +393,12 @@
 
 
 
-            <?php echo form_close(); ?>
-        </div>
-	</div>
+
+
+
+
+  <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/jquery.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>assets/validation.js"></script>
+        </header>
+<script type="text/javascript" src="<?php echo base_url();?>assets/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/validation.js"></script>
