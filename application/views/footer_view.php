@@ -186,8 +186,6 @@
   <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/bootstrap.min.js"></script>
 
   <!-- Plugin JavaScript -->
-
-  <script type="text/javascript" src="<?php echo base_url();?>assets/jquery.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/jquery.easing.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/classie.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/cbpAnimatedHeader.js"></script>
