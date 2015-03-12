@@ -72,9 +72,19 @@
                   <a class="page-scroll" href="#contact">Contact</a>
               </li>
               <li >
-                <a data-toggle="modal" data-target="#login" href="">
-                  <i class="glyphicon glyphicon-lock"></i>
-                </a>
+                <?php
+                if($this->session->userdata('user_email')!=TRUE){
+                  echo '
+                  <a data-toggle="modal" data-target="#login" href="">
+                    <i class="glyphicon glyphicon-lock"></i>
+                  </a>';
+
+                }
+                else{
+                  echo anchor('user/logout', 'Logout');
+                }
+                ?>
+
               </li>
           </div>
         <!-- /.navbar-collapse -->
@@ -116,7 +126,7 @@
                                 <div class="col-md-12 control">
                                     <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
                                         Don't have an account!
-                                    <a onclick="reg()" href="#" >Register here.</a>
+                                    <a onclick="reg()" href="#" class="reg" >Register here.</a>
                                     </div>
                                 </div>
                             </div>

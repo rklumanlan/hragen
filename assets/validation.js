@@ -1,10 +1,24 @@
+function reg(){
+	$('#register').modal('show');
+	$('#login').modal('hide');
+}
+
 $(document).ready(function () {
 	$(".error").hide();
 	$(".error").css('margin-bottom','0px');
+
+	$('input').focus(function() {
+    $(this).addClass("focus");
+	});
+
+	$('input').blur(function() {
+	  $(this).removeClass("focus");
+	});
+
 	var pr=1;
 	var educ=1;
 	var comp=1;
-	
+
 	$(".monTo").change(function(){
 		var id= this.id;
 		if(id=="monB"){
@@ -23,7 +37,7 @@ $(document).ready(function () {
 				$('#mTo').addClass('col-sm-3');
 				$('#yTo').addClass('col-sm-2');
 			}
-			
+
 		}
 		else{
 			if($("#"+id).val() == 13){
@@ -248,9 +262,9 @@ var Validator = function(form) {
 			var b=0;
 			$('.yearFrom:visible').each(function(index, value){
 				var id = $(this).attr('id');
-				
+
 				var id2 = id.replace('year1','');
-				if($("#year1"+id2).val() !="-" && 
+				if($("#year1"+id2).val() !="-" &&
 				$("#mon1"+id2).val() =="0"  &&
 				$("#mon2"+id2).val() =="13")
 				{
@@ -259,7 +273,7 @@ var Validator = function(form) {
 					"mon1"+id2);
 					e.preventDefault();
 				}
-				if($("#year1"+id2).val() =="-" && 
+				if($("#year1"+id2).val() =="-" &&
 				$("#mon1"+id2).val() !="0"  &&
 				$("#mon2"+id2).val() =="13" )
 				{
@@ -268,7 +282,7 @@ var Validator = function(form) {
 					"year1"+id2);
 					e.preventDefault();
 				}
-				else if($("#year1"+id2).val() =="-" && 
+				else if($("#year1"+id2).val() =="-" &&
 				$("#mon1"+id2).val() =="0"  &&
 				$("#mon2"+id2).val() =="13")
 				{
@@ -316,7 +330,7 @@ var Validator = function(form) {
 					"year2"+id2);
 					e.preventDefault();
 				}
-			
+
 			});
 			while(b<=$(".compname:visible").length-1){
 				window["compctr" + b] =$(".compname:visible").get(b).id;

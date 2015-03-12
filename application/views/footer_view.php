@@ -180,27 +180,24 @@
 </div>
 
 <!-- jQuery -->
-  <script src="<?php echo base_url();?>css/bootstrap/js/jquery.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/jquery.js"></script>
 
   <!-- Bootstrap Core JavaScript -->
-  <script src="<?php echo base_url();?>css/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/bootstrap.min.js"></script>
 
   <!-- Plugin JavaScript -->
-  <script src="<?php echo base_url();?>css/bootstrap/js/jquery.easing.min.js"></script>
-  <script src="<?php echo base_url();?>css/bootstrap/js/classie.js"></script>
-  <script src="<?php echo base_url();?>css/bootstrap/js/cbpAnimatedHeader.js"></script>
+
+  <script type="text/javascript" src="<?php echo base_url();?>assets/jquery.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/jquery.easing.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/classie.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/cbpAnimatedHeader.js"></script>
 
   <!-- Custom Theme JavaScript -->
-  <script src="<?php echo base_url();?>css/bootstrap/js/agency.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/agency.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>assets/validation.js"></script>
 
 
 
-<script>
-   function reg(){
-		$('#register').modal('show');
-		$('#login').modal('hide');
-   }
-</script>
 
 </body>
 
