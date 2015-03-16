@@ -28,9 +28,9 @@ class User extends CI_Controller{
 		$data['os']=$this->user_model->pop_os();
 		$data['fwork']=$this->user_model->pop_fwork();
 		$data['title']= 'Welcome';
-        $this->load->view('header_view') ;
+    $this->load->view('header_view',$data) ;
 		$this->load->view('welcome_view', $data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view', $data);
 	}
 	public function login()
 	{
@@ -46,6 +46,7 @@ class User extends CI_Controller{
 					$data['language']=$this->user_model->pop_lang();
 					$data['os']=$this->user_model->pop_os();
 					$data['fwork']=$this->user_model->pop_fwork();
+					$data['title']="Profile";
 
 					$data['pinfo']=$this->user_model->pop_pinfo();
 					$data['tskills']=$this->user_model->pop_tskills();
@@ -53,23 +54,25 @@ class User extends CI_Controller{
 					$data['comp']=$this->user_model->pop_comp();
 					$data['pref']=$this->user_model->pop_pref();
 
-					$this->load->view('header_view');
+					$this->load->view('header_view', $data);
 					$this->load->view('welcomenew2_view',  $data);
-					$this->load->view('footer_view');
+					$this->load->view('footer_view', $data);
 
 
 				}
 				else
 				{
 					if($this->session->userdata('uname')=='admin'){
+
+						$data['title']="Admin";
 						$data['language']=$this->user_model->pop_lang();
 						$data['os']=$this->user_model->pop_os();
 						$data['fwork']=$this->user_model->pop_fwork();
 						$data['results']="";
 
-						$this->load->view('header_view');
+						$this->load->view('header_view', $data);
 						$this->load->view('admin_view', $data);
-						$this->load->view('footer_view');
+						$this->load->view('footer_view', $data);
 					}
 					else{
 					$this->welcome();
@@ -77,13 +80,13 @@ class User extends CI_Controller{
 				}
 		}
 		else{
-			echo"<script>alert('Incorrect Email/Password!');</script>";
 			$this->index();
 		}
 	}
 	public function profile()
 	{
 		if($this->session->userdata('uname')=='admin'){
+			$data['title']="Admin";
 			$data['language']=$this->user_model->pop_lang();
 			$data['os']=$this->user_model->pop_os();
 			$data['fwork']=$this->user_model->pop_fwork();
@@ -98,6 +101,7 @@ class User extends CI_Controller{
 				$data['language']=$this->user_model->pop_lang();
 				$data['os']=$this->user_model->pop_os();
 				$data['fwork']=$this->user_model->pop_fwork();
+				$data['title']="Profile";
 
 				$data['pinfo']=$this->user_model->pop_pinfo();
 				$data['tskills']=$this->user_model->pop_tskills();
@@ -105,14 +109,15 @@ class User extends CI_Controller{
 				$data['comp']=$this->user_model->pop_comp();
 				$data['pref']=$this->user_model->pop_pref();
 
-				$this->load->view('header_view');
+				$this->load->view('header_view', $data);
 				$this->load->view('welcomenew2_view',  $data);
-				$this->load->view('footer_view');
+				$this->load->view('footer_view', $data);
 			}
 			else{
 				$data['language']=$this->user_model->pop_lang();
 				$data['os']=$this->user_model->pop_os();
 				$data['fwork']=$this->user_model->pop_fwork();
+				$data['title']="Welcome";
 
 				$data['pinfo']=$this->user_model->pop_pinfo();
 				$data['tskills']=$this->user_model->pop_tskills();
@@ -120,19 +125,12 @@ class User extends CI_Controller{
 				$data['comp']=$this->user_model->pop_comp();
 				$data['pref']=$this->user_model->pop_pref();
 
-				$this->load->view('header_view');
+				$this->load->view('header_view', $data);
 				$this->load->view('welcome_view',  $data);
-				$this->load->view('footer_view');
+				$this->load->view('footer_view', $data);
 
 			}
 		}
-	}
-	public function thank()
-	{
-		$data['title']= 'Thank You';
-		$this->load->view('header_view',$data);
-		$this->load->view('thank_view.php', $data);
-		$this->load->view('footer_view',$data);
 	}
 	public function search()
 	{
@@ -155,7 +153,7 @@ class User extends CI_Controller{
 			$config['first_tag_open'] = $config['last_tag_open']=
 			$config['next_tag_open']= $config['prev_tag_open'] =
 			$config['num_tag_open'] = '<li>';
-        	$config['first_tag_close'] = $config['last_tag_close']=
+      $config['first_tag_close'] = $config['last_tag_close']=
 			$config['next_tag_close']= $config['prev_tag_close'] = $config['num_tag_close'] = '</li>';
 
 			$config['cur_tag_open'] = "<li><span><b>";
@@ -166,9 +164,9 @@ class User extends CI_Controller{
 			$data["results"] = $this->user_model->fetch_applicants($config["per_page"], $page);
 			$data["links"] = $this->pagination->create_links();
 
-			$this->load->view('header_view');
+			$this->load->view('header_view', $data);
 			$this->load->view('admin_view.php', $data);
-			$this->load->view('footer_view');
+			$this->load->view('footer_view', $data);
 
 		}
 	}
@@ -182,17 +180,24 @@ class User extends CI_Controller{
 			$this->index();
 		}
 		else{
-			$data['title']= 'View Applicant';
+			if($this->input->post('viewCTR')!=""){
+				$data['title']= 'View Applicant';
 
-			$data['pinfo']=$this->user_model->pop_pinfo();
-			$data['tskills']=$this->user_model->pop_tskills();
-			$data['educ']=$this->user_model->pop_educ();
-			$data['comp']=$this->user_model->pop_comp();
-			$data['pref']=$this->user_model->pop_pref();
+				$data['pinfo']=$this->user_model->pop_pinfo();
+				$data['tskills']=$this->user_model->pop_tskills();
+				$data['educ']=$this->user_model->pop_educ();
+				$data['comp']=$this->user_model->pop_comp();
+				$data['pref']=$this->user_model->pop_pref();
 
-			$this->load->view('header_view');
-			$this->load->view('viewapp_view.php', $data);
-			$this->load->view('footer_view');
+				$this->load->view('header_view', $data);
+				$this->load->view('viewapp_view.php', $data);
+				$this->load->view('footer_view', $data);
+			}
+			else{
+				$this->search();
+
+			}
+
 		}
 	}
 	public function registration()
@@ -215,7 +220,7 @@ class User extends CI_Controller{
 				$this->index();
 			}
 			else{
-				$this->thank();
+				$this->index();
 			}
 		}
 	}
@@ -296,11 +301,11 @@ class User extends CI_Controller{
 				$data['pref']=$this->user_model->pop_pref();
 				$data['tskills']=$this->user_model->pop_tskills();
 
-				$data['title']= 'Welcome';
+				$data['title']= 'Preview';
 
-				$this->load->view('header_view') ;
+				$this->load->view('header_view', $data) ;
 				$this->load->view('preview_view', $data);
-				$this->load->view('footer_view');
+				$this->load->view('footer_view', $data);
 
 			}
 			else
@@ -308,11 +313,12 @@ class User extends CI_Controller{
 				$data['language']=$this->user_model->pop_lang();
 				$data['os']=$this->user_model->pop_os();
 				$data['fwork']=$this->user_model->pop_fwork();
+				$data['title']="Welcome";
 
 
-				$this->load->view('header_view');
+				$this->load->view('header_view', $data);
 				$this->load->view('welcome_view.php', $data);
-				$this->load->view('footer_view');
+				$this->load->view('footer_view', $data);
 			}
 		}
 
@@ -386,10 +392,11 @@ class User extends CI_Controller{
 			$data['comp']=$this->user_model->pop_comp();
 			$data['pref']=$this->user_model->pop_pref();
 			$data['tskills']=$this->user_model->pop_tskills();
+			$data['title']="Profile";
 
-			$this->load->view('header_view');
+			$this->load->view('header_view', $data);
 			$this->load->view('welcomenew2_view.php',$data);
-			$this->load->view('footer_view');
+			$this->load->view('footer_view', $data);
 		}
 		else{
 			$data['pinfo']=$this->user_model->pop_pinfo();
@@ -397,10 +404,11 @@ class User extends CI_Controller{
 			$data['comp']=$this->user_model->pop_comp();
 			$data['pref']=$this->user_model->pop_pref();
 			$data['tskills']=$this->user_model->pop_tskills();
+			$data['title']="Preview";
 
-			$this->load->view('header_view');
+			$this->load->view('header_view', $data);
 			$this->load->view('preview_view.php',$data);
-			$this->load->view('footer_view');
+			$this->load->view('footer_view', $data);
 
 
 		}

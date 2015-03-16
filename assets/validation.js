@@ -7,12 +7,12 @@ $(document).ready(function () {
 	$(".error").hide();
 	$(".error").css('margin-bottom','0px');
 
-	$('input').focus(function() {
-    $(this).addClass("focus");
+	$('input:text, textarea, select').focus(function() {
+    $(this).addClass("focusborder");
 	});
 
-	$('input').blur(function() {
-	  $(this).removeClass("focus");
+	$('input:text, textarea, select').blur(function() {
+	  $(this).removeClass("focusborder");
 	});
 
 	var pr=1;
@@ -273,6 +273,7 @@ var Validator = function(form) {
 					"mon1"+id2);
 					e.preventDefault();
 				}
+
 				if($("#year1"+id2).val() =="-" &&
 				$("#mon1"+id2).val() !="0"  &&
 				$("#mon2"+id2).val() =="13" )
@@ -282,6 +283,7 @@ var Validator = function(form) {
 					"year1"+id2);
 					e.preventDefault();
 				}
+
 				else if($("#year1"+id2).val() =="-" &&
 				$("#mon1"+id2).val() =="0"  &&
 				$("#mon2"+id2).val() =="13")
@@ -291,6 +293,7 @@ var Validator = function(form) {
 					"year1"+id2);
 					e.preventDefault();
 				}
+
 				else if(($("#year1"+id2).val() > $("#year2"+id2).val()))
 				{
 					handleError("comTP_err"+ id2,
@@ -298,6 +301,7 @@ var Validator = function(form) {
 					"year2"+id2);
 					e.preventDefault();
 				}
+
 				else if(($("#year1"+id2).val() > $("#year2"+id2).val()) &&
 				$("#mon1"+id2).val() > $("#mon2"+id2).val())
 				{
@@ -306,6 +310,7 @@ var Validator = function(form) {
 					"year2"+id2);
 					e.preventDefault();
 				}
+
 				else if(($("#year1"+id2).val()  == $("#year2"+id2).val() ) &&
 				$("#mon1"+id2).val()  > $("#mon2"+id2).val())
 				{
@@ -314,6 +319,7 @@ var Validator = function(form) {
 					"mon2"+id2);
 					e.preventDefault();
 				}
+
 				else if(($("#year1"+id2).val() > $("#year2"+id2).val()) &&
 				$("#mon1"+id2).val() == $("#mon2"+id2).val())
 				{
@@ -322,6 +328,7 @@ var Validator = function(form) {
 					"year2"+id2);
 					e.preventDefault();
 				}
+
 				else if( $("#mon1"+id2).val()=="0" || $("#mon21"+id2).val()=="0" ||
 				$("#year1"+id2).val()=="-" || $("#year2"+id2).val() =="-" )
 				{
@@ -331,32 +338,30 @@ var Validator = function(form) {
 					e.preventDefault();
 				}
 
+				if($("#loc"+id2).get(b).value == "")
+				{
+					handleError("loc_err"+ id2,'Location is required.',
+					"loc"+id2);
+					e.preventDefault();
+				}
+
+				if($("#compname"+id2).val() == "")
+				{
+					handleError("compname_err"+ id2,
+					'Company name is required.',
+					"compname"+id2);
+					e.preventDefault();
+				}
+
+				if($("#title"+id2).val() == "")
+				{
+					handleError("title_err"+ id2,
+					'Title is required.',
+					"title"+id2);
+					e.preventDefault();
+				}
+
 			});
-			while(b<=$(".compname:visible").length-1){
-				window["compctr" + b] =$(".compname:visible").get(b).id;
-				window["compctr" + b]= window["compctr" + b].match(/\d+$/);
-				if($(".compname:visible").get(b).value == "")
-				{
-					handleError("compname_err"+ window["compctr" + b],'Company Name is required.',
-					$(".compname:visible").get(b).id);
-					e.preventDefault();
-				}
-				if($(".title:visible").get(b).value == "")
-				{
-					handleError("title_err"+ window["compctr" + b],'Title is required.',
-					$(".title:visible").get(b).id);
-					e.preventDefault();
-				}
-				if($(".loca:visible").get(b).value == "")
-				{
-					handleError("loc_err"+ window["compctr" + b],'Location is required.',
-					$(".loca:visible").get(b).id);					e.
-					preventDefault();
-				}
-				b=b+1;
-
-			}
-
 
 			var c=0;
 			while(c<=$(".prname:visible").length-1){

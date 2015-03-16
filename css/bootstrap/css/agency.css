@@ -50,7 +50,7 @@ a.active {
     text-decoration: none;
 }
 
-.focus {
+.focusborder {
     border: 2px solid #659CEF;
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
@@ -78,6 +78,10 @@ h6 {
 
 .bg-darkest-gray {
     background-color: #22A7F0;
+}
+
+.btn{
+    border-radius:0px;
 }
 
 .btn-primary {
@@ -274,7 +278,6 @@ fieldset[disabled] .btn-xl.active {
         transition: all .3s;
     }
 
-
     .navbar-default.navbar-shrink {
         background-color: #212121;
         margin:0px;
@@ -347,6 +350,10 @@ header .intro-text .intro-heading {
         line-height: 75px;
     }
 }
+.panel-body{
+    pdding-left:30px;
+    padding-right:15px;
+}
 
 section {
     padding: 100px 0;
@@ -370,6 +377,10 @@ section h3.section-subheading {
 @media(min-width:768px) {
     section {
         padding: 150px 0;
+    }
+    #register {
+        padding: 50px 0;
+        padding-bottom:0px;
     }
 }
 
@@ -673,6 +684,10 @@ section h3.section-subheading {
 
 .team-member p {
     margin-top: 0;
+}
+
+.top{
+    margin-top:100px;
 }
 
 aside.clients img {
