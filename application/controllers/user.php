@@ -16,7 +16,7 @@ class User extends CI_Controller{
 			$this->welcome();
 		}
 		else{
-			$data['title']= 'Home';
+			$data['title']= 'Nemoto Technical Brain Phil Co. Inc.';
 			$this->load->view('header_view',$data);
 			$this->load->view("registration_view", $data);
 			$this->load->view('footer_view',$data);

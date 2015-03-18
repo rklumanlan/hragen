@@ -27,7 +27,7 @@
       $('#login2').modal('show');
     </script>";
   }
-  if($title=="Home"){
+  if($title=="Nemoto Technical Brain Phil Co. Inc."){
     echo '
     <script type="text/javascript" src="'.base_url().'assets/validation.js"></script>
     <script type="text/javascript"  src="'.base_url().'css/bootstrap/js/jquery.easing.min.js"></script>

@@ -240,46 +240,22 @@
             <div class="col-sm-4">
                 <div class="team-member">
                     <img src="<?php echo base_url();?>/img/team/1.jpg" class="img-responsive img-circle" alt="">
-                    <h4>Kay Garland</h4>
-                    <p class="text-muted">Lead Designer</p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
+                    <h4>Jo-Ries P. Canino</h4>
+                    <p class="text-muted">Programmer</p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="team-member">
                     <img src="<?php echo base_url();?>/img/team/2.jpg" class="img-responsive img-circle" alt="">
-                    <h4>Larry Parker</h4>
-                    <p class="text-muted">Lead Marketer</p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
+                    <h4>John Kenneth Magtoto</h4>
+                    <p class="text-muted">Programmer</p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="team-member">
                     <img src="<?php echo base_url();?>/img/team/3.jpg" class="img-responsive img-circle" alt="">
-                    <h4>Diana Pertersen</h4>
-                    <p class="text-muted">Lead Developer</p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
+                    <h4>Roman Kevin M. Lumanlan</h4>
+                    <p class="text-muted">Programmer</p>
                 </div>
             </div>
         </div>
