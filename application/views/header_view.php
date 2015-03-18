@@ -48,12 +48,10 @@
               <div class="navbar-brand compname">
                   <?php
                   if($this->session->userdata('logged_in')!=TRUE){
-                      echo anchor('user/index', '<img src="'.base_url().'/assets/images/tecblogo.png" class="logo" alt="NTECB"/>
-                      Nemoto Technical Brain Phil. Co. Inc.');
+                      echo anchor('user/index', '<img src="'.base_url().'/assets/images/tecblogo.png" class="logo" alt="NTECB"/>');
                   }
                   else{
-                        echo anchor('user/profile', '<img src="'.base_url().'/assets/images/tecblogo.png" class="logo" alt="NTECB"/>
-                        Nemoto Technical Brain Phil. Co. Inc.');
+                        echo anchor('user/profile', '<img src="'.base_url().'/assets/images/tecblogo.png" class="logo" alt="NTECB"/>');
                   }
                   ?>
             </div>
