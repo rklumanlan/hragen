@@ -12,13 +12,7 @@
   <!-- jQuery -->
   <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/jquery.js"></script>
 
-  <!-- Bootstrap Core JavaScript -->
-  <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/bootstrap.min.js"></script>
 
-
-
-  <!-- Custom Theme JavaScript -->
-  <script type="text/javascript" src="<?php echo base_url();?>css/bootstrap/js/agency.js"></script>
 
   <?php
   if($this->input->post('regbtn')){
@@ -29,6 +23,8 @@
   }
   if($title=="Nemoto Technical Brain Phil Co. Inc."){
     echo '
+    <script type="text/javascript" src="'.base_url().'css/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="'.base_url().'css/bootstrap/js/agency.js"></script>
     <script type="text/javascript" src="'.base_url().'assets/validation.js"></script>
     <script type="text/javascript"  src="'.base_url().'css/bootstrap/js/jquery.easing.min.js"></script>
     <script type="text/javascript"  src="'.base_url().'css/bootstrap/js/classie.js"></script>
@@ -44,7 +40,9 @@
         });
     </script>';
 
-    echo '<script type="text/javascript" src="'.base_url().'assets/validation.js">
+    echo '
+    <script type="text/javascript" src="'.base_url().'css/bootstrap.min.js"></script>
+    <script type="text/javascript" src="'.base_url().'assets/validation.js">
     </script>';
   }
   else if($title=="Preview" || $title=="Profile"){
@@ -56,6 +54,7 @@
       </script>';
 
       echo '
+      <script type="text/javascript" src="'.base_url().'css/bootstrap.min.js"></script>
       <script type="text/javascript" src="'.base_url().'assets/validation2.js"></script>
       <script type="text/javascript" src="'.base_url().'assets/validation.js"></script>
       ';
@@ -103,7 +102,9 @@
         });
     </script>';
 
-    echo '<script type="text/javascript" src="'.base_url().'assets/validation2.js"></script>';
+    echo '
+    <script type="text/javascript" src="'.base_url().'css/bootstrap.min.js"></script>
+    <script type="text/javascript" src="'.base_url().'assets/validation2.js"></script>';
 
   }
   ?>

@@ -415,6 +415,13 @@ class User extends CI_Controller{
 
 
 	}
+	public function change()
+	{
+		if($this->session->userdata('logged_in')=='FALSE' || $this->session->userdata('logged_in')=='')
+		{
+			$this->index();
+		}
+	}
 
 
 

@@ -185,6 +185,8 @@ fieldset[disabled] .btn-xl.active {
     background-color: #fff;
 }
 
+
+
 .navbar-nav{
     margin: 7.5px -15px;
 }
@@ -242,6 +244,10 @@ fieldset[disabled] .btn-xl.active {
     color: #fff;
 }
 
+.navbar-default .nav .user li a {
+    color: #22A7F0;
+}
+
 .navbar-default .nav li a:hover,
 .navbar-default .nav li a:focus {
     outline: 0;
@@ -258,6 +264,23 @@ fieldset[disabled] .btn-xl.active {
 .navbar-default .navbar-nav>.active>a:focus {
     color: #fff;
     background-color: #2956B2;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+  color: white;
+  background-color: #22A7F0;
+}
+
+@media (max-width: 767px){
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+      color: #22A7F0;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+      color: #2956B2;
+    }
+    .navbar-nav .open .dropdown-menu {
+      background-color: white;
+    }
 }
 
 @media(min-width:768px) {
