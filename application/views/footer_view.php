@@ -25,6 +25,7 @@
       }
   }
   if($title=="Nemoto Technical Brain Phil Co. Inc."){
+
     if($regclick=="true"){
       echo "<script type='text/javascript'>
         $(window).load(function(){

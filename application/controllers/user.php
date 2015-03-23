@@ -11,6 +11,10 @@ class User extends CI_Controller{
 	public function index()
 
 	{
+
+		$data['regclick']="";
+		$data['logctr']="";
+		$data['regvalidate']="";
 		if(($this->session->userdata('user_email')!=""))
 		{
 			$this->welcome();
@@ -35,6 +39,8 @@ class User extends CI_Controller{
 	}
 	public function login()
 	{
+
+		$data['pass']="";
 		$email=$this->input->post('email');
 		$password=md5($this->input->post('pass'));
 
@@ -90,6 +96,8 @@ class User extends CI_Controller{
 	}
 	public function profile()
 	{
+
+		$data['pass']="";
 		if($this->session->userdata('uname')=='admin'){
 			$data['title']="Admin";
 			$data['language']=$this->user_model->pop_lang();
@@ -207,6 +215,9 @@ class User extends CI_Controller{
 	}
 	public function registration()
 	{
+		$data['regclick']="";
+		$data['logctr']="";
+		$data['regvalidate']="";
 		$this->load->library('form_validation');
 		// field name, error message, validation rules
 		$this->form_validation->set_rules('email_address', 'Your Email', 'trim|required|valid_email');
