@@ -15,13 +15,40 @@
 
 
   <?php
-  if($this->input->post('regbtn')){
-
-    echo "<script type='text/javascript'>
-      $('#login2').modal('show');
-    </script>";
+  if($title=="Profile"){
+      if($pass=="true"){
+        echo "<script type='text/javascript'>
+          $(window).load(function(){
+              $('#chpass').modal('show');
+          });
+        </script>";
+      }
   }
   if($title=="Nemoto Technical Brain Phil Co. Inc."){
+    if($regclick=="true"){
+      echo "<script type='text/javascript'>
+        $(window).load(function(){
+            $('#login2').modal('show');
+        });
+      </script>";
+
+
+    }
+    if($logctr=="false"){
+      echo "<script type='text/javascript'>
+        $(window).load(function(){
+            $('#loginmsg').modal('show');
+        });
+      </script>";
+
+    }
+    else if($regvalidate=="false"){
+      echo "<script type='text/javascript'>
+        $(window).load(function(){
+            $('#register').modal('show');
+        });
+      </script>";
+    }
     echo '
     <script type="text/javascript" src="'.base_url().'css/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="'.base_url().'css/bootstrap/js/agency.js"></script>
@@ -46,7 +73,6 @@
     </script>';
   }
   else if($title=="Preview" || $title=="Profile"){
-
       echo '<script type="text/javascript">
           $(document).ready(function(){
               $("#nav").addClass("navbar-shrink");

@@ -62,7 +62,9 @@ color:#FFF;
 .error{
 	color:#F00;
 	font-size:14px;
+	display: inline !important;
 }
+
 .noborder{
 
     border: 0;

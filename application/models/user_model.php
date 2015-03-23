@@ -54,8 +54,9 @@ class User_model extends CI_Model {
     }
 
 	function check_data()
-    {	$pid=$this->session->userdata('user_id');
-		$this->db->where("uid",$pid);
+    {
+      $pid=$this->session->userdata('user_id');
+		    $this->db->where("uid",$pid);
         $query=$this->db->get("pinfo");
         if($query->num_rows()>0)
         {
@@ -720,6 +721,35 @@ class User_model extends CI_Model {
 
 
 	}
+
+  function change_pass()
+    {
+
+      $pid=$this->session->userdata('user_id');
+  		$this->db->where("id",$pid);
+  		$this->db->where("password",md5($this->input->post('curr_pass')));
+      $query=$this->db->get("user");
+      if($query->num_rows()>0)
+      {
+
+
+        $pid=$this->session->userdata('user_id');
+        $data = array(
+          'password'=>md5($this->input->post('new_pass'))
+          );
+
+        $this->db->where('id', $pid);
+        $this->db->update('user', $data);
+  		}
+      else{
+  		    return "false";
+
+      }
+
+
+
+
+    }
 
 
 }

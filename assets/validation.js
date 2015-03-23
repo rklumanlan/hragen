@@ -4,6 +4,11 @@ function reg(){
 }
 
 $(document).ready(function () {
+	$("#regbtn").click(function(){
+		$('#login2').modal('show');
+	});
+
+
 	$(".error").hide();
 	$(".error").css('margin-bottom','0px');
 

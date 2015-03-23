@@ -16,6 +16,7 @@ class User extends CI_Controller{
 			$this->welcome();
 		}
 		else{
+
 			$data['title']= 'Nemoto Technical Brain Phil Co. Inc.';
 			$this->load->view('header_view',$data);
 			$this->load->view("registration_view", $data);
@@ -75,12 +76,16 @@ class User extends CI_Controller{
 						$this->load->view('footer_view', $data);
 					}
 					else{
-					$this->welcome();
+						$this->welcome();
 					}
 				}
 		}
 		else{
-			$this->index();
+			$data['title']= 'Nemoto Technical Brain Phil Co. Inc.';
+			$data['logctr']='false';
+			$this->load->view('header_view',$data);
+			$this->load->view("registration_view", $data);
+			$this->load->view('footer_view',$data);
 		}
 	}
 	public function profile()
@@ -207,22 +212,25 @@ class User extends CI_Controller{
 		$this->form_validation->set_rules('email_address', 'Your Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
 		$this->form_validation->set_rules('con_password', 'Password Confirmation', 'trim|required|matches[password]');
-
-		if($this->form_validation->run() == FALSE)
+		if($this->form_validation->run() == FALSE && $this->input->post('regbtn'))
 		{
-			$this->index();
+				$data['regvalidate']= 'false';
 		}
 		else
 		{
+			if($this->input->post('regbtn') &&
+			$this->input->post('con_password')!="" &&
+			$this->input->post('password')!="" &&
+			$this->input->post('email_address')!=""){
+					$data['regclick']= 'true';
+			}
 
-			if($this->user_model->adduser() == TRUE){
-				echo"<script>alert('User already exists!');</script>";
-				$this->index();
-			}
-			else{
-				$this->index();
-			}
+
 		}
+		$data['title']= 'Nemoto Technical Brain Phil Co. Inc.';
+		$this->load->view('header_view',$data);
+		$this->load->view("registration_view", $data);
+		$this->load->view('footer_view',$data);
 	}
 	public function logout()
 	{
@@ -257,6 +265,7 @@ class User extends CI_Controller{
 	}
 	public function preview()
 	{
+
 		if($this->session->userdata('logged_in')=='FALSE' || $this->session->userdata('logged_in')=='')
 		{
 			$this->index();
@@ -273,11 +282,11 @@ class User extends CI_Controller{
 			);
 			$this->load->library('upload', $config);
 			if ( ! $this->upload->do_upload())
-		{
-			$error = array('error' => $this->upload->display_errors());
+			{
+				$error = array('error' => $this->upload->display_errors());
 
-			$this->load->view('welcome_view', $error);
-		}
+				$this->load->view('welcome_view', $error);
+			}
 
 
 
@@ -417,10 +426,40 @@ class User extends CI_Controller{
 	}
 	public function change()
 	{
+
+		$data['cpass_er']="";
+		$data['pass']="";
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('new_pass', 'New Password', 'trim|required|min_length[4]|max_length[32]');
+		$this->form_validation->set_rules('conf_pass', 'Password Confirmation', 'trim|required|matches[new_pass]');
+
 		if($this->session->userdata('logged_in')=='FALSE' || $this->session->userdata('logged_in')=='')
 		{
 			$this->index();
 		}
+		else if($this->form_validation->run() == FALSE && $this->input->post('change_pass'))
+		{
+			$data['title']="Profile";
+		}
+		else if($this->input->post('change_pass')){
+			$data['ch_pass']=$this->user_model->change_pass();
+			$data['title']="Profile";
+			$data['pass']=$data['ch_pass'];
+			if($data['pass']=="false"){
+				$data['cpass_er']="Current Password didn't match.";
+			}
+			else{
+				$data['pass']="true";
+			}
+		}
+		else{
+
+			$data['title']="Profile";
+		}
+
+		$this->load->view('header_view', $data);
+		$this->load->view('changepass_view', $data);
+		$this->load->view('footer_view', $data);
 	}
 
 

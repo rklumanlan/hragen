@@ -465,3 +465,30 @@
         </div>
     </div>
 </div>
+
+<div class="modal modal fade" id="loginmsg" tabindex="-1" role="dialog" aria-labelledby="loginmsg" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+            <!--Modal Body-->
+            <div class="modal-body">
+
+                <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                          Error!
+                            <a href=""><i class="pull-right glyphicon glyphicon-remove" data-dismiss="modal"
+                            aria-hidden="true"> </i></a>
+                        </div>
+                    </div>
+                    <div style="padding-top:30px" class="panel-body" >
+                        Incorrect Email/Password!
+                    </div>
+                </div>
+            </div>
+                <?php echo form_close(); ?>
+            </div>
+
+            <!--/Modal Body-->
+      </div>
+  </div>
+</div>

@@ -92,10 +92,8 @@
                         <i class="glyphicon glyphicon-user"></i>  <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li>'.anchor("user/profile", "User Profile").'
-                        </li>
-                        <li><a href="" data-toggle="modal" data-target="#change">Change Password</a>
-                        </li>
+                        <li>'.anchor("user/profile", "User Profile").'</li>
+                        <li>'.anchor("user/change", "Change Password").'</li>
                         <li class="divider"></li>
                         <li>'.anchor("user/logout", "Logout").'</li>
                         </li>
@@ -184,7 +182,7 @@
                                   <div class="col-sm-8">
                                       <input type="text" id="email_address" name="email_address" class="form-control"
                                       value="<?php echo set_value('email_address'); ?>" />
-                                       <?php echo "<span class='error'>".form_error('email_address')."</span>"; ?>
+                                       <?php echo "<div class='error'>".form_error('email_address')."</div>"; ?>
                                   </div>
                               </div>
                               <div class="form-group">
@@ -205,7 +203,7 @@
                               </div>
                               <div class="form-group">
                                   <div class="col-xs-offset-6 col-sm-offset-8 col-md-offset-8 col-lg-offset-9 ">
-                                      <input type="submit" name="regbtn" class="greenButton" name="submit" value="Submit" />
+                                      <input type="submit" name="regbtn" id="regbtn" class="btn btn-primary" name="submit" value="Submit" />
                                   </div>
                               </div>
 
@@ -262,45 +260,3 @@
       </div>
     </div>
     <!--  /Login2 form -->
-    <!--  change form -->
-    <div class="modal modal fade" id="change" tabindex="-1" role="dialog" aria-labelledby="change" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-                <!--Modal Body-->
-                <div class="modal-body">
-                    <?php echo form_open("user/login",'class="form-horizontal" role="form"'); ?>
-                    <div class="panel panel-info" >
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                Change Password
-                                <a href=""><i class="pull-right glyphicon glyphicon-remove" data-dismiss="modal"
-                                aria-hidden="true"> </i></a>
-                            </div>
-                        </div>
-                        <div style="padding-top:30px" class="panel-body" >
-                            <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input type="text" id="password" name="password" class="form-control" value=""
-                                placeholder="Email" />
-                            </div>
-                            <div style="margin-bottom: 25px" class="input-group">
-                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                 <input type="password" id="pass" name="pass"  class="form-control" value=""
-                                 placeholder="Password" />
-                            </div>
-                            <div style="margin-top:10px" class="form-group">
-                                <div class="col-sm-12 controls">
-                                  <input type="submit"  class="btn btn-md btn-primary btn-block" value="Change Password" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    <?php echo form_close(); ?>
-                </div>
-
-                <!--/Modal Body-->
-          </div>
-      </div>
-    </div>
-    <!--  /changeform -->

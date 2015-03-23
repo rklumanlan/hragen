@@ -107,6 +107,7 @@
                     <label for="fname" class="control-label col-sm-3">Languages:</label>
                     <div class="col-sm-9 ">
                       <?php
+                      if(!$_POST == ''){
                       if(count($tskills)>0){
                           foreach($tskills as $tskills){
                               $sel_lang_list=$tskills->lang_code;
@@ -134,6 +135,7 @@
                                       value='".$language->lang_desc."'>".$language->lang_desc."</label>
                                   </div>";
                           }
+                      }
                       }
                       ?>
                     </div>
