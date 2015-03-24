@@ -39,7 +39,7 @@ class User extends CI_Controller{
 	}
 	public function login()
 	{
-
+		$data['regclick']="";
 		$data['pass']="";
 		$email=$this->input->post('email');
 		$password=md5($this->input->post('pass'));
