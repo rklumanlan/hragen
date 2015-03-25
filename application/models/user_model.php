@@ -724,26 +724,42 @@ class User_model extends CI_Model {
 
   function change_pass()
     {
+      if($this->session->userdata('uname')=='admin'){
+    		$this->db->where("uname",$this->session->userdata('uname'));
+    		$this->db->where("pword",md5($this->input->post('curr_pass')));
+        $query=$this->db->get("admin");
+        if($query->num_rows()>0)
+        {
+          $data = array(
+            'pword'=>md5($this->input->post('new_pass'))
+            );
 
-      $pid=$this->session->userdata('user_id');
-  		$this->db->where("id",$pid);
-  		$this->db->where("password",md5($this->input->post('curr_pass')));
-      $query=$this->db->get("user");
-      if($query->num_rows()>0)
-      {
+          $this->db->where("uname",$this->session->userdata('uname'));
+          $this->db->update('admin', $data);
+    		}
+        else{
+    		    return "false";
 
+        }
 
-        $pid=$this->session->userdata('user_id');
-        $data = array(
-          'password'=>md5($this->input->post('new_pass'))
-          );
-
-        $this->db->where('id', $pid);
-        $this->db->update('user', $data);
-  		}
+      }
       else{
-  		    return "false";
+        $this->db->where("id",$this->session->userdata('user_id'));
+        $this->db->where("password",md5($this->input->post('curr_pass')));
+        $query=$this->db->get("user");
+        if($query->num_rows()>0)
+        {
+          $data = array(
+            'password'=>md5($this->input->post('new_pass'))
+            );
 
+          $this->db->where("id",$this->session->userdata('user_id'));
+          $this->db->update('user', $data);
+        }
+        else{
+            return "false";
+
+        }
       }
 
 

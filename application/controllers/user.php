@@ -17,7 +17,14 @@ class User extends CI_Controller{
 		$data['regvalidate']="";
 		if(($this->session->userdata('user_email')!=""))
 		{
-			$this->welcome();
+			$result2=$this->user_model->check_data();
+			if($result2!=true){
+				$this->welcome();
+			}
+			else{
+				$this->profile();
+
+			}
 		}
 		else{
 
@@ -234,6 +241,7 @@ class User extends CI_Controller{
 			$this->input->post('password')!="" &&
 			$this->input->post('email_address')!=""){
 					$data['regclick']= 'true';
+					$this->user_model->adduser();
 			}
 
 
