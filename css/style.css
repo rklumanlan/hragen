@@ -1,3 +1,6 @@
+.focus{
+	outline:none;
+}
 #clickhere:hover {
     text-decoration:underline;
 	cursor:pointer;
@@ -7,21 +10,35 @@
     text-decoration:underline;
 	color: #0000FF;
 }
+.rembtn{
+	padding: 0;
+	border: none;
+	background: none;
+	color: #0000FF;
+}
+.rembtn:hover{
+	color: #FF0000;
+	text-decoration:underline;
+}
+.click:hover {
+	cursor:pointer;
+}
 .lne {
 
-    height: 10px;
+    height: 2px;
     border: 0;
-    box-shadow: inset 0 12px 12px -12px rgba(0,0,0,0.5);
-}
-.text-right{
-	padding-top:30px;
+		background-color:#006699;
+
 }
 .bg{
-	background-color:#9FF;
-	padding:5px;
+	background-color:#22A7F0;
 }
 .bold{
 	font-weight:bold;
+	font-size:16px;
+}
+.space{
+	margin-bottom:10px;
 }
 .pads{
 	padding-right:20px;
@@ -45,9 +62,11 @@ color:#FFF;
 .error{
 	color:#F00;
 	font-size:14px;
+	display: inline !important;
 }
+
 .noborder{
-	
+
     border: 0;
 }
 .invi{display:none;}
@@ -57,16 +76,14 @@ font-weight:bold;
 }
 .reg_form{
 	width:83%;
-	padding:10px;
-	padding-top:20px;
-	padding-bottom:30px;
-	border:3px solid #DFDFDF;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#cbd4e5));
-	background: -moz-linear-gradient(top,  #fff,  #cbd4e5);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#cbd4e5');
+	padding:30px;
 }
-.mt {padding-left:0px; padding-right:2px; width:23.75%; float:left}
-.mt2 {padding-left:0px; padding-right:2px; width:5%; float:left; text-align:center}
+.border{
+	border: 1px #e4e4e4 solid;
+	background-color:white;
+	margin-top:150px;
+
+}
 .form_title{
 	font-size:20px;
 	font-weight:bold;
@@ -92,12 +109,3 @@ font-weight:bold;
 	background-color:#006600;
 	padding:4px 3px 2px 5px;
 }
-
-	img#uploadPreview{
-		border: 0;
-		border-radius: 3px;
-		-webkit-box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
-		box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
-		margin-bottom: 30px;
-		overflow: hidden;
-	}
