@@ -360,6 +360,7 @@ class User extends CI_Controller{
 	}
 	public function update_info()
 	{
+		$data['pass']="";
 		$data['language']=$this->user_model->pop_lang();
 		$data['os']=$this->user_model->pop_os();
 		$data['fwork']=$this->user_model->pop_fwork();
